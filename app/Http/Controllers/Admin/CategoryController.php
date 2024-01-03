@@ -13,6 +13,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct(){
+        $parent_cates = Category::where('parent_id', 0)->get();
+        view()->share('parent_cates', $parent_cates);
+    }
+
     public function index()
     {
         $categories = Category::orderByDesc('id')->get();
@@ -33,15 +38,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|unique:categories,name|string'
+            'name' => 'required|unique:categories,name|string',
+            'parent_id' => 'required|integer',
         ], [
-            'name.required' => 'Vui lòng nhập tên thể loại.'
+            'name.required' => 'Vui lòng nhập tên thể loại.',
+            'parent_id.required' => 'Vui lòng nhập chọn danh mục cha.',
         ]);
         DB::beginTransaction();
         try {
             Category::create($data);
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'Thêm thành công!');
         } catch (Throwable $e) {
             DB::rollback();
             throw $e;
@@ -77,7 +84,7 @@ class CategoryController extends Controller
         try {
             $category->update($data);
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'Cập nhật thành công!');
         } catch (Throwable $e) {
             DB::rollback();
             throw $e;
@@ -90,6 +97,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->back()->with('success', 'Delete successfully!');
+        return redirect()->back()->with('success', 'Xóa thành công!');
     }
 }

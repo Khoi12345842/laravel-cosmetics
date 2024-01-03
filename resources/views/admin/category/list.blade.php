@@ -20,6 +20,9 @@
                                     <h6 class="fw-semibold mb-0">Tên</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Danh mục cha</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
                             </tr>
@@ -32,6 +35,9 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="mb-0 fw-semibold">{{$category->name}}</p>
+                                    </td>
+                                    <td class="border-bottom-0 text-center">
+                                        <p class="mb-0 fw-semibold">{!! $category->parent_id == 0 ? 'Danh mục gốc' : $category->parent->name !!}</p>
                                     </td>
                                     <td class="border-bottom-0 text-center d-flex justify-content-center">
                                         <a href="{{route('category.edit', $category)}}" class="btn btn-outline-secondary m-1">Sửa</a>

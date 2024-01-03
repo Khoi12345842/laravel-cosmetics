@@ -27,7 +27,8 @@ class ShopController extends Controller
         });
         
         $products = $this->filter($products, $request);
-        $products = $this->sortByAndPaginate($products, $request);
+        $products = $this->sortBy($products, $request);
+        $products = $products->paginate(1);
         return view('frontend.shop', compact('products'));
     }
 
@@ -43,7 +44,7 @@ class ShopController extends Controller
         
         $products = Product::where('category_id',$category->id);
         $products = $this->filter($products, $request);
-        $products = $this->sortByAndPaginate($products, $request);
+        $products = $this->sortBy($products, $request);
 
         return view('frontend.shop',compact('products'));
     }
@@ -52,7 +53,7 @@ class ShopController extends Controller
         
         $products = Product::where('author_id',$author->id);
         $products = $this->filter($products, $request);
-        $products = $this->sortByAndPaginate($products, $request);
+        $products = $this->sortBy($products, $request);
 
         return view('frontend.shop',compact('products'));
     }
@@ -84,7 +85,7 @@ class ShopController extends Controller
         return $products;
     }
 
-    protected function sortByAndPaginate($products,Request $request){
+    protected function sortBy($products,Request $request){
         $sortBy = $request->input('sort_by') ?? 'latest';
         
         switch ($sortBy) {
@@ -106,10 +107,8 @@ class ShopController extends Controller
             default: $products = $products->orderByDesc('id');
         }
 
-        $perPage = $request->input('show') ?? '9';
-
-        $products = $products->paginate($perPage);
-        $products->appends(['sort_by' => $sortBy , 'show' => $perPage]);
+        // $products = $products->paginate(1);
+        // $products->appends(['sort_by' => $sortBy , 'show' => $perPage]);
 
         return $products;
     }

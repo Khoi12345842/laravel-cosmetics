@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Max book - Quản trị viên</title>
+    <title>Furnitica - Quản trị viên</title>
     <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/favicon.png" />
     <link rel="stylesheet" href="/assets/admin/css/styles.min.css" />
 </head>
@@ -19,7 +19,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="{{route("admin.dashboard")}}" class="text-nowrap logo-img">
-                        <img src="{{asset('assets/frontend/img/logo.png')}}" width="200" alt="" />
+                        <img src="{{asset('assets/frontend/img/home/logo.png')}}" width="150" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>

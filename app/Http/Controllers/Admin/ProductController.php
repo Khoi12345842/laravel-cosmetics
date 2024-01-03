@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct(){
+        $categories = Category::where('parent_id', 0)->get();
+        $brands = Brand::all();
+        $origins = Origin::all();
+        view()->share('categories', $categories);
+        view()->share('brands', $brands);
+        view()->share('origins', $origins);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -34,10 +42,7 @@ class ProductController extends Controller
      */
     public function create()
     {   
-        $categories = Category::all();
-        $brands = Brand::all();
-        $origins = Origin::all();
-        return view('admin.product.create', compact('categories','brands', 'origins'));
+        return view('admin.product.create');
     }
 
     /**
@@ -73,10 +78,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        $brands = Author::all();
-        $origins = Origin::all();
-        return view('admin.product.edit', compact('product','categories', 'origins', 'brands'));
+        return view('admin.product.edit', compact('product'));
     }
 
     /**

@@ -52,9 +52,20 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label">Loại da</label>
+                    <input class="form-control" value="{{$product->skin_type}}" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kết cấu</label>
+                    <input class="form-control" value="{{$product->texture}}" disabled>
+                </div>
+
+                <div class="mb-3">
                     <label for="description" class="form-label">Mô tả</label>
                     {!!$product->description!!}
                 </div>
+                
 
                 <div class="mb-3">
                     <label class="form-label me-2">Hình ảnh</label>

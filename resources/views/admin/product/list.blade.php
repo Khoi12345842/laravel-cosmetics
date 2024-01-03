@@ -30,7 +30,7 @@
                                     <h6 class="fw-semibold mb-0">Thứ tự</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Tên / Thể loại</h6>
+                                    <h6 class="fw-semibold mb-0">Tên / Danh mục</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Mã sản phẩm</h6>
@@ -47,7 +47,7 @@
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Đã bán</h6>
                                 </th>
-                                <th class="border-bottom-0 text-center">
+                                <th class="border-bottom-0 text-end">
                                     <h6 class="fw-semibold mb-0">Hành động</h6>
                                 </th>
                             </tr>
@@ -80,8 +80,8 @@
                                     <td class="border-bottom-0 text-center">
                                         <h6 class="fw-semibold mb-0">{{$product->sold}}</h6>
                                     </td>
-                                    <td class="border-bottom-0 text-center">
-                                        <div class="d-flex align-items-center">
+                                    <td class="border-bottom-0 text-end">
+                                        <div class="d-flex align-items-center justify-content-end">
                                             <a href="{{route('product.edit', $product)}}" class="btn btn-outline-warning m-1">Sửa</a>
                                             <form action="{{route('product.destroy', $product)}}" method="POST">
                                                 @method('DELETE')

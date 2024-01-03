@@ -50,7 +50,12 @@
                         <select class="form-select" name="category_id" id="category">
                             <option value="" disabled selected>--- Chọn danh mục ---</option>
                             @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option disabled>{{$category->name}}</option>
+                                @if ($category->children)
+                                    @foreach ($category->children as $child_cate)
+                                        <option value="{{$child_cate->id}}">~ {{$child_cate->name}}</option>
+                                    @endforeach
+                                @endif
                             @endforeach
                         </select>
                         @error('category_id')
