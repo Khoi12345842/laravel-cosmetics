@@ -163,13 +163,17 @@
                     <div class="mb-3">
                         <label class="form-label me-2">Hình ảnh
                             <span class="text-danger">*</span>
+                            <small class="text-warning ps-2 ">(Sử dụng Ctrl để thêm nhiều ảnh)</small>
                         </label>
-                        <input type="file" name="image" class="form-control" id="product-img" accept="image/*" />
-                        @error('image')
+                        <input type="file" name="images[]" class="form-control" id="imageInput" accept="image/jpg, image/jpeg, image/png, image/webp" multiple />
+                        @error('images')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
-                        
-                        <img id="imagePreview" class="m-3 rounded-1" src="{{$product->image}}" width="100">
+                        <div id="imagePreview">
+                            @foreach ($product->images as $image)
+                                <img class="m-3 rounded-1" style="width: 150px" src="{{$image->image}}" alt="">
+                            @endforeach
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Lưu</button>

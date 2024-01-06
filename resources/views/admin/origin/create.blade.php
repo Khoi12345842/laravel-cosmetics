@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Nhà xuất bản</h5>
+                <h5 class="card-title fw-semibold mb-4">Nơi sản xuất</h5>
                 <form action="{{route('origin.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">

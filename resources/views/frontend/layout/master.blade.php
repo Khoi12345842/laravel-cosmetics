@@ -28,7 +28,15 @@
     <!-- Template CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/frontend/css/reponsive.css">
+    <style>
+        .tab-content .item .product-miniature .product-description .product-buttons{
+            bottom: 10px;
+        }
+    </style>
+    @stack('css')
 </head>
+
+
 
 <body id="@yield('page-id', 'home')" class="@yield('page-class', '')">
     <header>

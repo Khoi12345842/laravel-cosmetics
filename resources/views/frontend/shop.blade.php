@@ -35,7 +35,7 @@
 
                                         <!-- category menu -->
                                         <div class="sidebar-block">
-                                            <div class="title-block">Categories</div>
+                                            <div class="title-block">Danh mục</div>
                                             <div class="block-content">
                                                 <div class="cateTitle hasSubCategory open level1">
                                                     <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#livingroom" aria-expanded="false" role="status">
@@ -470,7 +470,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8 col-lg-9 col-md-8 product-container">
-                                        <h1>Lingving Room</h1>
+                                        <h1>Sản phẩm</h1>
                                         <div class="js-product-list-top firt nav-top">
                                             <div class="d-flex justify-content-around row">
                                                 <div class="col col-xs-12">
@@ -506,8 +506,16 @@
                                                         <div class="item text-center col-md-4">
                                                             <div class="product-miniature js-product-miniature item-one first-item">
                                                                 <div class="thumbnail-container border">
-                                                                    <a href="">
-                                                                        <img class="img-fluid" src="{{$product->image}}" alt="img">
+                                                                    <a href="{{route('product', $product)}}">
+                                                                        <img class="img-fluid image-cover" 
+                                                                            src="{{$product->firstImage()->image}}" alt="img">
+                                                                        @if ($product->secondImage())
+                                                                            <img class="img-fluid image-secondary" 
+                                                                                src="{{$product->secondImage()->image}}" alt="img">
+                                                                        @else
+                                                                            <img class="img-fluid image-secondary" 
+                                                                                src="{{$product->firstImage()->image}}" alt="img">
+                                                                        @endif
                                                                     </a>
                                                                     @if ($product->discount)
                                                                         <div class="product-flags discount">-{{$product->discount}}%</div>
@@ -516,7 +524,7 @@
                                                                 <div class="product-description">
                                                                     <div class="product-groups">
                                                                         <div class="product-title">
-                                                                            <a href="">{{$product->name}}</a>
+                                                                            <a href="{{route('product', $product)}}">{{$product->name}}</a>
                                                                         </div>
                                                                         <div class="product-group-price">
                                                                             <div class="product-price-and-shipping">
@@ -537,7 +545,7 @@
                                                                         <a class="addToWishlist" href="#" data-rel="1" onclick="">
                                                                             <i class="fa fa-heart" aria-hidden="true"></i>
                                                                         </a>
-                                                                        <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
+                                                                        <a href="{{route('product', $product)}}" class="quick-view hidden-sm-down" data-link-action="quickview">
                                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                                         </a>
                                                                     </div>

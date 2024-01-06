@@ -6,7 +6,7 @@
         <div class="card w-100">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h5 class="card-title fw-semibold mb-4">Thể loại</h5>
+                    <h5 class="card-title fw-semibold mb-4">Danh mục</h5>
                     <a href="{{route('category.create')}}" class="btn btn-primary m-1">Tạo mới</a>
                 </div>
                 <div class="table-responsive">
@@ -44,7 +44,7 @@
                                         <form action="{{route('category.destroy', $category)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button onclick="return confirm('Bạn có chắc chắn muốn xóa thể loại này không?')"
+                                            <button onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')"
                                             type="submit" class="btn btn-outline-danger m-1">Xóa</button>
                                         </form>
                                     </td>

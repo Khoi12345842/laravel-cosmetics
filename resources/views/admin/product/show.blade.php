@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Thể loại</label>
+                    <label class="form-label">Danh mục</label>
                     <input class="form-control" value="{{$product->category->name}}" disabled>
                 </div>
 
@@ -65,12 +65,13 @@
                     <label for="description" class="form-label">Mô tả</label>
                     {!!$product->description!!}
                 </div>
-                
 
                 <div class="mb-3">
                     <label class="form-label me-2">Hình ảnh</label>
-                    <div>
-                        <img class="m-2 rounded-1" src="{{$product->image}}" width="100">
+                    <div class="d-flex">
+                        @foreach ($product->images as $image)
+                            <img width="150px" class="m-2" src="{{$image->image}}" >
+                        @endforeach
                     </div>
                 </div>
             </div>

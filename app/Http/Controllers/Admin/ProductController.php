@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Origin;
+use App\Models\ProductImage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\DB;
@@ -51,14 +52,16 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
+        $arrimages = $data['images'];
         DB::beginTransaction();
         try {
             $data['price'] = $data['initial_price'] - ($data['initial_price'] * $data['discount'] / 100);
-            $data['image'] = $this->saveImage($data['image']);
             unset($data['initial_price']);
+            unset($data['images']);
             $product = Product::create($data);
+            $this->createProductImage($product,$arrimages);
             DB::commit();
-            return redirect()->route('product.show', $product);
+            return redirect()->route('product.show', $product)->with('success', 'Thêm sản phẩm thành công.');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
@@ -90,13 +93,15 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $data['price'] = $data['initial_price'] - ($data['initial_price'] * $data['discount'] / 100);
-            if($request->file('image')){
-             $data['image'] =  $this->saveImage($request->file('image'));
-            }
             unset($data['initial_price']);
+            unset($data['images']);
             $product->update($data);
+            if($request->file('images')){
+                $arrimages = $request->file('images');
+                $this->createProductImage($product,$arrimages);
+            }
             DB::commit();
-            return redirect()->route('product.show', $product);
+            return redirect()->route('product.show', $product)->with('success', 'Cập nhật sản phẩm thành công.');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
@@ -110,6 +115,27 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->back()->with('success', 'Xóa sản phẩm thành công!');
+    }
+
+    protected function createProductImage($product, $arrimages){
+        DB::beginTransaction();
+        try {
+            if($product->images){
+               foreach($product->images as $image){
+                    $image->delete();
+               }
+            }
+            foreach($arrimages as $image){
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id;
+                $productImage->image = $this->saveImage($image);
+                $productImage->save();
+            }
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     protected function saveImage($image){

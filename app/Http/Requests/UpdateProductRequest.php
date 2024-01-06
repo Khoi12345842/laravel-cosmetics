@@ -32,7 +32,7 @@ class UpdateProductRequest extends FormRequest
             'discount' => 'nullable|integer|between:0,100',
             'quantity' => 'required|numeric',
             'description' =>'required|string',
-            'image' => 'image',
+            'images.*' => 'mimes:jpg,bmp,png,webp'
         ];
     }
 
@@ -41,7 +41,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'brand_id.required' => 'Vui lòng chọn tên thương hiệu.', 
             'origin_id.required' => 'Vui lòng chọn tên nơi sản xuất.', 
-            'category_id.required' => 'Vui lòng chọn tên thể loại.', 
+            'category_id.required' => 'Vui lòng chọn tên danh mục.', 
             'name.required' => 'Vui lòng nhập tên sách.',
             'initial_price.required' => 'Vui lòng nhập giá.',
             'quantity.required' => 'Vui lòng nhập số lượng.',

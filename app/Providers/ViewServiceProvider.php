@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Facades\View::composer(['frontend.layout.master','frontend.shop'], function (View $view) {
+        Facades\View::composer(['frontend.layout.master','frontend.shop','frontend.product'], function (View $view) {
             $categories = Category::where('parent_id',0)->get();
             $origins = Origin::all();
             $brands = Brand::limit(8)->get();

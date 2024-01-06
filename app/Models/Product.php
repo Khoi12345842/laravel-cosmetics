@@ -27,11 +27,9 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    protected function image(): Attribute
+    public function images()
     {
-        return Attribute::make(
-            get: fn (string $value) => \Storage::url($value),
-        );
+        return $this->hasMany(ProductImage::class);
     }
 
     public function orders()
@@ -43,5 +41,15 @@ class Product extends Model
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites', 'product_id', 'user_id');
+    }
+
+    public function firstImage()
+    {
+        return $this->images->first();
+    }
+
+    public function secondImage()
+    {
+        return $this->images->skip(1)->first();
     }
 }

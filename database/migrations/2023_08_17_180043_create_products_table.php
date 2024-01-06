@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('origin_id');
             $table->string('name')->unique();
             $table->string('product_code')->unique();
-            $table->string('image');
             $table->double('price');
             $table->integer('discount')->default(0);
             $table->integer('quantity');

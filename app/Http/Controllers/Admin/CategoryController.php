@@ -41,7 +41,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories,name|string',
             'parent_id' => 'required|integer',
         ], [
-            'name.required' => 'Vui lòng nhập tên thể loại.',
+            'name.required' => 'Vui lòng nhập tên danh mục.',
             'parent_id.required' => 'Vui lòng nhập chọn danh mục cha.',
         ]);
         DB::beginTransaction();
@@ -78,7 +78,11 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->validate([
-            'name' => 'required|string'
+            'name' => 'required|string',
+            'parent_id' => 'required|integer',
+        ], [
+            'name.required' => 'Vui lòng nhập tên danh mục.',
+            'parent_id.required' => 'Vui lòng nhập chọn danh mục cha.',
         ]);
         DB::beginTransaction();
         try {

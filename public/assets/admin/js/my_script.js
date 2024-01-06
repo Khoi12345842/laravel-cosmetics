@@ -1,14 +1,21 @@
 $(document).ready(function() {
-    $('#product-img').change(function(e) {
-        const file = e.target.files[0];
-        if(file){
+    $('#imageInput').change(function(e) {
+        const imagePreview = $('#imagePreview');
+        imagePreview.empty();
+
+        const files = e.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
             const reader = new FileReader();
+
             reader.onload = function(e) {
-                $('#imagePreview').attr('src', e.target.result);
+                const image = $('<img>').addClass('m-3 rounded-1').attr('src', e.target.result).attr('width', 150);
+                imagePreview.append(image);
+
             }
+
             reader.readAsDataURL(file);
         }
-        
     });
 
     $("#initial_price, #discount").on("keypress", function(e) {

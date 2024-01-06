@@ -49,14 +49,14 @@ class ShopController extends Controller
         return view('frontend.shop',compact('products'));
     }
 
-    public function getProductByAuthor(Author $author, Request $request){
+    // public function getProductByAuthor(Author $author, Request $request){
         
-        $products = Product::where('author_id',$author->id);
-        $products = $this->filter($products, $request);
-        $products = $this->sortBy($products, $request);
+    //     $products = Product::where('author_id',$author->id);
+    //     $products = $this->filter($products, $request);
+    //     $products = $this->sortBy($products, $request);
 
-        return view('frontend.shop',compact('products'));
-    }
+    //     return view('frontend.shop',compact('products'));
+    // }
 
     protected function filter($products, $request){
         
