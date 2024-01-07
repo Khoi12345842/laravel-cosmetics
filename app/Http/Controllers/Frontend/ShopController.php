@@ -12,7 +12,7 @@ use App\Models\Post;
 class ShopController extends Controller
 {
     public function index(){
-        $topSellingProducts = Product::orderByDesc('sold')->get()->take(8);
+        $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
         $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
         $newPosts = Post::orderByDesc('id')->limit(3)->get();
         $latestProducts = Product::orderByDesc('id')->limit(8)->get();
@@ -28,23 +28,30 @@ class ShopController extends Controller
         
         $products = $this->filter($products, $request);
         $products = $this->sortBy($products, $request);
-        $products = $products->paginate(1);
+        $products = $products->paginate(16);
         return view('frontend.shop', compact('products'));
     }
 
     public function product(Product $product){
         $relatedProducts = Product::where('category_id', $product->category_id)
                             ->where('id', '<>', $product->id)
-                            ->limit(10)
+                            ->limit(3)
                             ->get();
         return view('frontend.product', compact('product', 'relatedProducts'));
     }
 
     public function getProductByCategory(Category $category, Request $request){
         
-        $products = Product::where('category_id',$category->id);
+        if($category->children->count() != 0){
+            $child_cate_ids = $category->children()->pluck('id');
+            $products = Product::whereIn('category_id', $child_cate_ids);
+        }
+        else{
+            $products = Product::where('category_id',$category->id);
+        }
         $products = $this->filter($products, $request);
         $products = $this->sortBy($products, $request);
+        $products = $products->paginate(16);
 
         return view('frontend.shop',compact('products'));
     }
@@ -61,7 +68,7 @@ class ShopController extends Controller
     protected function filter($products, $request){
         
         /* Xuất xứ filter */
-        $origins = $request->input('nxb') ?? [];
+        $origins = $request->input('xuat_xu') ?? [];
         $arr_origins = array_keys($origins);
 
         $products = $products->when($arr_origins, function($query, $arr_origins){
@@ -69,18 +76,18 @@ class ShopController extends Controller
         });
 
         /* Thương hiệu filter */
-        $brands = $request->input('tac-gia') ?? [];
+        $brands = $request->input('thuong_hieu') ?? [];
         $arr_brands = array_keys($brands);
 
         $products = $products->when($arr_brands, function($query, $arr_brands){
             return $query->whereIn('brand_id', $arr_brands);
         });
 
-        $min_price = $request->input('min_price');
-        $max_price = $request->input('max_price');
+        // $min_price = $request->input('min_price');
+        // $max_price = $request->input('max_price');
 
-        $products = ($min_price != null && $max_price != null) 
-                    ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
+        // $products = ($min_price != null && $max_price != null) 
+        //             ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
 
         return $products;
     }

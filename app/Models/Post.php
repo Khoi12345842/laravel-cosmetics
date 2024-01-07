@@ -30,7 +30,7 @@ class Post extends Model
         );
     }
 
-    public function shortContent($text, $limit = 80) {
+    public function shortContent($text, $limit = 100) {
         $text = strip_tags($text);
         $text = Str::limit($text, $limit); 
 

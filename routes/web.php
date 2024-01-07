@@ -158,7 +158,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
     Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
-    Route::get('/dat-hang/thanh-cong', [CheckoutController::class, 'notification'])->name('checkout.success');
 
     Route::get('/tai-khoan', [AccountController::class, 'account'])->name('account');
     Route::post('/tai-khoan', [AccountController::class, 'updateAccount'])->name('account.update');
@@ -172,4 +171,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('account.change-password');
     Route::post('/doi-mat-khau', [AccountController::class, 'updatePassword'])->name('account.update-password');
 
+    Route::fallback(function () {
+        return view('frontend.404');
+    });
 });

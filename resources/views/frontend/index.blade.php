@@ -50,7 +50,7 @@
                                                 <div class="policy-item">
                                                     <div class="policy-content iconpolicy2">
                                                         <img src="/assets/frontend/img/home/home1-policy2.png" alt="img">
-                                                        <div class="policy-name mb-5">FREE INSTALLATION</div>
+                                                        <div class="policy-name mb-5">Cam kết hàng chính hãng</div>
                                                         <div class="policy-des">Lorem ipsum dolor amet consectetur</div>
                                                     </div>
                                                 </div>
@@ -63,7 +63,7 @@
                                                 <div class="policy-item">
                                                     <div class="policy-content iconpolicy3">
                                                         <img src="/assets/frontend/img/home/home1-policy3.png" alt="img">
-                                                        <div class="policy-name mb-5">MONEY BACK GUARANTEED</div>
+                                                        <div class="policy-name mb-5">Đảm bảo hoàn tiền</div>
                                                         <div class="policy-des">Lorem ipsum dolor amet consectetur</div>
                                                     </div>
                                                 </div>
@@ -675,7 +675,7 @@
                                                             tempor incididunt ut labore dolore magna aliqua.
                                                         </p>
                                                         <div>
-                                                            <a href="product-grid-sidebar-left.html"> View all product </a>
+                                                            <a href="product-grid-sidebar-left.html"> Tất cả sản phẩm</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -685,263 +685,15 @@
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade in active show">
                                                             <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
-                                                                <div class="item text-center">
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/26.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/1.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                        <del class="regular-price">£28.68</del>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                                @foreach ($topSellingProducts as $index=>$product)
+                                                                    @if ($index % 2 == 0)
+                                                                    <div class="item text-center">
+                                                                    @endif
+                                                                        @include('frontend.layout.product-info')
+                                                                    @if ($index % 2 != 0 || $index == count($topSellingProducts) - 1)
                                                                     </div>
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/25.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/2.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                        <del class="regular-price">£28.68</del>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item text-center">
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/10.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/9.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/3.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/9.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                        <del class="regular-price">£28.68</del>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item text-center">
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/24.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/3.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                                                        <div class="thumbnail-container">
-                                                                            <a href="product-detail.html">
-                                                                                <img class="img-fluid image-cover" src="/assets/frontend/img/product/23.jpg" alt="img">
-                                                                                <img class="img-fluid image-secondary" src="/assets/frontend/img/product/4.jpg" alt="img">
-                                                                            </a>
-                                                                            <div class="highlighted-informations">
-                                                                                <div class="variant-links">
-                                                                                    <a href="#" class="color beige" title="Beige"></a>
-																					<a href="#" class="color orange" title="Orange"></a>
-																					<a href="#" class="color green" title="Green"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-description">
-                                                                            <div class="product-groups">
-                                                                                <div class="product-title">
-                                                                                    <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                                </div>
-                                                                                <div class="product-group-price">
-                                                                                    <div class="product-price-and-shipping">
-                                                                                        <span class="price">£20.08</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-buttons d-flex justify-content-center">
-                                                                                <form action="#" method="post" class="formAddToCart">
-
-                                                                                    <input type="hidden" name="id_product" value="1">
-                                                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                    </a>
-                                                                                </form>
-                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1661,72 +1413,6 @@
                                         <div class="items col-lg-12 col-sm-12 col-xs-12">
                                             <div class="tiva-content-lookbook">
                                                 <img class="img-fluid img-responsive" src="/assets/frontend/img/home/home1-tolltip1.jpg" alt="lookbook">
-                                                
-												<div class="item-lookbook item1">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip2.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Lorem ipsum dolor</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £52.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item2">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip1.jpg" alt="contrary-to-popular-belief">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Sed vel malesuada lorem</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £68.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1738,105 +1424,6 @@
                                         <div class="items col-lg-12 col-sm-12 col-xs-12">
                                             <div class="tiva-content-lookbook">
                                                 <img class="img-fluid img-responsive" src="/assets/frontend/img/home/home1-tolltip2.jpg" alt="lookbook">
-                                                
-												<div class="item-lookbook item3">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/product/34.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Lorem ipsum dolor sit</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £45.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item4">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip6.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Lorem ipsum dolor</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £21.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item5">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip4.jpg" alt="mug-the-adventure-begins">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Sed vel malesuada lorem</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £11.90
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="info-lookbook">
                                             </div>
@@ -1850,105 +1437,6 @@
                                         <div class="items col-lg-12 col-sm-12 col-xs-12">
                                             <div class="tiva-content-lookbook">
                                                 <img class="img-fluid img-responsive" src="/assets/frontend/img/home/home1-tolltip3.jpg" alt="lookbook">
-                                                
-												<div class="item-lookbook item6">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip4.jpg" alt="mug-the-adventure-begins">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Sed vel malesuada lorem</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £11.90
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item7">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/product/13.jpg" alt="brown-bear-vector-graphics">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Orci varius natoque penatibus</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £9.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item8">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip6.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Etiam congue nisl nec</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £16.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
 											
                                             <div class="info-lookbook">
@@ -1963,105 +1451,6 @@
                                         <div class="items col-lg-12 col-sm-12 col-xs-12">
                                             <div class="tiva-content-lookbook">
                                                 <img class="img-fluid img-responsive" src="/assets/frontend/img/home/home1-tolltip4.jpg" alt="lookbook">
-                                                
-												<div class="item-lookbook item9">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip10.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Nam semper a ligula nec</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £41.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item10">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip8.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Donec accumsan lectus ut</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £11.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="item-lookbook item11">
-                                                    <span class="number-lookbook">+</span>
-                                                    <div class="content-lookbook">
-                                                        <div class="main-lookbook  d-flex align-items-center">
-                                                            <div class="item-thumb">
-                                                                <a href="product-detail.html">
-                                                                    <img src="/assets/frontend/img/home/icon-tolltip9.jpg" alt="lorem-ipsum-dolor-sit-amet">
-                                                                </a>
-                                                            </div>
-                                                            <div class="content-bottom">
-                                                                <div class="item-title">
-                                                                    <a href="product-detail.html">Fusce quis felis libero</a>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star-content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item-price">
-                                                                    £11.00
-                                                                </div>
-                                                                <div class="readmore">
-                                                                    <a href="product-detail.html">View More</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
 											
                                             <div class="info-lookbook">
@@ -2075,90 +1464,37 @@
                         <!-- recent posts -->
                         <div class="container">
                             <div class="section recent-post">
-                                <div class="title-block">RECENT POST</div>
+                                <div class="title-block">Tin tức và sự kiện</div>
                                 <div class="row">
+                                    @foreach ($newPosts as $post)
                                     <div class="col-md-4">
                                         <div class="item-post">
                                             <div class="thumbnail-img">
-                                                <a href="blog-detail.html">
-                                                    <img src="/assets/frontend/img/home/home1-post1.jpg" alt="img">
+                                                <a href="{{route('blog.detail', $post)}}">
+                                                    <img src="{{$post->thumbnail}}" alt="img" width="100%">
                                                 </a>
                                             </div>
                                             <div class="post-content">
                                                 <div class="post-info">
                                                     <span class="comment">
                                                         <i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                        <span>0 Comments</span>
+                                                        <span>{{$post->view}} lượt xem</span>
                                                     </span>
                                                     <span class="datetime">
                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                        <span>April 12, 2018</span>
+                                                        <span>{{date_format($post->created_at, 'd/m/Y')}}</span>
                                                     </span>
                                                 </div>
                                                 <div class="post-title">
-                                                    <a href="blog-detail.html">Lorem ipsum dolor sit amet</a>
+                                                    <a href="{{route('blog.detail', $post)}}">{{$post->title}}</a>
                                                 </div>
                                                 <div class="post-desc">
-                                                    Lorem ipsum dolor sit amet, consecte adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                    {{$post->shortContent($post->content)}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="item-post">
-                                            <div class="thumbnail-img">
-                                                <a href="blog-detail.html">
-                                                    <img src="/assets/frontend/img/home/home1-post2.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="post-content">
-                                                <div class="post-info">
-                                                    <span class="comment">
-                                                        <i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                        <span>0 Comments</span>
-                                                    </span>
-                                                    <span class="datetime">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                        <span>April 12, 2018</span>
-                                                    </span>
-                                                </div>
-                                                <div class="post-title">
-                                                    <a href="blog-detail.html">Lorem ipsum dolor sit amet</a>
-                                                </div>
-                                                <div class="post-desc">
-                                                    Lorem ipsum dolor sit amet, consecte adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="item-post">
-                                            <div class="thumbnail-img">
-                                                <a href="blog-detail.html">
-                                                    <img src="/assets/frontend/img/home/home1-post3.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="post-content">
-                                                <div class="post-info">
-                                                    <span class="comment">
-                                                        <i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                        <span>0 Comments</span>
-                                                    </span>
-                                                    <span class="datetime">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                        <span>April 12, 2018</span>
-                                                    </span>
-                                                </div>
-                                                <div class="post-title">
-                                                    <a href="blog-detail.html">Lorem ipsum dolor sit amet</a>
-                                                </div>
-                                                <div class="post-desc">
-                                                    Lorem ipsum dolor sit amet, consecte adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                 </div>
                             </div>
 

@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Hash;
+use Auth;
 
 class AccountController extends Controller
 {
     public function account(){
-        return view('frontend.account');
+        $user = Auth::guard('web')->user();
+        $orders = Order::where('user_id', $user->id)->orderByDesc('id')->paginate(10);
+        return view('frontend.account', compact('orders', 'user'));
     }
 
     public function updateAccount(Request $request){
@@ -31,10 +34,10 @@ class AccountController extends Controller
         return redirect()->back();
     }
 
-    public function orderHistory(){
-        $orders = Order::where('user_id', \Auth::guard('web')->id())->orderByDesc('id')->paginate(10);
-        return view('frontend.order-history', compact('orders'));
-    }
+    // public function orderHistory(){
+    //     $orders = Order::where('user_id', \Auth::guard('web')->id())->orderByDesc('id')->paginate(10);
+    //     return view('frontend.order-history', compact('orders'));
+    // }
 
     public function cancel(Order $order){
         $order->status = 0;

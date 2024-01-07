@@ -52,27 +52,7 @@
                                 <div class="row">
                                     <div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
                                         <!-- category -->
-                                        <div class="sidebar-block">
-                                            <div class="title-block">Danh mục</div>
-                                            <div class="block-content">
-                                                @foreach ($categories as $key=>$category)
-                                                    <div class="cateTitle hasSubCategory open level1">
-                                                        <span class="arrow collapse-icons collapsed" data-toggle="collapse" data-target="#cate-{{$key}}" >
-                                                            <i class="zmdi zmdi-minus"></i>
-                                                            <i class="zmdi zmdi-plus"></i>
-                                                        </span>
-                                                        <a class="cateItem" href="#">{{$category->name}}</a>
-                                                        <div class="subCategory collapse" id="cate-{{$key}}" aria-expanded="true" role="status">
-                                                            @foreach ($category->children as $child_cate)
-                                                                <div class="cateTitle">
-                                                                    <a href="#" class="cateItem">{{$child_cate->name}}</a>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                       @include('frontend.layout.categories-sidebar')
 
                                         <!-- best seller -->
                                         <div class="sidebar-block">
@@ -188,66 +168,6 @@
 
                                         </div>
 
-                                        <!-- product tag -->
-                                        <div class="sidebar-block product-tags">
-                                            <div class="title-block">
-                                                Product Tags
-                                            </div>
-                                            <div class="block-content">
-                                                <ul class="listSidebarBlog list-unstyled">
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Hot Trend">Hot
-                                                            Trend</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#"
-                                                            title="Show products matching tag Jewelry">Jewelry</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="man.html"
-                                                            title="Show products matching tag Man">Man</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Party">Party</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#"
-                                                            title="Show products matching tag SamSung">SamSung</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#"
-                                                            title="Show products matching tag Shirt Dresses">Shirt
-                                                            Dresses</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Shoes">Shoes</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Summer">Summer</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#"
-                                                            title="Show products matching tag Sweaters">Sweaters</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Winter">Winter</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" title="Show products matching tag Woman">Woman</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="col-sm-8 col-lg-9 col-md-9">
                                         <div class="main-product-detail">
@@ -347,13 +267,13 @@
                                                                 <span>{{$product->product_code}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="has-border cart-area">
+                                                        <form action="{{route('cart.add', $product)}}" class="has-border cart-area" >
                                                             <div class="product-quantity">
                                                                 <div class="qty">
                                                                     <div class="input-group">
                                                                         <div class="quantity">
                                                                             <span class="control-label">QTY : </span>
-                                                                            <input type="text" name="qty"
+                                                                            <input type="text" name="quantity"
                                                                                 id="quantity_wanted" value="1"
                                                                                 class="input-group form-control">
 
@@ -371,10 +291,8 @@
                                                                             </span>
                                                                         </div>
                                                                         <span class="add">
-                                                                            <button
-                                                                                class="btn btn-primary add-to-cart add-item"
-                                                                                data-button-action="add-to-cart"
-                                                                                type="submit">
+                                                                            <button class="btn btn-primary add-to-cart add-item"
+                                                                                data-button-action="add-to-cart" type="submit">
                                                                                 <i class="fa fa-shopping-cart"
                                                                                     aria-hidden="true"></i>
                                                                                 <span>Thêm vào giỏ hàng</span>
@@ -390,7 +308,7 @@
                                                             <div class="clearfix"></div>
                                                             <p class="product-minimal-quantity">
                                                             </p>
-                                                        </div>
+                                                        </form>
                                                         <div class="d-flex2 has-border">
                                                             <div class="btn-group">
                                                                 <a href="#">
@@ -436,6 +354,11 @@
                                                             </div>
                                                         </div> --}}
                                                         <div class="content">
+                                                            <p>Danh mục :
+                                                                <span class="content2">
+                                                                    <a href="#">{{$product->category->name}}</a>
+                                                                </span>
+                                                            </p>
                                                             <p>Nơi sản xuất :
                                                                 <span class="content2">
                                                                     <a href="#">{{$product->origin->name}}</a>
@@ -649,59 +572,7 @@
                                                     <div class="row">
                                                         @foreach ($relatedProducts as $product)
                                                             <div class="item text-center col-md-4">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container border border">
-                                                                        <a href="{{route('product', $product)}}">
-                                                                            <img class="img-fluid image-cover" 
-                                                                                src="{{$product->firstImage()->image}}" alt="img">
-                                                                            @if ($product->secondImage())
-                                                                                <img class="img-fluid image-secondary" 
-                                                                                    src="{{$product->secondImage()->image}}" alt="img">
-                                                                            @else
-                                                                                <img class="img-fluid image-secondary" 
-                                                                                    src="{{$product->firstImage()->image}}" alt="img">
-                                                                            @endif
-                                                                        </a>
-                                                                        @if ($product->discount)
-                                                                            <div class="product-flags discount">-{{$product->discount}}%</div>
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="{{route('product', $product)}}">{{$product->name}}</a>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">{{convertPrice($product->price)}}</span>
-                                                                                    @if ($product->discount)
-                                                                                        <del class="regular-price">{{convertPrice(initialPrice($product->price, $product->discount))}}</del>
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="product-buttons d-flex justify-content-center">
-                                                                            <form action="#" method="post"
-                                                                                class="formAddToCart">
-                                                                                <a class="add-to-cart" href="#"
-                                                                                    data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart"
-                                                                                        aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1"
-                                                                                onclick="">
-                                                                                <i class="fa fa-heart"
-                                                                                    aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="{{route('product', $product)}}" class="quick-view hidden-sm-down"
-                                                                                data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                @include('frontend.layout.product-info')
                                                             </div>
                                                         @endforeach
                                                     </div>

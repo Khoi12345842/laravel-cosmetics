@@ -19,6 +19,9 @@ class AuthUserController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ],[
+            'email.required' => 'Địa chỉ email không được để trống.',
+            'password.required' => 'Mật khẩu không được để trống.',
         ]);
 
         if (Auth::guard('web')->attempt([

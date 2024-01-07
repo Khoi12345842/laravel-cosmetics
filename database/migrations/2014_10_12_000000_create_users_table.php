@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('password');
-            $table->string('avatar')->nullable();
             $table->tinyInteger('status')->default(1);
 
             $table->timestamps();

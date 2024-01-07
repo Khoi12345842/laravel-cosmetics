@@ -32,6 +32,14 @@
         .tab-content .item .product-miniature .product-description .product-buttons{
             bottom: 10px;
         }
+        .product-title a{
+            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
     @stack('css')
 </head>
@@ -108,8 +116,8 @@
                                         <tr>
                                             <td colspan="3" class="d-flex justify-content-center">
                                                 <div class="cart-button">
-                                                    <a href="product-cart.html" title="View Cart">View Cart</a>
-                                                    <a href="product-checkout.html" title="Checkout">Checkout</a>
+                                                    <a href="{{route('cart')}}" title="View Cart">Giỏ hàng</a>
+                                                    <a href="{{route('checkout')}}" title="Checkout">Thanh toán</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -140,7 +148,7 @@
                         <div class="menu navbar collapse navbar-collapse">
                             <ul class="menu-top navbar-nav">
                                 <li class="nav-link">
-                                    <a href="#" class="parent">Trang chủ</a>
+                                    <a href="/" class="parent">Trang chủ</a>
                                 </li>
                                 <li>
                                     <a href="{{route('shop')}}" class="parent">Cửa hàng</a>
@@ -157,9 +165,9 @@
                                                                 <span class="menu-title">{{$category->name}}</span>
                                                                 <div class="menu-content">
                                                                     <ul class="col">
-                                                                        @foreach ($category->children as $child_cates)
+                                                                        @foreach ($category->children as $child_cate)
                                                                             <li>
-                                                                                <a href="product-list-sidebar-left.html">{{$child_cates->name}}</a>
+                                                                                <a href="{{route('category', $child_cate)}}">{{$child_cate->name}}</a>
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
@@ -173,8 +181,8 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="contact.html" class="parent">Contact</a>
-                                    <div class="dropdown-menu">
+                                    <a href="{{route('contact')}}" class="parent">Liên hệ</a>
+                                    {{-- <div class="dropdown-menu">
                                         <ul>
                                             <li class="item">
                                                 <a href="blog-list-sidebar-left.html" title="Blog List (Sidebar Left)">Blog List (Sidebar Left)</a>
@@ -195,7 +203,7 @@
                                                 <a href="blog-detail.html" title="Blog Detail">Blog Detail</a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </li>
                             </ul>
                         </div>
@@ -204,7 +212,7 @@
                     <!-- search-->
                     <div id="search_widget" class="col-sm-6 col-md-5 align-items-center justify-content-end d-flex">
                         <form method="get" action="#">
-                            <input type="text" name="s" value="" placeholder="Search ..." class="ui-autocomplete-input" autocomplete="off">
+                            <input type="text" name="s" value="" placeholder="Tìm kiếm ..." class="ui-autocomplete-input" autocomplete="off">
                             <button type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -215,125 +223,114 @@
                             <div class="myaccount-title">
                                 <a href="#acount" data-toggle="collapse" class="acount">
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span>Account</span>
+                                    @if (Auth::guard('web')->check())
+                                        <span>{{Auth::guard('web')->user()->name}}</span>
+                                    @else
+                                        <span>Tài khoản</span>
+                                    @endif
+                                    
                                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                             </div>
                             <div id="acount" class="collapse">
                                 <div class="account-list-content">
-                                    <div>
-                                        <a class="login" href="user-acount.html" rel="nofollow" title="Log in to your customer account">
-                                            <i class="fa fa-cog"></i>
-                                            <span>My Account</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="login" href="user-login.html" rel="nofollow" title="Log in to your customer account">
-                                            <i class="fa fa-sign-in"></i>
-                                            <span>Sign in</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="register" href="user-register.html" rel="nofollow" title="Register Account">
-                                            <i class="fa fa-user"></i>
-                                            <span>Register Account</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="check-out" href="product-checkout.html" rel="nofollow" title="Checkout">
-                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                            <span>Checkout</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="user-wishlist.html" title="My Wishlists">
-                                            <i class="fa fa-heart"></i>
-                                            <span>My Wishlists</span>
-                                        </a>
-                                    </div>
-                                    <div id="desktop_currency_selector" class="currency-selector groups-selector hidden-sm-down">
-                                        <ul class="list-inline">
-                                            <li>
-                                                <a title="Euro" rel="nofollow" href="#">EUR</a>
-                                            </li>
-                                            <li class="current list-inline-item">
-                                                <a title="British Pound Sterling" rel="nofollow" href="#">GBP</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div id="desktop_language_selector" class="language-selector groups-selector hidden-sm-down">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item current">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="/assets/frontend/img/home/home1-flas.jpg" alt="English" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="/assets/frontend/img/home/home1-flas2.jpg" alt="Italiano" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="/assets/frontend/img/home/home1-flas3.jpg" alt="Français" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="/assets/frontend/img/home/home1-flas4.jpg" alt="Español" width="16" height="11">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    @if (Auth::guard('web')->check())
+                                        <div>
+                                            <a href="{{route('account')}}" title="Tài khoản">
+                                                <i class="fa fa-cog"></i>
+                                                <span>Tài khoản</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" title="My Wishlists">
+                                                <i class="fa fa-heart"></i>
+                                                <span>Yêu thích</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{route('account.change-password')}}" title="Dổi mật khẩu">
+                                                <i class="fa fa-cog"></i>
+                                                <span>Đổi mật khẩu</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{route('logout')}}" title="logout">
+                                                <i class="fa fa-sign-out"></i>
+                                                <span>Đăng xuất</span>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <a class="login" href="{{route('login')}}" rel="nofollow" title="Log in to your customer account">
+                                                <i class="fa fa-sign-in"></i>
+                                                <span>Đăng nhập</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a class="register" href="{{route('register')}}l" rel="nofollow" title="Register Account">
+                                                <i class="fa fa-user"></i>
+                                                <span>Đăng ký</span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="desktop_cart">
                             <div class="blockcart block-cart cart-preview tiva-toggle">
                                 <div class="header-cart tiva-toggle-btn">
-                                    <span class="cart-products-count">1</span>
+                                    <span class="cart-products-count">{{session('cart') ? count(session('cart')) : 0}}</span>
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </div>
                                 <div class="dropdown-content">
                                     <div class="cart-content">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="product-image">
-                                                        <a href="product-detail.html">
-                                                            <img src="/assets/frontend/img/product/5.jpg" alt="Product">
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="product-name">
-                                                            <a href="product-detail.html">Organic Strawberry Fruits</a>
-                                                        </div>
-                                                        <div>
-                                                            2 x
-                                                            <span class="product-price">£28.98</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="action">
-                                                        <a class="remove" href="#">
-                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="total">
-                                                    <td colspan="2">Total:</td>
-                                                    <td>£92.96</td>
-                                                </tr>
+                                        @if (session('cart'))
+                                            <table>
+                                                <tbody>
+                                                    @foreach (session('cart') as $cart)
+                                                        <tr>
+                                                            <td class="product-image">
+                                                                <a href="{{route('product', $cart['product_id'])}}">
+                                                                    <img src="{{$cart['image']}}" alt="Product">
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <div class="product-name">
+                                                                    <a href="{{route('product', $cart['product_id'])}}">{{$cart['name']}}</a>
+                                                                </div>
+                                                                <div>
+                                                                    {{$cart['quantity']}} x
+                                                                    <span class="product-price">{{convertPrice($cart['price'])}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="action">
+                                                                <a class="remove" href="{{route('cart.decrease', $cart['product_id'])}}">
+                                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    <tr class="total">
+                                                        <td colspan="2">Tổng tiền:</td>
+                                                        <td>{{convertPrice(session('total_price')) ?? 0}}</td>
+                                                    </tr>
 
-                                                <tr>
-                                                    <td colspan="3" class="d-flex justify-content-center">
-                                                        <div class="cart-button">
-                                                            <a href="product-cart.html" title="View Cart">View Cart</a>
-                                                            <a href="product-checkout.html" title="Checkout">Checkout</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                    <tr>
+                                                        <td colspan="3" class="d-flex justify-content-center">
+                                                            <div class="cart-button">
+                                                                <a href="{{route('cart')}}" title="View Cart">Giỏ hàng</a>
+                                                                <a href="{{route('checkout')}}" title="Checkout">Thanh toán</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <div class="text-center p-3">
+                                                <span>Không có sản phẩm nào!</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -685,6 +682,7 @@
             <div class="dot"></div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor JS -->
     <script src="/assets/frontend/libs/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/libs/popper/popper.min.js"></script>
@@ -694,5 +692,7 @@
 
     <!-- Template JS -->
     <script src="/assets/frontend/js/theme.js"></script>
+    <script src="/assets/frontend/js/my_script.js"></script>
+    @stack('script')
 </body>
 </html>

@@ -16,8 +16,11 @@ class BlogController extends Controller
 
     public function blogDetail(Post $post){
         $topPosts = Post::orderByDesc('view')->limit(5)->get();
+        $relatedPosts = Post::where('post_type_id', $post->post_type_id)
+                            ->where('id', '!=', $post->id)    
+                            ->limit(5)->get();
         $post->view +=1;
         $post->save();
-        return view('frontend.blog-details', compact('post','topPosts'));
+        return view('frontend.blog-details', compact('post','topPosts','relatedPosts'));
     }
 }

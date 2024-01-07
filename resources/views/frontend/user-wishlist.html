@@ -6,7 +6,7 @@
 <html lang="en">
 
 
-<!-- user-register11:10-->
+<!-- user-wishlist11:10-->
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
@@ -32,15 +32,13 @@
     <link rel="stylesheet" href="libs/font-material/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="libs/slider-range/css/jslider.css">
     <link rel="stylesheet" href="libs/owl-carousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="libs/slick-slider/css/slick.css">
-    <link rel="stylesheet" href="libs/slick-slider/css/slick-theme.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/reponsive.css">
 </head>
 
-<body class="user-register blog">
+<body class="user-wishlist blog">
     <header>
 
         <!-- header left mobie -->
@@ -420,13 +418,14 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>About us</span>
+                                    <span>Wishlists</span>
                                 </a>
                             </li>
                         </ol>
                     </div>
                 </div>
             </nav>
+
         </div>
 
         <!-- main -->
@@ -436,41 +435,63 @@
                     <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
                         <div id="main">
                             <div id="content" class="page-content">
-                                <div class="register-form text-center">
-                                    <h1 class="text-center title-page">Create Account</h1>
-                                    <form action="#" id="customer-form" class="js-customer-form" method="post">
-                                        <div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <input class="form-control" name="firstname" type="text" placeholder="First name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <input class="form-control" name="lastname" type="text" placeholder="Last name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <input class="form-control" name="email" type="email" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <div class="input-group js-parent-focus">
-                                                        <input class="form-control js-child-focus js-visible-password" name="password" type="password" placeholder="Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix">
-                                            <div>
-                                                <button class="btn btn-primary" data-link-action="sign-in" type="submit">
-                                                    Create Account
+                                <div id="mywishlist">
+                                    <h1 class="title-page">My Wishlists</h1>
+                                    <form method="post" class="std" id="customer-form">
+                                        <fieldset>
+                                            <h3>New wishlist</h3>
+                                            <div class="input-group">
+                                                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+                                                <button class="btn" type="submit" data-action="show-password" data-text-show="Show" data-text-hide="Hide">
+                                                    Save
                                                 </button>
                                             </div>
-                                        </div>
+                                        </fieldset>
                                     </form>
+                                    <div id="block-history" class="block-center">
+                                        <table class="std table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="first_item">Name</th>
+                                                    <th class="item mywishlist_first">Qty</th>
+                                                    <th class="item mywishlist_first">Viewed</th>
+                                                    <th class="item mywishlist_second">Created</th>
+                                                    <th class="item mywishlist_second">Direct Link</th>
+                                                    <th class="item mywishlist_second">Default</th>
+                                                    <th class="last_item mywishlist_first">Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="wishlist_1">
+                                                    <td>
+                                                        <a href="javascript:;" onclick="javascript:WishlistManage('block-order-detail', '1');">My wishlist</a>
+                                                    </td>
+                                                    <td class="bold align_center">
+                                                        3
+                                                    </td>
+                                                    <td>0</td>
+                                                    <td>2018-06-14</td>
+                                                    <td>
+                                                        <a href="javascript:;" onclick="javascript:WishlistManage('block-order-detail', '1');">View</a>
+                                                    </td>
+                                                    <td class="wishlist_default">
+                                                        <p class="is_wish_list_default">
+                                                            <i class="icon icon-check-square"></i>
+                                                        </p>
+                                                    </td>
+                                                    <td class="wishlist_delete">
+                                                        <a href="javascript:;" onclick="return (WishlistDelete('wishlist_1', '1', 'Do you really want to delete this wishlist ?'));">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="page-home">
+                                        <a class="btn btn-default" href="index-2.html">
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            <span>Homepage</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1346,5 +1367,5 @@
 </body>
 
 
-<!-- user-register11:10-->
+<!-- user-wishlist11:10-->
 </html>

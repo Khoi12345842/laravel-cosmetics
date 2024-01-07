@@ -27,6 +27,12 @@ class CheckoutController extends Controller
             'address' => 'required|string',
             'note' => 'nullable|string',
             'payment' => 'required|in:1,2',
+        ],[
+            'name.required' => 'Họ tên không được để trống.',
+            'email.required' => 'Địa chỉ email không được để trống.',
+            'phone.required' => 'Số điện thoại không được để trống.',
+            'address.required' => 'Địa chỉ nhận hàng không được để trống.',
+            'payment.required' => 'Vui lòng chọn phương thức thanh toán.',
         ]);
 
 
@@ -42,7 +48,7 @@ class CheckoutController extends Controller
                 $this->createOrderDetail($order);
                 DB::commit();
 
-                return redirect()->route('checkout.success');
+                return redirect()->route('account')->with('success', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
 
             } catch (\Throwable $e) {
                 DB::rollback();
@@ -160,7 +166,7 @@ class CheckoutController extends Controller
             //00: TH thành công
             if($vnp_ResponseCode == 00){
                 $this->createOrderDetail($order);
-                return redirect()->route('checkout.success');
+                return redirect()->route('account')->with('success', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
 
             }elseif($vnp_ResponseCode == 24){ //24: Hủy thanh toán
                 $order->delete();
@@ -174,9 +180,6 @@ class CheckoutController extends Controller
         }
     }
 
-    public function notification(){
-        return view('frontend.notification');
-    }
 }
 
 
