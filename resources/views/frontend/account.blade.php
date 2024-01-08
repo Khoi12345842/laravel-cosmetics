@@ -14,7 +14,6 @@
 @endpush
 <div class="main-content">
     <div class="wrap-banner">
-
         <nav class="breadcrumb-bg">
             <div class="container no-index">
                 <div class="breadcrumb">
@@ -37,34 +36,59 @@
         <div class="acount head-acount">
             <div class="container">
                 <div id="main">
-                    <h1 class="title-page">Thông tin tài khoản</h1>
-                    <div class="content" id="block-history">
-                        <table class="std table">
-                            <tbody>
-                                <tr>
-                                    <th class="first_item">Họ tên :</th>
-                                    <td>{{$user->name}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="email">Email :</th>
-                                    <td>{{$user->email}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">Address :</th>
-                                    <td>123 canberra Street, New York, USA</td>
-                                </tr>
-                               
-                                <tr>
-                                    <th class="first_item">Số điện thoại :</th>
-                                    <td>0123456789</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    
+                    @if (session('success_message'))
+                        <div class="alert alert-success" role="alert">{{session('success_message')}}</div>
+                    @endif
 
-                    </div>
-                    <button class="btn btn-primary" data-link-action="sign-in" type="submit">
-                        Cập nhật
-                    </button>
+                    <form action="{{route('account.update')}}" method="POST">
+                        @csrf
+                        <h1 class="title-page">Thông tin tài khoản</h1>
+                        <div class="content" id="block-history">
+                            <table class="std table">
+                                <tbody>
+                                    <tr>
+                                        <th class="first_item">Họ tên :</th>
+                                        <td>
+                                            <span>{{$user->name}}</span>
+                                            <div class="form-group mb-0" id="user-name" placeholder="Nhập họ tên" hidden >
+                                                <input type="text" name="name" class="form-control" value="{{$user->name}}" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="email">Email :</th>
+                                        <td>{{$user->email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">Địa chỉ :</th>
+                                        <td>
+                                            <span>{{$user->address}}</span>
+                                            <div class="form-group mb-0" id="user-address" placeholder="Nhập địa chỉ" hidden>
+                                                <input type="type" name="address" class="form-control" value="{{$user->address}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <th class="first_item">Số điện thoại :</th>
+                                        <td>
+                                            <span>{{$user->phone}}</span>
+                                            <div class="form-group mb-0" id="user-phone" placeholder="Số điện thoại" hidden>
+                                                <input type="type" name="phone" class="form-control" value="{{$user->phone}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary" id="btn-edit" data-link-action="sign-in" type="button">
+                            Sửa thông tin
+                        </button>
+                        <button class="btn btn-primary" id="btn-update" data-link-action="sign-in" type="submit" hidden>
+                            Cập nhật
+                        </button>
+                    </form>
                     <div class="order">
                         <h4>Lịch sử đặt hàng</h4>
                         @if ($orders->count() == 0)
@@ -131,3 +155,23 @@
 </div>
 
 @endsection
+
+@push('script')
+    <script>
+        $( document ).ready(function() {
+            $("#btn-edit").click(function(){
+                $(this).hide();
+                $('#btn-update').prop('hidden', false);
+                const userAddress = $('#user-address');
+                userAddress.prop('hidden', false);
+                userAddress.prev().hide();
+                const userPhone = $('#user-phone');
+                userPhone.prop('hidden', false);
+                userPhone.prev().hide();
+                const userName = $('#user-name');
+                userName.prop('hidden', false);
+                userName.prev().hide();
+            });
+        });
+    </script>
+@endpush

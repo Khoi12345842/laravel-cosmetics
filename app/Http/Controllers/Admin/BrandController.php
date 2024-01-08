@@ -61,7 +61,7 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $Brand)
+    public function edit(Brand $brand)
     {
         return view('admin.brand.edit', compact('brand'));
     }
@@ -78,7 +78,7 @@ class BrandController extends Controller
         try {
             $brand->update($data);
             DB::commit();
-            return redirect()->route('Brand.index');
+            return redirect()->route('brand.index');
         } catch (Throwable $e) {
             DB::rollback();
             throw $e;
@@ -90,7 +90,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        $bBrand->delete();
+        $brand->delete();
         return redirect()->back()->with('success', 'Xóa thành công!');
     }
 }

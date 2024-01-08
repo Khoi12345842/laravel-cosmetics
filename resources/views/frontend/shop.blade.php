@@ -89,7 +89,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="new-item-content">
-                                                    <h3 class="title-product">Xuất xứ</h3>
+                                                    <h3 class="title-product">Nơi sản xuất</h3>
                                                     <ul class="scroll-product">
                                                         @foreach ($origins as $key=>$origin)
                                                             <li>
@@ -129,7 +129,7 @@
                                                                     <option value="" disabled selected>Sắp xếp</option>
                                                                     <option {{ request('sort_by') == 'discount' ? 'selected' : ''}} value="discount">Giảm giá</option>
                                                                     <option {{ request('sort_by') == 'latest' ? 'selected' : ''}} value="latest">Mới nhất</option>
-                                                                    <option {{ request('sort_by') == 'latest' ? 'selected' : ''}} value="oldest">Cũ nhât</option>
+                                                                    <option {{ request('sort_by') == 'oldest' ? 'selected' : ''}} value="oldest">Cũ nhât</option>
                                                                     <option {{ request('sort_by') == 'price-ascending' ? 'selected' : ''}} value="price-ascending">Giá tăng dần</option>
                                                                     <option {{ request('sort_by') == 'price-desending' ? 'selected' : ''}} value="price-desending">Giá giảm dần</option>
                                                                 </select>

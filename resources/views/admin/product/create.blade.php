@@ -50,10 +50,10 @@
                         <select class="form-select" name="category_id" id="category">
                             <option value="" disabled selected>--- Chọn danh mục ---</option>
                             @foreach ($categories as $category)
-                                <option disabled>{{$category->name}}</option>
+                                <option style="font-weight: 600; color: #000;" disabled>{{$category->name}}</option>
                                 @if ($category->children)
                                     @foreach ($category->children as $child_cate)
-                                        <option value="{{$child_cate->id}}">~ {{$child_cate->name}}</option>
+                                        <option value="{{$child_cate->id}}">{{$child_cate->name}}</option>
                                     @endforeach
                                 @endif
                             @endforeach
@@ -131,7 +131,7 @@
                     <div class="mb-3">
                         <label for="skin_type" class="form-label">Loại da</label>
                         <select class="form-select" name="skin_type" id="skin_type">
-                            <option value="" disabled selected>--- Chọn loại da ---</option>
+                            <option value="">--- Chọn loại da ---</option>
                             <option value="mọi loại da">Mọi loại da</option>
                             <option value="da thường">Da thường</option>
                             <option value="da khô">Da khô</option>
@@ -147,7 +147,7 @@
                     <div class="mb-3">
                         <label for="texture" class="form-label">Kết cấu</label>
                         <select class="form-select" name="texture" id="texture">
-                            <option value="" disabled selected>--- Chọn kết cấu ---</option>
+                            <option value="">--- Chọn kết cấu ---</option>
                             <option value="dạng kem">Dạng kem</option>
                             <option value="dạng gel">Dạng gel</option>
                             <option value="dạng dầu">Dạng dầu</option>

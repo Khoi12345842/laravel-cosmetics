@@ -48,7 +48,7 @@ class CheckoutController extends Controller
                 $this->createOrderDetail($order);
                 DB::commit();
 
-                return redirect()->route('account')->with('success', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
 
             } catch (\Throwable $e) {
                 DB::rollback();

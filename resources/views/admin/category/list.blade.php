@@ -28,10 +28,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach($categories as $key=>$category)
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{$category->id}}</h6>
+                                        <h6 class="fw-semibold mb-0">{{$key+1}}</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="mb-0 fw-semibold">{{$category->name}}</p>

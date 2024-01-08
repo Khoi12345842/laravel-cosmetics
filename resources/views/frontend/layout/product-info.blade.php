@@ -1,7 +1,7 @@
 <div class="product-miniature js-product-miniature item-one first-item">
     <div class="thumbnail-container {{ request()->route()->named('home')? '' : 'border' }}">
         <a href="{{route('product', $product)}}">
-            <img class="img-fluid image-cover" 
+            <img class="img-fluid image-cover"
                 src="{{$product->firstImage()->image}}" alt="img">
             @if ($product->secondImage())
                 <img class="img-fluid image-secondary" 

@@ -28,7 +28,7 @@ class ShopController extends Controller
         
         $products = $this->filter($products, $request);
         $products = $this->sortBy($products, $request);
-        $products = $products->paginate(16);
+        $products = $products->paginate(12);
         return view('frontend.shop', compact('products'));
     }
 
@@ -51,7 +51,7 @@ class ShopController extends Controller
         }
         $products = $this->filter($products, $request);
         $products = $this->sortBy($products, $request);
-        $products = $products->paginate(16);
+        $products = $products->paginate(12);
 
         return view('frontend.shop',compact('products'));
     }
@@ -67,7 +67,7 @@ class ShopController extends Controller
 
     protected function filter($products, $request){
         
-        /* Xuất xứ filter */
+        /* Nơi sản xuất filter */
         $origins = $request->input('xuat_xu') ?? [];
         $arr_origins = array_keys($origins);
 

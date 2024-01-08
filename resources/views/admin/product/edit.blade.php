@@ -40,7 +40,7 @@
                         <select class="form-select" name="category_id" id="category">
                             <option value="" disabled selected>--- Chọn danh mục ---</option>
                             @foreach ($categories as $category)
-                                <option disabled>{{$category->name}}</option>
+                                <option style="font-weight: 600; color: #000;" disabled>{{$category->name}}</option>
                                 @if ($category->children)
                                     @foreach ($category->children as $child_cate)
                                         <option {{$product->category_id == $child_cate->id ? 'selected' : ''}} value="{{$child_cate->id}}">~ {{$child_cate->name}}</option>
@@ -54,11 +54,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="origin" class="form-label">Xuất xứ
+                        <label for="origin" class="form-label">Nơi sản xuất
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" name="origin_id" id="origin">
-                            <option value="" disabled selected>--- Chọn xuất xứ ---</option>
+                            <option value="" disabled selected>--- Chọn nơi sản xuất ---</option>
                             @foreach ($origins as $origin)
                                 <option value="{{$origin->id}}" {{$origin->id == $product->origin_id ? 'selected' : '' }}>{{$origin->name}}</option>
                             @endforeach
@@ -121,7 +121,7 @@
                     <div class="mb-3">
                         <label for="skin_type" class="form-label">Loại da</label>
                         <select class="form-select" name="skin_type" id="skin_type">
-                            <option value="" disabled selected>--- Chọn loại da ---</option>
+                            <option value="" >--- Chọn loại da ---</option>
                             <option {{$product->skin_type == 'mọi loại da' ? 'selected' : ''}} value="mọi loại da">Mọi loại da</option>
                             <option {{$product->skin_type == 'da thường' ? 'selected' : ''}} value="da thường">Da thường</option>
                             <option {{$product->skin_type == 'da khô' ? 'selected' : ''}} value="da khô">Da khô</option>
@@ -137,7 +137,7 @@
                     <div class="mb-3">
                         <label for="texture" class="form-label">Kết cấu</label>
                         <select class="form-select" name="texture" id="texture">
-                            <option value="" disabled selected>--- Chọn kết cấu ---</option>
+                            <option value="">--- Chọn kết cấu ---</option>
                             <option {{$product->texture == 'dạng kem' ? 'selected' : ''}}  value="dạng kem">Dạng kem</option>
                             <option {{$product->texture == 'dạng gel' ? 'selected' : ''}}  value="dạng gel">Dạng gel</option>
                             <option {{$product->texture == 'dạng dầu' ? 'selected' : ''}}  value="dạng dầu">Dạng dầu</option>

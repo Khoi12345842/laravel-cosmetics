@@ -63,7 +63,7 @@
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Mô tả</label>
-                    {!!$product->description!!}
+                    {!! $product->description !!}
                 </div>
 
                 <div class="mb-3">
