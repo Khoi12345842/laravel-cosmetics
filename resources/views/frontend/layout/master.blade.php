@@ -4,10 +4,10 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Furnitica - Mỹ phẩm chính hãng</title>
+    <title>MH Cosmetics - Mỹ phẩm chính hãng</title>
 
-    <meta name="keywords" content="Furniture, Cosmetics, Interior">
-    <meta name="description" content="Furnitica - Mỹ phẩm chính hãng">
+    <meta name="keywords" content="MH Cosmetics, Cosmetics, Mỹ phẩm chính hãng">
+    <meta name="description" content="MH Cosmetics - Mỹ phẩm chính hãng">
     <meta name="author" content="tivatheme">
 
     <!-- Mobile Meta -->
@@ -725,6 +725,37 @@
             <div class="dot"></div>
         </div>
     </div>
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat"></div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "184655318071837");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            xfbml            : true,
+            version          : 'v18.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor JS -->
     <script src="/assets/frontend/libs/jquery/jquery.min.js"></script>
