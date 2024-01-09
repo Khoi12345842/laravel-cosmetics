@@ -166,7 +166,7 @@ class CheckoutController extends Controller
             //00: TH thành công
             if($vnp_ResponseCode == 00){
                 $this->createOrderDetail($order);
-                return redirect()->route('account')->with('success', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
 
             }elseif($vnp_ResponseCode == 24){ //24: Hủy thanh toán
                 $order->delete();

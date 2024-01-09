@@ -138,7 +138,7 @@
                                                         <button type="submit" class="btn btn-info receive mr-3">Nhận hàng</button>
                                                     </form>
                                                     @endif
-                                                    <a href="{{route('order.detail', $order)}}" class="btn btn-primary text-white">Xem chi tiết</a>
+                                                    <a href="{{route('order.detail', $order)}}" hidden class="btn btn-primary text-white">Xem chi tiết</a>
                                                 </div>
                                             </td>
                                         </tr>
