@@ -40,6 +40,46 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        [class~=main-menu] [class~=menu] [class~=menu-top] li{
+            padding: 0 15px !important;
+        }
+        .pagination{
+            justify-content: center;
+        }
+        .page-item {
+            padding: 3px;
+            text-align: center;
+        }
+        .page-item .page-link{
+            height: 35px !important;
+            width: 35px !important;
+            background: #c4c4c4;
+            color:#fff;
+            border-radius: 5px !important;
+            padding: 0.5rem 0.75rem !important;
+            position: relative;
+            display: block;
+            margin-left: -1px !important;
+            line-height: 1.25 !important;
+            margin-top: 0 !important;
+        }
+        .page-item.active .page-link {
+            background-color: #343434;
+            border-color: #343434;
+            color: #fff;
+        }
+        .page-item.disabled .page-link{
+            background: #c4c4c4;
+            border-color: #c4c4c4;
+            color: #fff;
+        }
+        .page-link:hover {
+            z-index: 2;
+            color: #fff;
+            text-decoration: none;
+            background-color: #343434;
+            border-color: #343434;
+        }
     </style>
     @stack('css')
 </head>
@@ -138,7 +178,7 @@
                     <div class="col-sm-2 col-md-2 d-flex align-items-center">
                         <div id="logo">
                             <a href="/">
-                                <img class="img-fluid" src="/assets/frontend/img/home/logo.png" alt="logo">
+                                <img class="img-fluid" src="/assets/frontend/img/home/logo-black.png" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -181,6 +221,9 @@
                                     </div>
                                 </li>
                                 <li>
+                                    <a href="{{route('blog')}}" class="parent">Tin tức</a>
+                                </li>
+                                <li>
                                     <a href="{{route('contact')}}" class="parent">Liên hệ</a>
                                     {{-- <div class="dropdown-menu">
                                         <ul>
@@ -211,8 +254,8 @@
 
                     <!-- search-->
                     <div id="search_widget" class="col-sm-6 col-md-5 align-items-center justify-content-end d-flex">
-                        <form method="get" action="#">
-                            <input type="text" name="s" value="" placeholder="Tìm kiếm ..." class="ui-autocomplete-input" autocomplete="off">
+                        <form method="get" action="{{route('shop')}}">
+                            <input type="text" name="keyword" value="{{request('keyword')}}" placeholder="Tìm kiếm sản phẩm..." class="ui-autocomplete-input" autocomplete="off">
                             <button type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -242,7 +285,7 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <a href="#" title="My Wishlists">
+                                            <a href="{{route('favorite')}}" title="My Wishlists">
                                                 <i class="fa fa-heart"></i>
                                                 <span>Yêu thích</span>
                                             </a>
@@ -354,7 +397,7 @@
                             <div class="block">
                                 <div class="block-content">
                                     <p class="logo-footer">
-                                        <img src="/assets/frontend/img/home/logo.png" alt="img">
+                                        <img src="/assets/frontend/img/home/logo-black.png" alt="img">
                                     </p>
                                     <p class="content-logo">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt
                                         ut labore et dolore magna aliqua. Ut enim ad minim

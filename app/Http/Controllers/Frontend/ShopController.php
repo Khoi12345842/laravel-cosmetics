@@ -20,7 +20,7 @@ class ShopController extends Controller
     }
 
     public function shop(Request $request){
-        $keyword = $request->input('search');
+        $keyword = $request->input('keyword');
        
         $products = Product::when($keyword, function($query,$keyword){
             return $query->where('name','like',"%$keyword%");

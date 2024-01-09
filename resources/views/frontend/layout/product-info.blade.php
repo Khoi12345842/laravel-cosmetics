@@ -35,7 +35,7 @@
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </a>
             </div>
-            <a class="addToWishlist" href="#" data-rel="1" onclick="">
+            <a class="addToWishlist" href="{{route('favorite.add', $product)}}" data-rel="1" onclick="">
                 <i class="fa fa-heart" aria-hidden="true"></i>
             </a>
             <a href="{{route('product', $product)}}" class="quick-view hidden-sm-down" data-link-action="quickview">

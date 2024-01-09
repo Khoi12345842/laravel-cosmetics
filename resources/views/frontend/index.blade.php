@@ -2,8 +2,11 @@
 @section('content')
 @push('css')
     <style>
-        .img-fluid{
+        .thumbnail-container a .img-fluid{
             background: #fff;
+        }
+        #home [class~=main-menu]{
+            padding-left: 0;
         }
     </style>
 @endpush
@@ -197,7 +200,7 @@
                                                     </div>
                                                     <div class="tab-content">
                                                         @foreach ($categories->first()->children->take(5) as $key=>$child_cate)
-                                                            <div id="cate-{{$child_cate->id}}" class="tab-pane fade in active show">
+                                                            <div id="cate-{{$child_cate->id}}" class="tab-pane fade {{$key==0 ? 'in active show' : ''}}">
                                                                 <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
                                                                     @foreach($child_cate->products as $product)
                                                                         <div class="item text-center">
@@ -347,7 +350,7 @@
                                                     </div>
                                                     <div class="tab-content">
                                                         @foreach ($categories->skip(1)->first()->children->take(5) as $key=>$child_cate)
-                                                            <div id="cate-{{$child_cate->id}}" class="tab-pane fade in active show">
+                                                            <div id="cate-{{$child_cate->id}}" class="tab-pane fade {{$key==0 ? 'in active show' : ''}}">
                                                                 <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
                                                                     @foreach($child_cate->products as $product)
                                                                         <div class="item text-center">

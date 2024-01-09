@@ -297,7 +297,7 @@
                                                                                     aria-hidden="true"></i>
                                                                                 <span>Thêm vào giỏ hàng</span>
                                                                             </button>
-                                                                            <a class="addToWishlist" href="#">
+                                                                            <a class="addToWishlist" href="{{route('favorite.add', $product)}}">
                                                                                 <i class="fa fa-heart"
                                                                                     aria-hidden="true"></i>
                                                                             </a>

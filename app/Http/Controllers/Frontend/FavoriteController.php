@@ -16,8 +16,14 @@ class FavoriteController extends Controller
 
     public function add(Product $product){
         $user = Auth::guard('web')->user();
-        $user->favoriteProducts()->attach($product);
-        toastr()->success('Thêm sản phẩm yêu thích thành công.');
+        $check_exist = $user->hasFavoritedProduct($product->id);
+        if($check_exist){
+            toastr()->error('Sản phẩm yêu thích đã tồn tại.');
+        }
+        else{
+            toastr()->success('Thêm sản phẩm yêu thích thành công.');
+            $user->favoriteProducts()->attach($product);
+        }
         return back();
     }
 

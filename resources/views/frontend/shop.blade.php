@@ -2,38 +2,6 @@
 @section('content')
 @section('page-id', 'product-sidebar-left')
 @section('page-class', 'product-grid-sidebar-left')
-@push('css')
-    <style>
-        .page-item {
-            padding: 3px;
-            text-align: center;
-        }
-        .page-item .page-link{
-            height: 35px;
-            width: 35px;
-            background: #c4c4c4;
-            color:#fff;
-            border-radius: 5px;
-        }
-        .page-item.active .page-link {
-            background-color: #343434;
-            border-color: #343434;
-            color: #fff;
-        }
-        .page-item.disabled .page-link{
-            background: #c4c4c4;
-            border-color: #c4c4c4;
-            color: #fff;
-        }
-        .page-link:hover {
-            z-index: 2;
-            color: #fff;
-            text-decoration: none;
-            background-color: #343434;
-            border-color: #343434;
-        }
-    </style>
-@endpush
     <!-- main content -->
     <div class="main-content">
         <div id="wrapper-site">
@@ -46,7 +14,7 @@
                                 <div class="breadcrumb">
                                     <ol>
                                         <li>
-                                            <a href="#">
+                                            <a href="/">
                                                 <span>Trang chủ</span>
                                             </a>
                                         </li>
@@ -109,7 +77,11 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-8 col-lg-9 col-md-8 product-container">
-                                            <h1>Sản phẩm</h1>
+                                            @if (request('keyword'))
+                                                <h4>Kết quả tìm kiếm cho: <b>{{request('keyword')}}</b></h4>
+                                            @else
+                                                <h1>Sản phẩm</h1>
+                                            @endif
                                             <div class="js-product-list-top firt nav-top">
                                                 <div class="d-flex justify-content-around row">
                                                     <div class="col col-xs-12">
