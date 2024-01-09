@@ -10,6 +10,14 @@
         .tab-content .item .product-miniature .product-description .product-buttons{
             bottom: -15px !important;
         }
+        .top-product .product-title a {
+            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 @endpush
     <!-- main content -->
@@ -55,114 +63,46 @@
                                        @include('frontend.layout.categories-sidebar')
 
                                         <!-- best seller -->
-                                        <div class="sidebar-block">
+                                        <div class="sidebar-block top-product">
                                             <div class="title-block">
-                                                Best seller
+                                                Bán chạy trong tuần
                                             </div>
                                             <div class="product-content tab-content">
                                                 <div class="row">
+                                                    @foreach($topProducts as $topProduct)
                                                     <div class="item col-md-12">
                                                         <div class="product-miniature item-one first-item d-flex">
                                                             <div class="thumbnail-container border">
-                                                                <a href="product-detail.html">
+                                                                <a href="{{route('product', $topProduct)}}">
                                                                     <img class="img-fluid image-cover"
-                                                                        src="img/product/1.jpg" alt="img">
-                                                                    <img class="img-fluid image-secondary"
-                                                                        src="img/product/22.jpg" alt="img">
+                                                                        src="{{$topProduct->firstImage()->image}}" alt="img">
+                                                                    @if ($topProduct->secondImage())
+                                                                        <img class="img-fluid image-secondary" 
+                                                                            src="{{$topProduct->secondImage()->image}}" alt="img">
+                                                                    @else
+                                                                        <img class="img-fluid image-secondary" 
+                                                                            src="{{$topProduct->firstImage()->image}}" alt="img">
+                                                                    @endif
                                                                 </a>
                                                             </div>
                                                             <div class="product-description">
                                                                 <div class="product-groups">
                                                                     <div class="product-title">
-                                                                        <a href="product-detail.html">Nulla et justo
-                                                                            augue</a>
-                                                                    </div>
-                                                                    <div class="rating">
-                                                                        <div class="star-content">
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                        </div>
+                                                                        <a href="{{route('product', $topProduct)}}">{{$topProduct->name}}</a>
                                                                     </div>
                                                                     <div class="product-group-price">
                                                                         <div class="product-price-and-shipping">
-                                                                            <span class="price">£28.08</span>
+                                                                            <span class="price">{{convertPrice($topProduct->price)}}</span>
+                                                                            @if ($topProduct->discount)
+                                                                                <del class="regular-price">{{convertPrice(initialPrice($topProduct->price, $topProduct->discount))}}</del>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="item col-md-12">
-                                                        <div class="product-miniature item-one first-item d-flex">
-                                                            <div class="thumbnail-container border">
-                                                                <a href="product-detail.html">
-                                                                    <img class="img-fluid image-cover"
-                                                                        src="img/product/2.jpg" alt="img">
-                                                                    <img class="img-fluid image-secondary"
-                                                                        src="img/product/11.jpg" alt="img">
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-description">
-                                                                <div class="product-groups">
-                                                                    <div class="product-title">
-                                                                        <a href="product-detail.html">Nulla et justo
-                                                                            augue</a>
-                                                                    </div>
-                                                                    <div class="rating">
-                                                                        <div class="star-content">
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-group-price">
-                                                                        <div class="product-price-and-shipping">
-                                                                            <span class="price">£31.08</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item col-md-12">
-                                                        <div class="product-miniature item-one first-item d-flex">
-                                                            <div class="thumbnail-container border">
-                                                                <a href="product-detail.html">
-                                                                    <img class="img-fluid image-cover"
-                                                                        src="img/product/3.jpg" alt="img">
-                                                                    <img class="img-fluid image-secondary"
-                                                                        src="img/product/14.jpg" alt="img">
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-description">
-                                                                <div class="product-groups">
-                                                                    <div class="product-title">
-                                                                        <a href="product-detail.html">Nulla et justo
-                                                                            augue</a>
-                                                                    </div>
-                                                                    <div class="rating">
-                                                                        <div class="star-content">
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-group-price">
-                                                                        <div class="product-price-and-shipping">
-                                                                            <span class="price">£20.08</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
 
