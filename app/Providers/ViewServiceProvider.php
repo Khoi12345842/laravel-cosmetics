@@ -36,17 +36,17 @@ class ViewServiceProvider extends ServiceProvider
             $brands = Brand::limit(8)->get();
 
             $sevenDaysAgo = now()->subDays(7);
-            $topProduct_ids = Product::select('products.id as product_id', DB::raw('SUM(order_product.quantity) as totalSold'))
+            $topProduct_ids = Product::select('products.id', DB::raw('SUM(order_product.quantity) as totalSold'))
                     ->join('order_product', 'products.id', '=', 'order_product.product_id')
                     ->join('orders', 'order_product.order_id', '=', 'orders.id')
                     ->where('orders.created_at', '>=', $sevenDaysAgo)
-                    ->groupBy('product_id')
+                    ->groupBy('products.id')
                     ->orderByDesc('totalSold')
                     ->limit(5)
                     ->get();
             $topProducts = [];
             foreach ($topProduct_ids as $item) {
-                $product = Product::find($item['product_id']);
+                $product = Product::find($item['id']);
 
                 if ($product) {
                     $product->totalSold = $item['totalSold'];
