@@ -94,7 +94,7 @@
                         @if ($orders->count() == 0)
                             <p>Bạn chưa đặt bất kỳ đơn đặt hàng nào.</p>
                         @else
-                            <table class="table">
+                            {{-- <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Mã đơn hàng</th>
@@ -138,13 +138,118 @@
                                                         <button type="submit" class="btn btn-info receive mr-3">Nhận hàng</button>
                                                     </form>
                                                     @endif
-                                                    <a href="{{route('order.detail', $order)}}" hidden class="btn btn-primary text-white">Xem chi tiết</a>
+                                                    <a class="btn btn-primary" data-toggle="collapse" href="#detail-{{$order->id}}" role="button" aria-expanded="false" aria-controls="detail-{{$order->id}}">
+                                                        Chi tiết
+                                                    </a>
+                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#detail-{{$order->id}}" aria-expanded="true" aria-controls="detail-{{$order->id}}">
+                                                        Chi tiết
+                                                    </button>
                                                 </div>
                                             </td>
+                                            <div class="accordion" id="accordion-detail">
+                                                <div id="detail-{{$order->id}}" class="collapse"  data-parent="#accordion-detail">
+                                                    <div class="card-body">
+                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table> --}}
+                            <div class="accordion" id="order-table">
+                                @foreach ($orders as $order)
+                                        <div class="card">
+                                            <div class="card-header" id="heading{{$order->id}}">
+                                                <h5 class="mb-0">
+                                                    <a style="width: 100%" class="btn" type="button" data-toggle="collapse" href="#order-{{$order->id}}" aria-expanded="false" aria-controls="order-{{$order->id}}">
+                                                        <div class="row align-items-center" style="min-height: 38px">
+                                                            <div class="col-1">
+                                                                <span>#{{$order->id}}</span>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <span>{{date_format($order->created_at, 'd-m-Y H:i:s')}}</span>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <span>{{$order->payment == 1 ? 'Ví VNPay' : 'Tiền mặt'}}</span>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                @if($order->status == 0)
+                                                                    <span class="text-center"><span class="text-dark">Hủy đơn</span></span>
+                                                                @elseif($order->status == 1)
+                                                                    <span class="text-center"><span class="text-danger">Trả hàng</span></span>
+                                                                @elseif($order->status == 2)
+                                                                    <span class="text-center"><span class="text-warning">Chờ xác nhận</span></span>
+                                                                @elseif($order->status == 3)
+                                                                    <span class="text-center"><span class="text-primary">Đang xử lý</span></span>
+                                                                @else
+                                                                    <span class="text-center"><span class="text-success">Đã giao hàng</span></span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <span class="text-center">
+                                                                    <div class="d-flex justify-content-end align-items-center">
+                                                                        @if($order->status == 2)
+                                                                        <form action="{{route('order.cancel', $order)}}" method="POST">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-secondary cancel mr-3">Hủy đơn</button>
+                                                                        </form>
+                                                                        @elseif($order->status == 3)
+                                                                        <form action="{{route('order.return', $order)}}" method="POST">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-danger return mr-3">Trả hàng</button>
+                                                                        </form>
+                                                                        <form action="{{route('order.receive', $order)}}" method="POST">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn btn-info receive mr-3">Nhận hàng</button>
+                                                                        </form>
+                                                                        @endif
+                                                                    </div>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="order-{{$order->id}}" class="collapse" aria-labelledby="heading{{$order->id}}" data-parent="#order-table">
+                                                <div class="card-body">
+                                                    <table class="align-middle mb-0 table table-borderless table-striped ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sản phẩm</th>
+                                                                <th class="text-center">Số lượng</th>
+                                                                <th class="text-center">Đơn giá</th>
+                                                                <th class="text-center"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($order->products as $item)
+                                                            <tr>
+                                                                <td>
+                                                                    <div>
+                                                                        <img src="{{$item->image}}" width="70">
+                                                                        <span>{{$item->pivot->name}}</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{$item->pivot->quantity}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{convertPrice($item->pivot->price)}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button class="btn btn-light">Đánh giá</button>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>

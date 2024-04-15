@@ -89,6 +89,26 @@
                             <div class="container">
                                 <div class="tiva-row-wrap row">
                                     <div class="groupcategoriestab-vertical col-md-12 col-xs-12">
+                                        @if (count($product_recommends) > 0)
+                                            <div class="grouptab row">
+                                                <div class="categoriestab-left product-tab col-md-12 flex-9">
+                                                    <div class="title-tab-content d-flex justify-content-start">
+                                                        <h2 class="title-block">Gợi ý cho bạn</h2>                                
+                                                    </div>
+                                                    <div class="tab-content">
+                                                        <div id="new" class="tab-pane fade in active show">
+                                                            <div class="saleoff-product-index owl-carousel owl-theme owl-loaded owl-drag">
+                                                                @foreach($product_recommends as $product)
+                                                                <div class="item text-center">
+                                                                    @include('frontend.layout.product-info')
+                                                                </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="grouptab row">
                                             <div class="categoriestab-left product-tab col-md-12 flex-9">
                                                 <div class="title-tab-content d-flex justify-content-start">

@@ -14,7 +14,6 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-
         $data = [
             'total_product' => Product::count(),
             'total_order' => Order::count(),
@@ -45,7 +44,7 @@ class DashboardController extends Controller
 
         ksort($totalSalesByDay);
 
-        $bestSellingProducts = Product::orderByDesc('sold')->get()->take(10);
+        $bestSellingProducts = Product::orderByDesc('sold')->where('sold', '>', 0)->get()->take(10);
 
         $latestOrders = Order::orderByDesc('id')->get()->take(10);
 

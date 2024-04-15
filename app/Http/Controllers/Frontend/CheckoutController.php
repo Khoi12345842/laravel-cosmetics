@@ -84,6 +84,7 @@ class CheckoutController extends Controller
 
             $product = product::where('id',$item['product_id'])->first();  
             $product->quantity -= $item['quantity'];
+            $product->sold += $item['quantity'];
             $product->save();
         }
 

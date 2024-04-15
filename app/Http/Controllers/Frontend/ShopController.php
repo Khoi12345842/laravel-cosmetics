@@ -8,15 +8,33 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Post;
+use App\Models\Viewed;
+use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
     public function index(){
+        //Gợi ý sản phẩm
+        $thirtyDaysAgo = date('Y-m-d', strtotime("-30 days"));
+        $viewed = Viewed::where('user_id', auth('web')->id())->where('created_at', '>', $thirtyDaysAgo)->pluck('product_id')->toArray();
+        $farvorited = Favorite::where('user_id', auth('web')->id())->pluck('product_id')->toArray();
+        $product_ids = array_merge($viewed, $farvorited);
+        $most_category = Product::whereIn('products.id', $product_ids)
+                            ->select('category_id', DB::raw('COUNT(category_id) as count'))
+                            ->groupBy('category_id')
+                            ->orderByDesc('count')
+                            ->limit(2)
+                            ->pluck('category_id')
+                            ->toArray();
+        $product_recommends = Product::whereIn('category_id', $most_category)->orderByDesc('created_at')->get()->take(10);
+
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
         $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
         $newPosts = Post::orderByDesc('id')->limit(3)->get();
         $latestProducts = Product::orderByDesc('id')->limit(8)->get();
-        return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts', 'latestProducts'));
+        return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts', 'latestProducts', 'product_recommends'));
     }
 
     public function shop(Request $request){
@@ -33,6 +51,22 @@ class ShopController extends Controller
     }
 
     public function product(Product $product){
+        if(Auth::guard('web')->check()){
+            $user_id = auth('web')->id();
+            $product_viewed = Viewed::where('product_id', $product->id)->where('user_id', $user_id)->first();
+            if(!empty($product_viewed)){
+                $product_viewed->created_at = now();
+                $product_viewed->save();
+            }else{
+                Viewed::create([
+                    'product_id' => $product->id,
+                    'user_id' => $user_id,
+                ]);
+            }
+        }
+        $product->view += 1;
+        $product->save();
+
         $relatedProducts = Product::where('category_id', $product->category_id)
                             ->where('id', '<>', $product->id)
                             ->limit(3)
