@@ -54,7 +54,6 @@ class AccountController extends Controller
             Log::error($e->getMessage());
             return back();
         }
-
         
     }
 
