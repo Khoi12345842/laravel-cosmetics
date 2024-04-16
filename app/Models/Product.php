@@ -35,7 +35,7 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class)
-                    ->withPivot('name', 'quantity', 'price');
+                    ->withPivot('id', 'name', 'quantity', 'price');
     }
 
     public function favoritedBy()

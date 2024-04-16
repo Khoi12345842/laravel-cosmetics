@@ -170,6 +170,9 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('account.change-password');
     Route::post('/doi-mat-khau', [AccountController::class, 'updatePassword'])->name('account.update-password');
+
+    Route::post('/review', [AccountController::class, 'review'])->name('review');
+
  
 });
 

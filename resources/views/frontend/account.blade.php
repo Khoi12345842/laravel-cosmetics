@@ -10,6 +10,13 @@
         .table td, .table th{
             vertical-align: middle;
         }
+        [class~=ratings] label:before{
+            font-size: 45px;
+            margin: 5.4px;
+        }
+        [class~=ratings] > input:checked ~ label {
+            color: #f7bc3d;
+        }
     </style>
 @endpush
 <div class="main-content">
@@ -213,8 +220,8 @@
                                                 </h5>
                                             </div>
                                             <div id="order-{{$order->id}}" class="collapse" aria-labelledby="heading{{$order->id}}" data-parent="#order-table">
-                                                <div class="card-body">
-                                                    <table class="align-middle mb-0 table table-borderless table-striped ">
+                                                <div class="card-body" style="padding: 0">
+                                                    <table class="align-middle mb-0 table table-borderless border-bottom table-striped ">
                                                         <thead>
                                                             <tr>
                                                                 <th>Sản phẩm</th>
@@ -224,7 +231,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach($order->products as $item)
+                                                            @foreach($order->products as $key=>$item)
                                                             <tr>
                                                                 <td>
                                                                     <div>
@@ -239,7 +246,62 @@
                                                                     {{convertPrice($item->pivot->price)}}
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    <button class="btn btn-light">Đánh giá</button>
+                                                                    @if (!isReview($item->pivot->id, $item->pivot->product_id))
+                                                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#review{{$key}}{{$item->pivot->order_id}}">
+                                                                            Đánh giá
+                                                                        </button>
+                                                                      
+                                                                      <!-- Modal -->
+                                                                        <div class="modal fade" id="review{{$key}}{{$item->pivot->order_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Đánh giá sản phẩm: <strong>{{$item->pivot->name}}</strong></h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <form method="post" action="{{route('review')}}" class="new-review-form">
+                                                                                            @csrf
+                                                                                            <input type="hidden" name="product_id" value="{{$item->pivot->product_id}}">
+                                                                                            <input type="hidden" name="order_product_id" value="{{$item->pivot->id}}">
+                                                                                            <div class="spr-form-review-rating">
+                                                                                                <fieldset class="ratings mb-2">
+                                                                                                    <input type="radio" id="star10-{{$item->pivot->id}}" name="point" value="10">
+                                                                                                    <label class="full" for="star10-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star9-{{$item->pivot->id}}" name="point" value="9">
+                                                                                                    <label class="full" for="star9-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star8-{{$item->pivot->id}}" name="point" value="8">
+                                                                                                    <label class="full" for="star8-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star7-{{$item->pivot->id}}" name="point" value="7">
+                                                                                                    <label class="full" for="star7-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star6-{{$item->pivot->id}}" name="point" value="6">
+                                                                                                    <label class="full" for="star6-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star5-{{$item->pivot->id}}" name="point" value="5">
+                                                                                                    <label class="full" for="star5-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star4-{{$item->pivot->id}}" name="point" value="4">
+                                                                                                    <label class="full" for="star4-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star3-{{$item->pivot->id}}" name="point" value="3">
+                                                                                                    <label class="full" for="star3-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star2-{{$item->pivot->id}}" name="point" value="2">
+                                                                                                    <label class="full" for="star2-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <input type="radio" id="star1-{{$item->pivot->id}}" name="point" value="1">
+                                                                                                    <label class="full" for="star1-{{$item->pivot->id}}" title=""></label>
+                                                                                                </fieldset>
+                                                                                            </div>
+                                                                                            <div class="spr-form-review-body mb-2">
+                                                                                                <textarea style="padding: 10px" class="w-100" name="content" rows="8"></textarea>
+                                                                                            </div>
+                                                                                            <div class="submit">
+                                                                                                <input type="submit" id="submitComment" class="btn btn-default" value="Đánh giá">
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             @endforeach

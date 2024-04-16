@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Review;
 use Hash;
 use Auth;
+use DB;
+use Illuminate\Support\Facades\Log;
 
 class AccountController extends Controller
 {
@@ -34,10 +37,26 @@ class AccountController extends Controller
         return redirect()->back();
     }
 
-    // public function orderHistory(){
-    //     $orders = Order::where('user_id', \Auth::guard('web')->id())->orderByDesc('id')->paginate(10);
-    //     return view('frontend.order-history', compact('orders'));
-    // }
+    public function review(Request $request){
+        DB::beginTransaction();
+        try {
+            Review::create([
+                'user_id' => auth('web')->id(),
+                'product_id' => $request->product_id,
+                'order_product_id' => $request->order_product_id,
+                'point' => $request->point,
+                'content' => $request->content,
+            ]);
+            DB::commit();
+            return redirect()->route('account')->with('success_message', 'Đánh giá sản phẩm thành công.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            return back();
+        }
+
+        
+    }
 
     public function cancel(Order $order){
         $order->status = 0;

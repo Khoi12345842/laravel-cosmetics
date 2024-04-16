@@ -127,7 +127,7 @@
                                             </td>
                                             <td class="border-bottom-0">
                                                 <a href="{{route('product.show', $product)}}">
-                                                    <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
+                                                    <h6 class="fw-semibold mb-1">{{Str::limit($product->name, 46)}}</h6>
                                                 </a>
                                             </td>
                                             <td class="border-bottom-0">
