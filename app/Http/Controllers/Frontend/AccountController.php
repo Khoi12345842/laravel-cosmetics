@@ -48,7 +48,8 @@ class AccountController extends Controller
                 'content' => $request->content,
             ]);
             DB::commit();
-            return redirect()->route('account')->with('success_message', 'Đánh giá sản phẩm thành công.');
+            toastr()->success('Đánh giá sản phẩm thành công.');
+            return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());

@@ -103,7 +103,7 @@
             <div class="col-lg-6 d-flex align-items-stretch">
                 <div class="card w-100">
                     <div class="card-body p-4">
-                        <h5 class="card-title fw-semibold mb-4">Sản phẩm bán chạy</h5>
+                        <h5 class="card-title fw-semibold mb-4">Top sản phẩm bán chạy</h5>
                         <div class="table-responsive">
                             <table class="table text-nowrap mb-0 align-middle">
                                 <thead class="text-dark fs-4">
@@ -112,10 +112,10 @@
                                             <h6 class="fw-semibold mb-0">STT</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Tên Sản phẩm</h6>
+                                            <h6 class="fw-semibold mb-0">Sản phẩm</h6>
                                         </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Đã bán</h6>
+                                        <th class="border-bottom-0 text-center">
+                                            <h6 class="fw-semibold mb-0">Lượt bán</h6>
                                         </th>
                                     </tr>
                                 </thead>
@@ -125,12 +125,12 @@
                                             <td class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
                                             </td>
-                                            <td class="border-bottom-0">
+                                            <td class="border-bottom-0 text-center">
                                                 <a href="{{route('product.show', $product)}}">
-                                                    <h6 class="fw-semibold mb-1">{{Str::limit($product->name, 46)}}</h6>
+                                                    <h6 class="fw-semibold mb-1">{{Str::limit($product->name, 40)}}</h6>
                                                 </a>
                                             </td>
-                                            <td class="border-bottom-0">
+                                            <td class="border-bottom-0 text-center">
                                                 <p class="mb-0 fw-normal">{{$product->sold}}</p>
                                             </td>
                                         </tr>
@@ -149,8 +149,8 @@
                             <table class="table text-nowrap mb-0 align-middle">
                                 <thead class="text-dark fs-4">
                                     <tr>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">STT</h6>
+                                        <th class="border-bottom-0 text-center">
+                                            <h6 class="fw-semibold mb-0">Mã đơn</h6>
                                         </th>
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Tên khách hàng</h6>
@@ -166,8 +166,8 @@
                                 <tbody>
                                     @foreach ($latestOrders as $key=>$order)
                                         <tr>
-                                            <td class="border-bottom-0">
-                                                <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
+                                            <td class="border-bottom-0 text-center">
+                                                <h6 class="fw-semibold mb-0">#{{$order->id}}</h6>
                                             </td>
                                             <td class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-1">{{$order->name}}</h6>
@@ -177,6 +177,90 @@
                                             </td>
                                             <td class="border-bottom-0">
                                                 <p class="fw-semibold mb-0">{{date_format($order->created_at,'H:i A - d/m')}}</p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="card w-100">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-semibold mb-4">Top sản phẩm được yêu thích</h5>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap mb-0 align-middle">
+                                <thead class="text-dark fs-4">
+                                    <tr>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">STT</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Sản phẩm</h6>
+                                        </th>
+                                        <th class="border-bottom-0 text-center">
+                                            <h6 class="fw-semibold mb-0 ">Lượt thích</h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($topLikedProducts as $key=>$product)
+                                        <tr>
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <a href="{{route('product.show', $product->id)}}">
+                                                    <h6 class="fw-semibold mb-1">{{Str::limit($product->name, 40)}}</h6>
+                                                </a>
+                                            </td>
+                                            <td class="border-bottom-0 text-center">
+                                                <p class="mb-0 fw-normal">{{$product->like_count}}</p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="card w-100">
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-semibold mb-4">Top sản phẩm được chấm điểm cao</h5>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap mb-0 align-middle">
+                                <thead class="text-dark fs-4">
+                                    <tr>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">STT</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Sản phẩm</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Điểm</h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($topPointProducts as $key=>$product)
+                                        <tr>
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">#{{$key+1}}</h6>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <a href="{{route('product.show', $product->id)}}">
+                                                    <h6 class="fw-semibold mb-1">{{Str::limit($product->name, 40)}}</h6>
+                                                </a>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="fw-semibold mb-0">{{number_format($product->avg_point, 1)}}</p>
                                             </td>
                                         </tr>
                                     @endforeach

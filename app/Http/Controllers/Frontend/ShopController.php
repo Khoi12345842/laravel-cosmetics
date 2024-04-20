@@ -71,7 +71,8 @@ class ShopController extends Controller
                             ->where('id', '<>', $product->id)
                             ->limit(3)
                             ->get();
-        return view('frontend.product', compact('product', 'relatedProducts'));
+        $reviews = $product->reviews;
+        return view('frontend.product', compact('product', 'relatedProducts', 'reviews'));
     }
 
     public function getProductByCategory(Category $category, Request $request){

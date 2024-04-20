@@ -169,8 +169,8 @@
                                 @foreach ($orders as $order)
                                         <div class="card">
                                             <div class="card-header" id="heading{{$order->id}}">
-                                                <h5 class="mb-0">
-                                                    <a style="width: 100%" class="btn" type="button" data-toggle="collapse" href="#order-{{$order->id}}" aria-expanded="false" aria-controls="order-{{$order->id}}">
+                                                <h6 class="mb-0">
+                                                    <div style="width: 100%" >
                                                         <div class="row align-items-center" style="min-height: 38px">
                                                             <div class="col-1">
                                                                 <span>#{{$order->id}}</span>
@@ -183,41 +183,42 @@
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($order->status == 0)
-                                                                    <span class="text-center"><span class="text-dark">Hủy đơn</span></span>
+                                                                    <span class="text-secondary text-center">Đã hủy đơn</span>
                                                                 @elseif($order->status == 1)
-                                                                    <span class="text-center"><span class="text-danger">Trả hàng</span></span>
+                                                                    <span class="text-danger text-center">Đã trả hàng</span>
                                                                 @elseif($order->status == 2)
-                                                                    <span class="text-center"><span class="text-warning">Chờ xác nhận</span></span>
+                                                                    <span class="text-warning text-center">Chờ xác nhận</span>
                                                                 @elseif($order->status == 3)
-                                                                    <span class="text-center"><span class="text-primary">Đang xử lý</span></span>
+                                                                    <span class="text-primary text-center">Đang xử lý</span>
                                                                 @else
-                                                                    <span class="text-center"><span class="text-success">Đã giao hàng</span></span>
+                                                                    <span class="text-success text-center">Đã nhận hàng</span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-4">
                                                                 <span class="text-center">
                                                                     <div class="d-flex justify-content-end align-items-center">
                                                                         @if($order->status == 2)
-                                                                        <form action="{{route('order.cancel', $order)}}" method="POST">
+                                                                        <form action="{{route('order.cancel', $order)}}" method="POST" id="formCancel">
                                                                             @csrf
-                                                                            <button type="submit" class="btn btn-secondary cancel mr-3">Hủy đơn</button>
+                                                                            <button type="submit" class="btn btn-secondary cancel mr-3" >Hủy đơn</button>
                                                                         </form>
                                                                         @elseif($order->status == 3)
-                                                                        <form action="{{route('order.return', $order)}}" method="POST">
+                                                                        <form action="{{route('order.return', $order)}}" method="POST" id="formReturn">
                                                                             @csrf
                                                                             <button type="submit" class="btn btn-danger return mr-3">Trả hàng</button>
                                                                         </form>
-                                                                        <form action="{{route('order.receive', $order)}}" method="POST">
+                                                                        <form action="{{route('order.receive', $order)}}" method="POST" id="formReceive">
                                                                             @csrf
                                                                             <button type="submit" class="btn btn-info receive mr-3">Nhận hàng</button>
                                                                         </form>
                                                                         @endif
+                                                                        <button type="button" class="btn" data-toggle="collapse" href="#order-{{$order->id}}" aria-expanded="false" aria-controls="order-{{$order->id}}">Chi tiết</button>
                                                                     </div>
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                    </a>
-                                                </h5>
+                                                    </div>
+                                                </h6>
                                             </div>
                                             <div id="order-{{$order->id}}" class="collapse" aria-labelledby="heading{{$order->id}}" data-parent="#order-table">
                                                 <div class="card-body" style="padding: 0">
@@ -246,7 +247,7 @@
                                                                     {{convertPrice($item->pivot->price)}}
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    @if (!isReview($item->pivot->id, $item->pivot->product_id))
+                                                                    @if (!isReview($item->pivot->id, $item->pivot->product_id) && $order->status == 4)
                                                                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#review{{$key}}{{$item->pivot->order_id}}">
                                                                             Đánh giá
                                                                         </button>
@@ -339,6 +340,19 @@
                 userName.prop('hidden', false);
                 userName.prev().hide();
             });
+
+            $('#formCancel').find('button').click(()=>{
+                $('#formCancel').submit();
+            })
+            
+            $('#formReturn').find('button').click(()=>{
+                $('#formReturn').submit();
+            })
+
+            $('#formReceive').find('button').click(()=>{
+                $('#formReceive').submit();
+            })
         });
+
     </script>
 @endpush
