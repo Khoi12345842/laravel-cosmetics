@@ -11,14 +11,14 @@
                     <div class="breadcrumb">
                         <ol>
                             <li>
-                                <a href="#">
-                                    <span>Home</span>
+                                <a href="">
+                                    <span>Trang chủ</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span>About us</span>
-                                </a>
+                                <span>
+                                    <span>Đăng ký</span>
+                                </span>
                             </li>
                         </ol>
                     </div>
