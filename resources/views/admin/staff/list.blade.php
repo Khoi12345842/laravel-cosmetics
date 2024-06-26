@@ -2,7 +2,8 @@
 
 @section('content')
 
-<div class="container-fluid">
+@if (Auth::guard('admin')->user()->role === 'Quản trị viên')
+    <div class="container-fluid">
     <div class="row">
         <div class="card w-100">
             <div class="card-body p-4">
@@ -73,5 +74,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+@else
+    <div class="container-fluid text-center ">
+        <h3>Trang này chỉ dành cho quản trị viên.</h3>
+    </div>
+@endif
+
 @endsection

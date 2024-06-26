@@ -205,6 +205,10 @@
                                                             <div class="size">
                                                                 <span class="size">Mã sản phẩm :</span>
                                                                 <span>{{$product->product_code}}</span>
+                                                                <span class="float-right">
+                                                                    <span class="availb">Lượt xem: </span>
+                                                                    <span>{{$product->view}}</span>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                         <form action="{{route('cart.add', $product)}}" class="has-border cart-area" >
@@ -337,9 +341,9 @@
                                                         <a data-toggle="tab" href="#description"
                                                             class="active show">Mô tả sản phẩm</a>
                                                     </li>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a data-toggle="tab" href="#tag">Cách dùng</a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li>
                                                         <a data-toggle="tab" href="#review">Đánh giá (2)</a>
                                                     </li>
@@ -349,140 +353,36 @@
                                                     <div id="description" class="tab-pane fade in active show">
                                                         {!! $product->description !!}
                                                     </div>
-
                                                     <div id="review" class="tab-pane fade">
                                                         <div class="spr-form">
                                                             <div class="user-comment">
-                                                                <div class="spr-review">
-                                                                    <div class="spr-review-header">
-                                                                        <span class="spr-review-header-byline">
-                                                                            <strong>Peter Capidal</strong> -
-                                                                            <span>Apr 14, 2018</span>
-                                                                        </span>
-                                                                        <div class="rating">
-                                                                            <div class="star-content">
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
+                                                                @foreach ($reviews as $review)
+                                                                    <div class="spr-review">
+                                                                        <div class="spr-review-header">
+                                                                            <span class="spr-review-header-byline">
+                                                                                <strong>{{$review->user->name}}</strong> -
+                                                                                <span>{{date_format($review->created_at, 'd/m/Y')}}</span>
+                                                                            </span>
+                                                                            <div class="rating">
+                                                                                <div class="star-content">
+                                                                                    <div class="star"></div>
+                                                                                    <div class="star"></div>
+                                                                                    <div class="star"></div>
+                                                                                    <div class="star"></div>
+                                                                                    <div class="star"></div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="spr-review-content">
-                                                                        <p class="spr-review-content-body">In feugiat
-                                                                            venenatis enim, non finibus metus bibendum
-                                                                            eu. Proin massa justo, eleifend fermentum
-                                                                            varius
-                                                                            quis, semper gravida quam. Cras nec enim sed
-                                                                            lacus viverra luctus. Nunc quis accumsan
-                                                                            mauris.
-                                                                            Aliquam fermentum sit amet est id
-                                                                            scelerisque.
-                                                                            Nam porta risus metus.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="spr-review preview2">
-                                                                    <div class="spr-review-header">
-                                                                        <span class="spr-review-header-byline">
-                                                                            <strong>David James</strong> -
-                                                                            <span>Apr 13, 2018</span>
-                                                                        </span>
-                                                                        <div class="rating">
-                                                                            <div class="star-content">
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                                <div class="star"></div>
-                                                                            </div>
+                                                                        <div class="spr-review-content">
+                                                                            <p class="spr-review-content-body">{{$review->content}}</p>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="spr-review-content">
-                                                                        <p class="spr-review-content-body">In feugiat
-                                                                            venenatis enim, non finibus metus bibendum
-                                                                            eu. Proin massa justo, eleifend fermentum
-                                                                            varius
-                                                                            quis, semper gravida quam. Cras nec enim sed
-                                                                            lacus viverra luctus. Nunc quis accumsan
-                                                                            mauris.
-                                                                            Aliquam fermentum sit amet est id
-                                                                            scelerisque.
-                                                                            Nam porta risus metus.</p>
-                                                                    </div>
-                                                                </div>
+                                                                @endforeach
+                                                                
                                                             </div>
                                                         </div>
-                                                        <form method="post" action="#" class="new-review-form">
-                                                            <input type="hidden" name="review[rating]" value="3">
-                                                            <input type="hidden" name="product_id">
-                                                            <h3 class="spr-form-title">Write a review</h3>
-                                                            <fieldset>
-                                                                <div class="spr-form-review-rating">
-                                                                    <label class="spr-form-label">Your Rating</label>
-                                                                    <fieldset class="ratings">
-                                                                        <input type="radio" id="star5" name="rating"
-                                                                            value="5" />
-                                                                        <label class="full" for="star5"
-                                                                            title="Awesome - 5 stars"></label>
-                                                                        <input type="radio" id="star4half" name="rating"
-                                                                            value="4 and a half" />
-                                                                        <input type="radio" id="star4" name="rating"
-                                                                            value="4" />
-                                                                        <label class="full" for="star4"
-                                                                            title="Pretty good - 4 stars"></label>
-                                                                        <input type="radio" id="star3half" name="rating"
-                                                                            value="3 and a half" />
-                                                                        <input type="radio" id="star3" name="rating"
-                                                                            value="3" />
-                                                                        <label class="full" for="star3"
-                                                                            title="Meh - 3 stars"></label>
-                                                                        <input type="radio" id="star2half" name="rating"
-                                                                            value="2 and a half" />
-                                                                        <input type="radio" id="star2" name="rating"
-                                                                            value="2" />
-                                                                        <label class="full" for="star2"
-                                                                            title="Kinda bad - 2 stars"></label>
-                                                                        <input type="radio" id="star1half" name="rating"
-                                                                            value="1 and a half" />
-                                                                        <input type="radio" id="star1" name="rating"
-                                                                            value="1" />
-                                                                        <label class="full" for="star1"
-                                                                            title="Sucks big time - 1 star"></label>
-                                                                        <input type="radio" id="starhalf" name="rating"
-                                                                            value="half" />
-                                                                    </fieldset>
-                                                                </div>
-                                                            </fieldset>
-                                                            <fieldset class="spr-form-contact">
-                                                                <div class="spr-form-contact-name">
-                                                                    <input
-                                                                        class="spr-form-input spr-form-input-text form-control"
-                                                                        value="" placeholder="Enter your name">
-                                                                </div>
-                                                                <div class="spr-form-contact-email">
-                                                                    <input
-                                                                        class="spr-form-input spr-form-input-email form-control"
-                                                                        value="" placeholder="Enter your email">
-                                                                </div>
-                                                            </fieldset>
-                                                            <fieldset>
-                                                                <div class="spr-form-review-body">
-                                                                    <div class="spr-form-input">
-                                                                        <textarea class="spr-form-input-textarea"
-                                                                            rows="10"
-                                                                            placeholder="Write your comments here"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                            <div class="submit">
-                                                                <input type="submit" name="addComment"
-                                                                    id="submitComment" class="btn btn-default"
-                                                                    value="Submit Review">
-                                                            </div>
-                                                        </form>
                                                     </div>
-                                                    <div id="tag" class="tab-pane fade in">
+                                                    {{-- <div id="tag" class="tab-pane fade in">
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
                                                             do
                                                             eiusmod tempor incididunt ut labore et dolore magna
@@ -499,7 +399,7 @@
                                                             eiusmod
                                                             tempor incididunt ut labore et dolore magna aliqua.
                                                         </p>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                             <div class="related">

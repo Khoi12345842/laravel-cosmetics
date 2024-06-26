@@ -52,4 +52,9 @@ class Product extends Model
     {
         return $this->images->skip(1)->first();
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

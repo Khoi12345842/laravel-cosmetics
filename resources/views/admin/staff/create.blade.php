@@ -1,6 +1,8 @@
 @extends('admin.layout.master')
 
 @section('content')
+
+@if (Auth::guard('admin')->user()->role === 'Quản trị viên')
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -51,4 +53,10 @@
             </div>
         </div>
     </div>
+@else
+    <div class="container-fluid text-center ">
+        <h3>Trang này chỉ dành cho quản trị viên.</h3>
+    </div>
+@endif
+
 @endsection

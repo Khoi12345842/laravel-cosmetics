@@ -66,4 +66,9 @@ class User extends Authenticatable implements CanResetPassword
         return $this->favoriteProducts->contains($productId);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }
