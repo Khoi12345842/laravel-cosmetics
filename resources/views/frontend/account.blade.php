@@ -179,7 +179,7 @@
                                                                 <span>{{date_format($order->created_at, 'd-m-Y H:i:s')}}</span>
                                                             </div>
                                                             <div class="col-2">
-                                                                <span>{{$order->payment == 1 ? 'Ví VNPay' : 'Tiền mặt'}}</span>
+                                                                <span>{{strtoupper($order->payment)}}</span>
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($order->status == 0)

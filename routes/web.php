@@ -35,6 +35,9 @@ use App\Http\Controllers\Frontend\BlogController;
 //Admin
 Route::prefix('admin')->group(function () {
     //Auth
+    Route::get('/', function(){
+        return redirect()->route('admin.login');
+    });
     Route::get('/login', [AuthController::class, 'login'])->middleware(['guest:admin'])->name('admin.login');
     Route::post('/login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
@@ -158,6 +161,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
     Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
+
+    Route::get('/checkout/momoCheck', [CheckoutController::class, 'momoCheck'])->name('checkout.momo');
 
     Route::get('/tai-khoan', [AccountController::class, 'account'])->name('account');
     Route::post('/tai-khoan', [AccountController::class, 'updateAccount'])->name('account.update');

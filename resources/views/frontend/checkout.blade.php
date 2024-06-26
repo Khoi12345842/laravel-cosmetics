@@ -1,7 +1,14 @@
 @extends('frontend.layout.master')
 @section('content')
 @section('page-class', 'product-checkout checkout-cart')
-
+@push('css')
+    <style>
+        .form-check{
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    </style>
+@endpush
     <!-- main content -->
     <div id="checkout" class="main-content">
         <div class="wrap-banner">
@@ -85,15 +92,23 @@
                                                     <div class="text-danger">{{$message}}</div>
                                                 @enderror
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="payment" id="cod" value="2" checked>
+                                                    <input class="form-check-input" type="radio" name="payment" id="cod" value="cod" checked>
                                                     <label class="form-check-label" for="cod">
-                                                        Tiền mặt
+                                                        Thanh toán khi nhận hàng
                                                     </label>
                                                   </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="payment" id="vnpay" value="1">
+                                                    <input class="form-check-input" type="radio" name="payment" id="vnpay" value="vnpay">
                                                     <label class="form-check-label" for="vnpay">
                                                         Ví VNPay
+                                                        <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png" alt="" height="25">
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment" id="momo" value="momo">
+                                                    <label class="form-check-label" for="momo">
+                                                        Ví MOMO
+                                                        <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="" height="25">
                                                     </label>
                                                 </div>
                                             </div>

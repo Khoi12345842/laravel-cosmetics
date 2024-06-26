@@ -119,7 +119,7 @@
                             <label for="address" class="col-md-3 text-md-right col-form-label">
                                 Thanh toán</label>
                             <div class="col-md-9 col-xl-8">
-                                <span>{{$order->payment == 1 ? 'VNPay' : 'Tiền mặt'}}</span>
+                                <span>{{strtoupper($order->payment)}}</span>
                             </div>
                         </div>  
                     </div>

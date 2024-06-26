@@ -65,7 +65,7 @@
                                         <p class="fw-semibold mb-0">{{$order->phone}}</p>
                                     </td>
                                     <td class="border-bottom-0 text-center">
-                                        <p class="fw-semibold mb-0">{{$order->payment === 1 ? 'VNPay' : 'Tiền mặt'}}</p>
+                                        <p class="fw-semibold mb-0">{{strtoupper($order->payment)}}</p>
                                     </td>
                                     @if($order->status == 0)
                                         <td class="border-bottom-0 text-center"><span class="badge bg-dark rounded-3 fw-semibold">Hủy đơn</span></td>

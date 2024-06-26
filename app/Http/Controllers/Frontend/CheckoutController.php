@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use App\Http\Services\MomoPaymentService;
 use DB;
+use Exception;
+use Log;
 
 class CheckoutController extends Controller
 {
@@ -14,6 +17,11 @@ class CheckoutController extends Controller
     static $vnp_HashSecret = "WSBCHHFZBEGYEQNOQHVKLNCGZVHQTHMU"; 
     static $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     static $vnp_Returnurl = "/checkout/vnPayCheck"; 
+
+    protected $momoPaymentService;
+    public function __construct(MomoPaymentService $momoPaymentService){
+        $this->momoPaymentService = $momoPaymentService;
+    }
 
     public function index(){
         return view('frontend.checkout');
@@ -26,13 +34,14 @@ class CheckoutController extends Controller
             'phone' => 'required|numeric',
             'address' => 'required|string',
             'note' => 'nullable|string',
-            'payment' => 'required|in:1,2',
+            'payment' => 'required|in:cod,vnpay,momo',
         ],[
             'name.required' => 'Họ tên không được để trống.',
             'email.required' => 'Địa chỉ email không được để trống.',
             'phone.required' => 'Số điện thoại không được để trống.',
             'address.required' => 'Địa chỉ nhận hàng không được để trống.',
             'payment.required' => 'Vui lòng chọn phương thức thanh toán.',
+            'payment.in' => 'Phương thức thanh toán không hợp lệ.',
         ]);
 
 
@@ -41,7 +50,7 @@ class CheckoutController extends Controller
         $data['status'] = 2; // trang thai chờ xác nhận
 
         /* Nếu thanh toán COD */
-        if($data['payment'] == 2){
+        if($data['payment'] == 'cod'){
             DB::beginTransaction();
             try {
                 $order = Order::create($data);
@@ -50,25 +59,34 @@ class CheckoutController extends Controller
 
                 return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
 
-            } catch (\Throwable $e) {
+            } catch (\Exception $e) {
                 DB::rollback();
-                throw $e;
+                Log::error($e->getMessage());
+            }
+        }
+        else{
+            $order = Order::create($data);
+            // Thanh toán VN Pay
+            if($data['payment'] == 'vnpay'){
+                $data = [
+                    'vnp_TxnRef' => $order->id,
+                    'vnp_OrderInfo' => 'Order Payment No.' .$order->id,
+                    'vnp_Amount' => $order->total_price,
+    
+                ];
+                $data_url = $this->vnpay_create_payment($data);
+                //chuyển hướng đến URL lấy được
+                \Redirect::to($data_url)->send();
+            }
+
+            // Thanh toán MOMO
+            if($data['payment'] == 'momo'){
+                $res = $this->momoPaymentService->create_payment($order);
+                if($res['resultCode'] == 0){
+                    \Redirect::to($res['payUrl'])->send();
+                }
             }
         };
-
-        /* Thanh toán VNPay */
-        if($data['payment'] == 1){
-            $order = Order::create($data);
-            $data = [
-                'vnp_TxnRef' => $order->id,
-                'vnp_OrderInfo' => 'Order Payment No.' .$order->id,
-                'vnp_Amount' => $order->total_price,
-
-            ];
-            $data_url = $this->vnpay_create_payment($data);
-            //chuyển hướng đến URL lấy được
-            \Redirect::to($data_url)->send();
-        }
 
     }
 
@@ -150,7 +168,6 @@ class CheckoutController extends Controller
             'data' => $vnp_Url
         ];
 
-
         return $returnData['data']; 
     }
 
@@ -179,6 +196,10 @@ class CheckoutController extends Controller
                 return redirect()->route('checkout');
             }
         }
+    }
+
+    public function momoCheck(){
+
     }
 
 }
