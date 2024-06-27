@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 @section('page-class', 'product-checkout checkout-cart')
+@section('page-id', 'checkout-cart')
 @push('css')
     <style>
         .form-check{
@@ -50,36 +51,68 @@
                                             <div class="content pl-0">
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade in active show" id="checkout-guest-form" role="tabpanel">
-                                                        <div>
-                                                            <div class="form-group row">
-                                                                <input class="form-control" value="{{old('name', Auth::guard('web')->user()->name)}}" name="name" type="text" placeholder="Họ tên">
-                                                                @error('name')
-                                                                    <div class="text-danger">{{$message}}</div>
-                                                                @enderror
+                                                        @if (Auth::guard('web')->check())
+                                                            <div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('name', Auth::guard('web')->user()->name)}}" name="name" type="text" placeholder="Họ tên">
+                                                                    @error('name')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('email', Auth::guard('web')->user()->email)}}" name="email" type="email" placeholder="Email">
+                                                                    @error('email')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('phone', Auth::guard('web')->user()->phone)}}" name="phone" type="phone" placeholder="Số điện thoại">
+                                                                    @error('phone')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('address', Auth::guard('web')->user()->address)}}" name="address" type="address" placeholder="Địa chỉ nhận hàng">
+                                                                    @error('address')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <textarea name="note" class="form-control" placeholder="Ghi chú" cols="30" rows="4">{{old('note')}}</textarea>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <input class="form-control" value="{{old('email', Auth::guard('web')->user()->email)}}" name="email" type="email" placeholder="Email">
-                                                                @error('email')
-                                                                    <div class="text-danger">{{$message}}</div>
-                                                                @enderror
+                                                        @else
+                                                            <div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('name')}}" name="name" type="text" placeholder="Họ tên">
+                                                                    @error('name')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('email')}}" name="email" type="email" placeholder="Email">
+                                                                    @error('email')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('phone')}}" name="phone" type="phone" placeholder="Số điện thoại">
+                                                                    @error('phone')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <input class="form-control" value="{{old('address')}}" name="address" type="address" placeholder="Địa chỉ nhận hàng">
+                                                                    @error('address')
+                                                                        <div class="text-danger">{{$message}}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <textarea name="note" class="form-control" placeholder="Ghi chú" cols="30" rows="4">{{old('note')}}</textarea>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <input class="form-control" value="{{old('phone', Auth::guard('web')->user()->phone)}}" name="phone" type="phone" placeholder="Số điện thoại">
-                                                                @error('phone')
-                                                                    <div class="text-danger">{{$message}}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <input class="form-control" value="{{old('address', Auth::guard('web')->user()->address)}}" name="address" type="address" placeholder="Địa chỉ nhận hàng">
-                                                                @error('address')
-                                                                    <div class="text-danger">{{$message}}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <textarea name="note" class="form-control" placeholder="Ghi chú" cols="30" rows="4">{{old('note')}}</textarea>
-                                                            </div>
-                                                        </div>
-                                                        </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="checkout-personal-step">

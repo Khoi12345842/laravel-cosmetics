@@ -138,6 +138,11 @@ Route::get('/cart/increase/{product_id}', [CartController::class, 'increase'])->
 Route::get('/cart/decrease/{product_id}', [CartController::class, 'decrease'])->name('cart.decrease');
 Route::get('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
 
+Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
+Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
+Route::get('/checkout/momoCheck', [CheckoutController::class, 'momoCheck'])->name('checkout.momo');
+
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/dang-nhap', [AuthUserController::class, 'login'])->name('login');
     Route::post('/dang-nhap', [AuthUserController::class, 'loginPost'])->name('loginPost');
@@ -157,12 +162,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/yeu-thich', [FavoriteController::class, 'index'])->name('favorite');
     Route::get('/yeu-thich/{product}', [FavoriteController::class, 'add'])->name('favorite.add');
     Route::get('/yeu-thich/delete/{product_id}', [FavoriteController::class, 'delete'])->name('favorite.delete');
-    
-    Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
-    Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
-
-    Route::get('/checkout/momoCheck', [CheckoutController::class, 'momoCheck'])->name('checkout.momo');
 
     Route::get('/tai-khoan', [AccountController::class, 'account'])->name('account');
     Route::post('/tai-khoan', [AccountController::class, 'updateAccount'])->name('account.update');

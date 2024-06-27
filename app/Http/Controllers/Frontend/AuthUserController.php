@@ -8,6 +8,10 @@ use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Mail\RegisterSuccessMail;
+use Illuminate\Support\Facades\Mail;
+use DB;
+use Log;
 
 class AuthUserController extends Controller
 {
@@ -45,21 +49,30 @@ class AuthUserController extends Controller
     }
 
     public function registerPost(Request $request){
-        $validated = $request->validate([
-            'name' => 'required|string|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:6',
-        ],[
-            'name.required' => 'Họ tên không được để trống.',
-            'email.required' => 'Địa chỉ email không được để trống.',
-            'password.required' => 'Mật khẩu không được để trống.',
-            'password.confirmed' => 'Mật khẩu nhập lại không khớp.',
-        ]);
-
-        $user = User::create($validated);
-        if($user){
+        DB::beginTransaction();
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|unique:users,name',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|confirmed|min:6',
+            ],[
+                'name.required' => 'Họ tên không được để trống.',
+                'email.required' => 'Địa chỉ email không được để trống.',
+                'password.required' => 'Mật khẩu không được để trống.',
+                'password.confirmed' => 'Mật khẩu nhập lại không khớp.',
+            ]);
+    
+            $user = User::create($validated);
+            Mail::to($user->email)->send(new RegisterSuccessMail($user));
             toastr()->success('Đăng ký tài khoản thành công.');
+            DB::commit();
+            
             return redirect()->route('login');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            toastr()->error('Đăng ký tài khoản không thành công.');
+            return back();
         }
         
     }

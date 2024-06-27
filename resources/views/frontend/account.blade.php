@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 @section('page-class', 'user-acount')
+@section('page-id', 'user-acount')
 @push('css')
     <style>
         [class~=user-acount] [class~=btn][class~=btn-primary] {

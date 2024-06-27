@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 @section('page-class', 'product-cart checkout-cart blog')
+@section('page-id', 'cart')
 
     <div class="main-content" id="cart">
         <!-- main -->

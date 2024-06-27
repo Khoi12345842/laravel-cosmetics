@@ -30,12 +30,13 @@ class MomoPaymentService
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
         $amount = $order->total_price;
-        $orderId = $order->id . time();
-        $redirectUrl = url("/checkout/vnPayCheck");
-        $ipnUrl = url("/checkout/vnPayCheck");
+        $orderId = $order->id . '_' . time();
+        $redirectUrl = url("/checkout/momoCheck");
+        $ipnUrl = url("/checkout/momoCheck");
         $extraData = "";
         $requestId = time() . "";
-        $requestType = "payWithATM";
+        // $requestType = "payWithATM";
+        $requestType = "captureWallet";
 
         //before sign HMAC SHA256 signature
         $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;

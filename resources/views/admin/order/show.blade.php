@@ -53,7 +53,7 @@
                                         {{convertPrice($item->pivot->price)}}
                                     </td>
                                     <td class="text-center">
-                                        {{number_format($item->pivot->price * $item->pivot->quantity)}}đ
+                                        {{convertPrice($item->pivot->price * $item->pivot->quantity)}}
                                     </td>
                                 </tr>
                                 @endforeach

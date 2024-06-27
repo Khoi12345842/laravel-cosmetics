@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
 use App\Http\Services\MomoPaymentService;
+use App\Mail\OrderConfirmationMail;
 use DB;
 use Exception;
 use Log;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -44,9 +46,8 @@ class CheckoutController extends Controller
             'payment.in' => 'Phương thức thanh toán không hợp lệ.',
         ]);
 
-
         $data['total_price'] = session('total_price');
-        $data['user_id'] = \Auth::id();
+        $data['user_id'] = \Auth::guard('web')->id() ?? 0;
         $data['status'] = 2; // trang thai chờ xác nhận
 
         /* Nếu thanh toán COD */
@@ -55,19 +56,31 @@ class CheckoutController extends Controller
             try {
                 $order = Order::create($data);
                 $this->createOrderDetail($order);
+                Mail::to($order->email)->send(new OrderConfirmationMail($order));
+                session()->forget(['cart','total_price']);
                 DB::commit();
 
-                return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
-
+                if(auth('web')->check()){
+                    return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                }
+                else{
+                    toastr()->success('Đặt hàng thành công.');
+                    return redirect()->route('home');
+                }
+                
             } catch (\Exception $e) {
+                dd($e->getMessage());
                 DB::rollback();
                 Log::error($e->getMessage());
+                toastr()->error('Đặt hàng không thành công.');
+                return back();
             }
         }
         else{
-            $order = Order::create($data);
             // Thanh toán VN Pay
             if($data['payment'] == 'vnpay'){
+                $order = Order::create($data);
+                $this->createOrderDetail($order);
                 $data = [
                     'vnp_TxnRef' => $order->id,
                     'vnp_OrderInfo' => 'Order Payment No.' .$order->id,
@@ -75,12 +88,13 @@ class CheckoutController extends Controller
     
                 ];
                 $data_url = $this->vnpay_create_payment($data);
-                //chuyển hướng đến URL lấy được
                 \Redirect::to($data_url)->send();
             }
 
             // Thanh toán MOMO
             if($data['payment'] == 'momo'){
+                $order = Order::create($data);
+                $this->createOrderDetail($order);
                 $res = $this->momoPaymentService->create_payment($order);
                 if($res['resultCode'] == 0){
                     \Redirect::to($res['payUrl'])->send();
@@ -105,8 +119,6 @@ class CheckoutController extends Controller
             $product->sold += $item['quantity'];
             $product->save();
         }
-
-        session()->forget(['cart','total_price']);
     }
 
     protected function vnpay_create_payment(array $data)
@@ -171,23 +183,27 @@ class CheckoutController extends Controller
         return $returnData['data']; 
     }
 
-    public function vnPayCheck(Request $request){
-
-        //Lấy data từ URL (VNPay gửi về qua $vnp_Returnurl)
-        $vnp_ResponseCode = $request->get('vnp_ResponseCode'); //Mã phản hồi kết quả thanh toán
-        $vnp_TxnRef = $request->get('vnp_TxnRef'); // ID đơn  hàng
+    public function vnPayCheck(Request $request)
+    {
+        $vnp_ResponseCode = $request->get('vnp_ResponseCode');
+        $vnp_TxnRef = $request->get('vnp_TxnRef');
 
         // Kiểm tra mã phản hồi
         if($vnp_ResponseCode != null){
-            $order = Order::find($vnp_TxnRef);
-
-            //00: TH thành công
             if($vnp_ResponseCode == 00){
-                $this->createOrderDetail($order);
-                return redirect()->route('account')->with('success_message', 'Đặt hàng thành công, đơn hàng sẽ được giao trong vòng vài ngày tới.');
-
-            }elseif($vnp_ResponseCode == 24){ //24: Hủy thanh toán
+                $order = Order::findOrFail($vnp_TxnRef);
+                Mail::to($order->email)->send(new OrderConfirmationMail($order));
+                session()->forget(['cart','total_price']);
+                if(auth('web')->check()){
+                    return redirect()->route('account')->with('success_message', 'Đơn hàng đã được thanh toán với ví Momo, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                }
+                else{
+                    toastr()->success('Đặt hàng thành công.');
+                    return redirect()->route('home');
+                }
+            }elseif($vnp_ResponseCode == 24){
                 $order->delete();
+                toastr()->error('Giao dịch đã bị hủy.');
                 return redirect()->route('checkout');
             }
             else{
@@ -198,8 +214,33 @@ class CheckoutController extends Controller
         }
     }
 
-    public function momoCheck(){
+    public function momoCheck(Request $request){
+        $resultCode = $request->get('resultCode');
+        $orderId = explode('_', $request->get('orderId'))[0];
 
+        if($resultCode != null){
+            if($resultCode == 0){
+                $order = Order::findOrFail($orderId);
+                Mail::to($order->email)->send(new OrderConfirmationMail($order));
+                session()->forget(['cart','total_price']);
+                if(auth('web')->check()){
+                    return redirect()->route('account')->with('success_message', 'Đơn hàng đã được thanh toán với ví Momo, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                }
+                else{
+                    toastr()->success('Đặt hàng thành công.');
+                    return redirect()->route('home');
+                }
+            }elseif($resultCode == 1006){
+                $order->delete();
+                toastr()->error('Giao dịch đã bị hủy.');
+                return redirect()->route('checkout');
+            }
+            else{
+                $order->delete();
+                toastr()->error('Có lỗi xảy ra khi thanh toán với Momo.');
+                return redirect()->route('checkout');
+            }
+        }
     }
 
 }
