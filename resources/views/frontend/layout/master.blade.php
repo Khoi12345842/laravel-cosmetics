@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/assets/frontend/libs/owl-carousel/assets/owl.carousel.min.css">
 
     <!-- Template CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/css/quickview.css">
     <link rel="stylesheet" type="text/css" href="/assets/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/frontend/css/reponsive.css">
     <style>
@@ -103,7 +104,6 @@
                         <img class="logo-mobile img-fluid" src="/assets/frontend/img/home/logo-mobie.png" alt="Prestashop_Furnitica">
                     </a>
                 </div>
-
                 
             </div>
 
@@ -386,6 +386,81 @@
     </header>
 
     @yield('content')
+
+    <div class="overlay">
+        <div class="cd-quick-view row">
+            <div class="product-detail col-xs-12 col-md-5 col-sm-5 p-0">
+                <div class="product-img">
+                    <img src="" alt="Product Image">
+                </div>
+            </div>
+            <div class="product-info col-xs-12 col-md-7 col-sm-7 py-2">
+                <h4 class="text-dark">Product title</h4>
+                <div class="detail-description">
+                    <div class="price-del">
+                        <span class="price">170,000đ</span>
+                        <span class="float-right">
+                            <span class="availb">Tình trạng: </span>
+                            <span class="check">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>Còn hàng
+                            </span>
+                        </span>
+                    </div>
+                    <div class="option has-border mt-2">
+                        <div class="size" style="font-size: 16px">
+                            <span class="size">Mã sản phẩm :</span>
+                            <span id="product-code"></span>
+                        </div>
+                    </div>
+                    <form action="http://127.0.0.1:8000/cart/add/16" class="has-border cart-area">
+                        <div class="product-quantity">
+                            <div class="qty">
+                                <div class="input-group">
+                                    <span class="add">
+                                        <button class="btn btn-primary add-to-cart add-item" data-button-action="add-to-cart"
+                                            type="submit">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span>Thêm vào giỏ hàng</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                    <div class="content">
+                        <p>Danh mục :
+                            <span class="content2">
+                                <a href="#" id="category"></a>
+                            </span>
+                        </p>
+                        <p>Nơi sản xuất :
+                            <span class="content2">
+                                <a href="#" id="origin"></a>
+                            </span>
+                        </p>
+                        <p>Thương hiệu :
+                            <span class="content2">
+                                <a href="#" id="brand"></a>,
+                            </span>
+                        </p>
+                        <p>Kết cấu :
+                            <span class="content2">
+                                <a href="#" id="texture"></a>,
+                            </span>
+                        </p>
+            
+                        <p>Loại da :
+                            <span class="content2">
+                                <a href="#" id="skin_type"></a>,
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <a href="#0" class="cd-close">Close</a>
+        </div> 
+    </div>
 
     <!-- footer -->
     <footer class="footer-one">
@@ -766,6 +841,8 @@
 
     <!-- Template JS -->
     <script src="/assets/frontend/js/theme.js"></script>
+    <script src="/assets/frontend/js/velocity.min.js"></script>
+    <script src="/assets/frontend/js/quickview.js"></script>
     <script src="/assets/frontend/js/my_script.js"></script>
     @stack('script')
 </body>

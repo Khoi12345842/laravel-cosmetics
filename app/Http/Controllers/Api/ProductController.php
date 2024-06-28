@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Product;
+
+class ProductController extends Controller
+{
+    public function getProduct($id){
+        $product = Product::findOrFail($id);
+        if ($product) {
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'name' => $product->name,
+                    'brand' => $product->brand->name,
+                    'origin' => $product->origin->name,
+                    'category' => $product->category->name,
+                    'product_code' => $product->product_code,
+                    'price' => $product->price,
+                    'price_sale' => $product->price * (1 - ($product->discount/100)),
+                    'skin_type' => $product->skin_type,
+                    'texture' => $product->texture,
+                    'image_url' => $product->firstImage()->image,
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Không tìm thấy sản phẩm.'
+            ]);
+        }
+        
+    }
+}

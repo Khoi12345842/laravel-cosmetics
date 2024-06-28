@@ -31,16 +31,19 @@
         </div>
         <div class="product-buttons d-flex justify-content-center">
             <div class="formAddToCart">
-                <a class="add-to-cart" href="{{route('cart.add', $product)}}" data-button-action="add-to-cart">
+                <a class="add-to-cart" href="{{route('cart.add', $product)}}" data-button-action="add-to-cart" title="Thêm vào giỏ hàng">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </a>
             </div>
-            <a class="addToWishlist" href="{{route('favorite.add', $product)}}" data-rel="1" onclick="">
+            <a class="addToWishlist" href="{{route('favorite.add', $product)}}" data-rel="1" onclick="" title="Yêu thích">
                 <i class="fa fa-heart" aria-hidden="true"></i>
             </a>
-            <a href="{{route('product', $product)}}" class="quick-view hidden-sm-down" data-link-action="quickview">
-                <i class="fa fa-eye" aria-hidden="true"></i>
+            <a href="#0" class="quick-view hidden-sm-down" data-link-action="quickview" data-id="{{$product->id}}" title="Xem nhanh">
+                <i class="fa fa-search" aria-hidden="true"></i>
             </a>
+            {{-- <a href="" class="compare hidden-sm-down" data-link-action="compare" title="So sánh">
+                <i class="fa fa-random" aria-hidden="true"></i>
+            </a> --}}
         </div>
     </div>
 </div>
