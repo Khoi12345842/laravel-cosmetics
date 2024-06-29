@@ -26,6 +26,17 @@ jQuery(document).ready(function($){
                     $('.product-info #brand').text(product.brand)
                     $('.product-info #texture').text(product.texture)
                     $('.product-info #skin_type').text(product.skin_type)
+                    $('.product-info #form-add-to-cart').attr('action', '/cart/add/' + product.id);
+                    if (product.quantity > 0) {
+						$('.product-info span.check').text('Còn hàng')
+						$('.product-info span.check').removeClass('text-danger')
+						$('.product-info span.check').addClass('text-success')
+					}
+					else{
+						$('.product-info span.check').text('Hết hàng')
+						$('.product-info span.check').removeClass('text-success')
+						$('.product-info span.check').addClass('text-danger')
+					}
 
                     // Hiển thị overlay và popup
                     $('.overlay').fadeIn();

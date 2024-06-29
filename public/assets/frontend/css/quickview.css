@@ -24,6 +24,7 @@
 .cd-quick-view .product-info .content > p{
     font-size: 16px;
     margin-bottom: 10px;
+    color: #67919c;
 }
 
 .cd-quick-view .product-info button.add-to-cart{
@@ -191,53 +192,13 @@
 
 .cd-item-info {
     position: absolute;
-    padding: 3em 3em 3em 0;
+    /* padding: 3em 3em 3em 0; */
     visibility: hidden;
     opacity: 0;
     -webkit-transition: opacity .3s, visibility 0s;
     -moz-transition: opacity .3s, visibility 0s;
     transition: opacity .3s, visibility 0s;
 }
-
-.cd-item-info h2 {
-    font-size: 28px;
-    font-size: 1.75rem;
-}
-
-.cd-item-info p {
-    line-height: 1.6;
-    margin: 1em 0;
-    color: #67919c;
-}
-
-.cd-item-info .cd-item-action li {
-    display: inline-block;
-    margin-right: 1em;
-}
-
-.cd-item-info .cd-item-action li:first-child {
-    margin-left: -4px;
-}
-
-.cd-item-info .add-to-cart {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    border-radius: 0.25em;
-    border: none;
-    padding: .6em 1.2em;
-    background-color: #f82f53;
-    color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: "PT Sans", sans-serif;
-    font-size: 16px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
 .add-content .cd-item-info {
     /* class added at the end of the width animation, used to show the content */
     position: relative;

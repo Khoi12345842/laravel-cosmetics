@@ -394,16 +394,14 @@
                     <img src="" alt="Product Image">
                 </div>
             </div>
-            <div class="product-info col-xs-12 col-md-7 col-sm-7 py-2">
+            <div class="product-info col-xs-12 col-md-7 col-sm-7 py-2 cd-item-info">
                 <h4 class="text-dark">Product title</h4>
                 <div class="detail-description">
-                    <div class="price-del">
+                    <div class="price-del d-flex align-items-center justify-content-between">
                         <span class="price">170,000đ</span>
                         <span class="float-right">
-                            <span class="availb">Tình trạng: </span>
-                            <span class="check">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i>Còn hàng
-                            </span>
+                            <span class="availb font-weight-bold">Tình trạng: </span>
+                            <span class="check">Còn hàng</span>
                         </span>
                     </div>
                     <div class="option has-border mt-2">
@@ -412,7 +410,7 @@
                             <span id="product-code"></span>
                         </div>
                     </div>
-                    <form action="http://127.0.0.1:8000/cart/add/16" class="has-border cart-area">
+                    <form action="" class="has-border cart-area" id="form-add-to-cart">
                         <div class="product-quantity">
                             <div class="qty">
                                 <div class="input-group">
@@ -441,18 +439,18 @@
                         </p>
                         <p>Thương hiệu :
                             <span class="content2">
-                                <a href="#" id="brand"></a>,
+                                <a href="#" id="brand"></a> 
                             </span>
                         </p>
                         <p>Kết cấu :
                             <span class="content2">
-                                <a href="#" id="texture"></a>,
+                                <a href="#" id="texture"></a>
                             </span>
                         </p>
             
                         <p>Loại da :
                             <span class="content2">
-                                <a href="#" id="skin_type"></a>,
+                                <a href="#" id="skin_type"></a>
                             </span>
                         </p>
                     </div>

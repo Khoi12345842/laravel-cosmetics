@@ -14,6 +14,7 @@ class ProductController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => [
+                    'id' => $product->id,
                     'name' => $product->name,
                     'brand' => $product->brand->name,
                     'origin' => $product->origin->name,
@@ -23,6 +24,7 @@ class ProductController extends Controller
                     'price_sale' => $product->price * (1 - ($product->discount/100)),
                     'skin_type' => $product->skin_type,
                     'texture' => $product->texture,
+                    'quantity' => $product->quantity,
                     'image_url' => $product->firstImage()->image,
                 ]
             ]);

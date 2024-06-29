@@ -13,6 +13,10 @@ class CartController extends Controller
     }
 
     public function add(Product $product, Request $request){
+        if($product->quantity == 0){
+            toastr()->error('Sản phẩm này đã hết hàng.');
+            return back();
+        }
         $quantity = $request->quantity ?? 1;
         $cart = session('cart', []);
 
