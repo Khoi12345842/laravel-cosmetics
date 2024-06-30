@@ -169,7 +169,7 @@
                                                             tempor incididunt ut labore dolore magna aliqua.
                                                         </p>
                                                         <div>
-                                                            <a href="product-grid-sidebar-left.html"> Tất cả sản phẩm</a>
+                                                            <a href="{{route('shop')}}"> Tất cả sản phẩm</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,7 +221,7 @@
                                                     <div class="tab-content">
                                                         @foreach ($categories->first()->children->take(5) as $key=>$child_cate)
                                                             <div id="cate-{{$child_cate->id}}" class="tab-pane fade {{$key==0 ? 'in active show' : ''}}">
-                                                                <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
+                                                                <div class="saleoffa-product-index owl-carousel owl-theme owl-loaded owl-drag">
                                                                     @foreach($child_cate->products as $product)
                                                                         <div class="item text-center">
                                                                             @include('frontend.layout.product-info')
@@ -371,7 +371,7 @@
                                                     <div class="tab-content">
                                                         @foreach ($categories->skip(1)->first()->children->take(5) as $key=>$child_cate)
                                                             <div id="cate-{{$child_cate->id}}" class="tab-pane fade {{$key==0 ? 'in active show' : ''}}">
-                                                                <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
+                                                                <div class="saleoffa-product-index owl-carousel owl-theme owl-loaded owl-drag">
                                                                     @foreach($child_cate->products as $product)
                                                                         <div class="item text-center">
                                                                             @include('frontend.layout.product-info')
@@ -516,10 +516,10 @@
                     items:1
                 },
                 600:{
-                    items:3
+                    items:2
                 },
                 1000:{
-                    items:4
+                    items:3 
                 }
             },
             navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']

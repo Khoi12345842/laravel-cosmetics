@@ -124,7 +124,6 @@ Route::prefix('admin')->group(function () {
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/cua-hang', [ShopController::class, 'shop'])->name('shop');
 Route::get('/danh-muc/{category}', [ShopController::class, 'getProductByCategory'])->name('category');
-// Route::get('/tac-gia/{author}', [ShopController::class, 'getProductByAuthor'])->name('author');
 Route::get('/san-pham/{product}', [ShopController::class, 'product'])->name('product');
 Route::get('/lien-he', [ShopController::class, 'contact'])->name('contact');
 
@@ -142,6 +141,8 @@ Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
 Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
 Route::get('/checkout/momoCheck', [CheckoutController::class, 'momoCheck'])->name('checkout.momo');
+
+Route::get('/so-sanh', [ShopController::class, 'compare'])->name('compare');
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/dang-nhap', [AuthUserController::class, 'login'])->name('login');

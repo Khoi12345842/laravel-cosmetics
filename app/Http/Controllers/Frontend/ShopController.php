@@ -25,15 +25,15 @@ class ShopController extends Controller
                             ->select('category_id', DB::raw('COUNT(category_id) as count'))
                             ->groupBy('category_id')
                             ->orderByDesc('count')
-                            ->limit(2)
+                            ->limit(3)
                             ->pluck('category_id')
                             ->toArray();
-        $product_recommends = Product::whereIn('category_id', $most_category)->orderByDesc('created_at')->get()->take(10);
+        $product_recommends = Product::whereIn('category_id', $most_category)->orderByDesc('created_at')->get()->take(20);
 
-        $topSellingProducts = Product::orderByDesc('sold')->get()->take(10);
-        $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
+        $topSellingProducts = Product::select('*', DB::raw('1 as is_best_selling'))->orderByDesc('sold')->get()->take(20);
+        $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(20)->get();
         $newPosts = Post::orderByDesc('id')->limit(3)->get();
-        $latestProducts = Product::orderByDesc('id')->limit(8)->get();
+        $latestProducts = Product::orderByDesc('id')->limit(20)->get();
         return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts', 'latestProducts', 'product_recommends'));
     }
 
@@ -157,5 +157,9 @@ class ShopController extends Controller
 
     public function contact(){
         return view('frontend.contact');
+    }
+
+    public function compare(){
+        return view('frontend.compare');
     }
 }

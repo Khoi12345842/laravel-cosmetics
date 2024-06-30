@@ -23,7 +23,7 @@
             <div class="product-group-price">
                 <div class="product-price-and-shipping">
                     <span class="price">{{convertPrice($product->price)}}</span>
-                    @if ($product->discount)
+                    @if ($product->discount && !$product->is_best_selling)
                         <del class="regular-price">{{convertPrice(initialPrice($product->price, $product->discount))}}</del>
                     @endif
                 </div>
@@ -38,12 +38,12 @@
             <a class="addToWishlist" href="{{route('favorite.add', $product)}}" data-rel="1" onclick="" title="Yêu thích">
                 <i class="fa fa-heart" aria-hidden="true"></i>
             </a>
-            <span class="quick-view hidden-sm-down" style="cursor: pointer;" data-link-action="quickview" data-id="{{$product->id}}" title="Xem nhanh">
+            <span class="quick-view hidden-sm-down" style="cursor: pointer;" id="quick-view" data-link-action="quickview" data-id="{{$product->id}}" title="Xem nhanh">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </span>
-            {{-- <a href="" class="compare hidden-sm-down" data-link-action="compare" title="So sánh">
+            <span class="quick-view hidden-sm-down" style="cursor: pointer;" onclick="addProdToCompare({{$product->id}})" data-link-action="compare" data-id="{{$product->id}}" title="Xem nhanh">
                 <i class="fa fa-random" aria-hidden="true"></i>
-            </a> --}}
+            </span>
         </div>
     </div>
 </div>

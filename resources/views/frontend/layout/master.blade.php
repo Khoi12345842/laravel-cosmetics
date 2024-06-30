@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/assets/frontend/libs/nivo-slider/css/animate.css">
     <link rel="stylesheet" href="/assets/frontend/libs/nivo-slider/css/style.css">
     <link rel="stylesheet" href="/assets/frontend/libs/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/frontend/libs/toastr/css/toastr.min.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/frontend/css/quickview.css">
@@ -836,10 +837,12 @@
     <script src="/assets/frontend/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/frontend/libs/nivo-slider/js/jquery.nivo.slider.js"></script>
     <script src="/assets/frontend/libs/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/assets/frontend/libs/velocity/velocity.min.js"></script>
+    <script src="/assets/frontend/libs/toastr/js/toastr.min.js"></script>
+
 
     <!-- Template JS -->
     <script src="/assets/frontend/js/theme.js"></script>
-    <script src="/assets/frontend/js/velocity.min.js"></script>
     <script src="/assets/frontend/js/quickview.js"></script>
     <script src="/assets/frontend/js/my_script.js"></script>
     @stack('script')

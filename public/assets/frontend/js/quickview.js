@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 		maxQuickWidth = 900;
 
 	//open the quick view panel
-	$('.quick-view').on('click', function(event){
+	$('#quick-view').on('click', function(event){
 		var selectedImage = $(this).closest('.product-miniature').find("img:first"),
             productId = $(this).data('id');
 

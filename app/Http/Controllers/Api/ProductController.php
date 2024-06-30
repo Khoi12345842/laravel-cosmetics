@@ -26,6 +26,8 @@ class ProductController extends Controller
                     'texture' => $product->texture,
                     'quantity' => $product->quantity,
                     'image_url' => $product->firstImage()->image,
+                    'description' => $product->description,
+                    'point' => number_format($product->reviews()->avg('point'), 1), 
                 ]
             ]);
         } else {
