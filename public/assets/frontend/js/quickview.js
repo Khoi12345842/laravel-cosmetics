@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 		maxQuickWidth = 900;
 
 	//open the quick view panel
-	$('#quick-view').on('click', function(event){
+	$('.quick-view.product').on('click', function(event){
 		var selectedImage = $(this).closest('.product-miniature').find("img:first"),
             productId = $(this).data('id');
 
@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
                     
                     $('.cd-quick-view .product-img img').attr('src', product.image_url);
                     $('.product-info h4').text(product.name)
+                    $('.product-info .price').text(product.price_sale)
                     $('.product-info #product-code').text(product.product_code)
                     $('.product-info #category').text(product.category)
                     $('.product-info #origin').text(product.origin)

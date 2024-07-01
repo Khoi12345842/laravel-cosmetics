@@ -399,7 +399,7 @@
                 <h4 class="text-dark">Product title</h4>
                 <div class="detail-description">
                     <div class="price-del d-flex align-items-center justify-content-between">
-                        <span class="price">170,000đ</span>
+                        <span class="price"></span>
                         <span class="float-right">
                             <span class="availb font-weight-bold">Tình trạng: </span>
                             <span class="check">Còn hàng</span>

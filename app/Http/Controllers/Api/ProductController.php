@@ -20,13 +20,13 @@ class ProductController extends Controller
                     'origin' => $product->origin->name,
                     'category' => $product->category->name,
                     'product_code' => $product->product_code,
-                    'price' => $product->price,
-                    'price_sale' => $product->price * (1 - ($product->discount/100)),
+                    'price' => convertPrice($product->price),
+                    'price_sale' => convertPrice($product->price * (1 - ($product->discount/100))),
                     'skin_type' => $product->skin_type,
                     'texture' => $product->texture,
                     'quantity' => $product->quantity,
                     'image_url' => $product->firstImage()->image,
-                    'description' => $product->description,
+                    'description' => strip_tags($product->description),
                     'point' => number_format($product->reviews()->avg('point'), 1), 
                 ]
             ]);

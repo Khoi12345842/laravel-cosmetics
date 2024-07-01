@@ -8,7 +8,7 @@
 
 .comparison-table table {
     min-width: 41rem;
-    table-layout: fixed
+    table-layout: fixed;
 }
 
 .comparison-table table tbody+tbody {
@@ -65,19 +65,54 @@
     width: 1.375rem;
     height: 1.375rem;
     border-radius: 50%;
-    background-color: #f44336;
+    background-color: #423d3d;
     color: #fff;
     text-align: center;
     cursor: pointer
 }
 
 .comparison-table .comparison-item .remove-item .feather {
-    width: .875rem;
-    height: .875rem
+    width: 14px;
+    height: 21px;
 }
 .table-bordered th, .table-bordered td {
     border: 1px solid #e7e7e7;
 }
 .bg-secondary {
     background-color: #f7f7f7 !important;
+}
+a.add-to-cart{
+    margin: 5px 0;
+    color: #FFF !important;
+    background: #878787;
+    border-radius: 1.25pc;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+a.add-to-cart:hover{
+    background: #343434;
+    border: 1px solid #ddd;
+}
+table.table-bordered td,
+table.table-bordered th {
+    vertical-align: middle;
+}
+table.table-bordered tbody tr td {
+    text-align: center;
+}
+td.product-price span{
+    font-size: 16px;
+    font-weight: 700;
+}
+.btn-dashed{
+    background-color: #f7f7f7 ;
+    border: 2px dashed #878787;
+    color:#878787;
+    font-size: 14px;
+}
+.btn-dashed:hover{
+    background-color: #e8e7e7 ;
+    border: 2px dashed #878787;
+    color:#878787;
 }
