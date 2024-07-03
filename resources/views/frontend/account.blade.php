@@ -18,6 +18,12 @@
         [class~=ratings] > input:checked ~ label {
             color: #f7bc3d;
         }
+        [class~=ratings] label {
+            margin: 0;
+        }
+        [class~=ratings]{
+            margin: 0 101px;
+        }
     </style>
 @endpush
 <div class="main-content">
@@ -263,14 +269,14 @@
                                                                                             <span aria-hidden="true">&times;</span>
                                                                                         </button>
                                                                                     </div>
-                                                                                    <div class="modal-body">
+                                                                                    <div class="modal-body pt-0">
                                                                                         <form method="post" action="{{route('review')}}" class="new-review-form">
                                                                                             @csrf
                                                                                             <input type="hidden" name="product_id" value="{{$item->pivot->product_id}}">
                                                                                             <input type="hidden" name="order_product_id" value="{{$item->pivot->id}}">
                                                                                             <div class="spr-form-review-rating">
-                                                                                                <fieldset class="ratings mb-2">
-                                                                                                    <input type="radio" id="star10-{{$item->pivot->id}}" name="point" value="10">
+                                                                                                <fieldset style="float: none" class="ratings mb-2">
+                                                                                                    {{-- <input type="radio" id="star10-{{$item->pivot->id}}" name="point" value="10">
                                                                                                     <label class="full" for="star10-{{$item->pivot->id}}" title=""></label>
                                                                                                     <input type="radio" id="star9-{{$item->pivot->id}}" name="point" value="9">
                                                                                                     <label class="full" for="star9-{{$item->pivot->id}}" title=""></label>
@@ -279,7 +285,7 @@
                                                                                                     <input type="radio" id="star7-{{$item->pivot->id}}" name="point" value="7">
                                                                                                     <label class="full" for="star7-{{$item->pivot->id}}" title=""></label>
                                                                                                     <input type="radio" id="star6-{{$item->pivot->id}}" name="point" value="6">
-                                                                                                    <label class="full" for="star6-{{$item->pivot->id}}" title=""></label>
+                                                                                                    <label class="full" for="star6-{{$item->pivot->id}}" title=""></label> --}}
                                                                                                     <input type="radio" id="star5-{{$item->pivot->id}}" name="point" value="5">
                                                                                                     <label class="full" for="star5-{{$item->pivot->id}}" title=""></label>
                                                                                                     <input type="radio" id="star4-{{$item->pivot->id}}" name="point" value="4">

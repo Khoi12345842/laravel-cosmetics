@@ -18,6 +18,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .rating .star-content .star:after {
+            content: url(../../../assets/frontend/img/product/star.png) !important;
+        }
+        .rating .star-content .star.fill:after {
+            content: url(../../../assets/frontend/img/product/star1.png) !important;
+        }
+        [class~=rating] [class~=star-content] [class~=star] {
+            float: left;
+        }
     </style>
 @endpush
     <!-- main content -->
@@ -345,7 +354,7 @@
                                                         <a data-toggle="tab" href="#tag">Cách dùng</a>
                                                     </li> --}}
                                                     <li>
-                                                        <a data-toggle="tab" href="#review">Đánh giá (2)</a>
+                                                        <a data-toggle="tab" href="#review">Đánh giá ({{$product->reviews->count()}})</a>
                                                     </li>
                                                 </ul>
 
@@ -365,11 +374,13 @@
                                                                             </span>
                                                                             <div class="rating">
                                                                                 <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
+                                                                                    @for ($i = 1; $i <= 5; $i++)
+                                                                                        @if ($i <= $review->point) 
+                                                                                            <div class="star fill"></div> 
+                                                                                        @else
+                                                                                            <div class="star"></div>
+                                                                                        @endif
+                                                                                    @endfor
                                                                                 </div>
                                                                             </div>
                                                                         </div>
