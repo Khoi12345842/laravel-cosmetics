@@ -167,6 +167,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="blockcart block-cart cart-preview tiva-toggle">
+                        <div class="header-cart tiva-toggle-btn">
+                            <span class="cart-products-count">1</span>
+                            <i class="fa fa-random" aria-hidden="true" title="So sánh sản phẩm"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -321,7 +327,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="desktop_cart">
+                        <div class="desktop_cart d-flex">
                             <div class="blockcart block-cart cart-preview tiva-toggle">
                                 <div class="header-cart tiva-toggle-btn">
                                     <span class="cart-products-count">{{session('cart') ? count(session('cart')) : 0}}</span>
@@ -378,6 +384,11 @@
                                     </div>
                                 </div>
 
+                            </div>
+                            <div class="blockcart block-cart cart-preview tiva-toggle">
+                                <a href="{{route('compare')}}" class="header-cart tiva-toggle-btn border-0 p-0">
+                                    <i class="fa fa-random" aria-hidden="true" title="So sánh sản phẩm"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
