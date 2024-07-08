@@ -82,6 +82,103 @@
             background-color: #343434;
             border-color: #343434;
         }
+        #button-contact-zalo{
+            position: fixed;
+            bottom: 110px;
+            z-index: 99999;
+            left: 0;
+        }
+        #gom-all-in-one #zalo-vr {
+            transition: 1s all;
+            -moz-transition: 1s all;
+            -webkit-transition: 1s all;
+        }
+        .phone-vr-circle-fill {
+            width: 65px;
+            height: 65px;
+            top: 12px;
+            left: 12px;
+            position: absolute;
+            box-shadow: 0 0 0 0 #2196F3;
+            background-color: rgba(33, 150, 243, 0.7);
+            border-radius: 50%;
+            border: 2px solid transparent;
+            -webkit-animation: phone-vr-circle-fill 2.3s infinite ease-in-out;
+            animation: phone-vr-circle-fill 2.3s infinite ease-in-out;
+            transition: all .5s;
+            -webkit-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            -webkit-animuiion: zoom 1.3s infinite;
+            animation: zoom 1.3s infinite;
+        }
+        
+        .phone-vr-img-circle {
+            background-color: #2196F3;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            top: 25px;
+            left: 25px;
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            -webkit-animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+            animation: phone-vr-circle-fill 1s infinite ease-in-out;
+        }
+        .phone-vr-img-circle a {
+            display: block;
+            line-height: 37px;
+        }
+        .phone-vr-img-circle img {
+            max-height: 25px;
+            max-width: 27px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+        }
+        @keyframes zoom{
+            0% {
+                transform: scale(.9);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px transparent;
+            }
+            100% {
+                transform: scale(.9);
+                box-shadow: 0 0 0 0 transparent;
+            }
+        }
+        @keyframes phone-vr-circle-fill{
+            0% {
+                -webkit-transform: rotate(0) scale(1) skew(1deg);
+            }
+            10% {
+                -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+            }
+            20% {
+                -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+            }
+            30% {
+                -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+            }
+            40% {
+                -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+            }
+            50% {
+                -webkit-transform: rotate(0) scale(1) skew(1deg);
+            }
+            100% {
+                -webkit-transform: rotate(0) scale(1) skew(1deg);
+            }
+        }
     </style>
     @stack('css')
 </head>
@@ -173,6 +270,12 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+                    </div>
+                    <div class="blockcart block-cart cart-preview tiva-toggle">
+                        <div class="header-cart tiva-toggle-btn">
+                            <span class="cart-products-count">1</span>
+                            <i class="fa fa-random" aria-hidden="true" title="So sánh sản phẩm"></i>
                         </div>
                     </div>
                 </div>
@@ -329,7 +432,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="desktop_cart">
+                        <div class="desktop_cart d-flex">
                             <div class="blockcart block-cart cart-preview tiva-toggle">
                                 <div class="header-cart tiva-toggle-btn">
                                     <span class="cart-products-count">{{session('cart') ? count(session('cart')) : 0}}</span>
@@ -386,6 +489,11 @@
                                     </div>
                                 </div>
 
+                            </div>
+                            <div class="blockcart block-cart cart-preview tiva-toggle">
+                                <a href="{{route('compare')}}" class="header-cart tiva-toggle-btn border-0 p-0">
+                                    <i class="fa fa-random" aria-hidden="true" title="So sánh sản phẩm"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -654,6 +762,21 @@
         <a href="#">
             <i class="fa fa-long-arrow-up"></i>
         </a>
+    </div>
+
+    <div id="button-contact-zalo" class="">
+        <div id="gom-all-in-one"><!-- v3 -->
+            <div id="zalo-vr" class="button-contact">
+                <div class="phone-vr">
+                    <div class="phone-vr-circle-fill"></div>
+                    <div class="phone-vr-img-circle">
+                        <a target="_blank" href="https://zalo.me/{{env('SDT_ZALO')}}">              
+                            <img src="{{asset('assets/frontend/img/other/zalo.png')}}">
+                        </a>
+                    </div>
+                </div>
+                </div>
+        </div>
     </div>
 
     <!-- menu mobie right -->
