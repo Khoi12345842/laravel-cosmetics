@@ -215,8 +215,8 @@
                         </button>
                     </form>
                 </div>
-                <div class="desktop_cart">
-                    <div class="blockcart block-cart cart-preview tiva-toggle">
+                <div class="desktop_cart d-flex">
+                    <div class="blockcart block-cart cart-preview tiva-toggle mr-2">
                         <div class="header-cart tiva-toggle-btn">
                             <span class="cart-products-count">{{session('cart') ? count(session('cart')) : 0}}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -274,7 +274,6 @@
                     </div>
                     <div class="blockcart block-cart cart-preview tiva-toggle">
                         <div class="header-cart tiva-toggle-btn">
-                            <span class="cart-products-count">1</span>
                             <i class="fa fa-random" aria-hidden="true" title="So sánh sản phẩm"></i>
                         </div>
                     </div>
