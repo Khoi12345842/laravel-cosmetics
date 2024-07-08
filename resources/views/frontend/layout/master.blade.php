@@ -111,8 +111,8 @@
             <!-- search -->
             <div id="mobile_search" class="d-flex">
                 <div id="mobile_search_content">
-                    <form method="get" action="#">
-                        <input type="text" name="s" value="" placeholder="Search">
+                    <form method="get" action="{{route('shop')}}">
+                        <input type="text" name="keyword" value="{{request('keyword')}}" placeholder="Tìm kiếm sản phẩm...">
                         <button type="submit">
                             <i class="fa fa-search"></i>
                         </button>
@@ -121,49 +121,57 @@
                 <div class="desktop_cart">
                     <div class="blockcart block-cart cart-preview tiva-toggle">
                         <div class="header-cart tiva-toggle-btn">
-                            <span class="cart-products-count">1</span>
+                            <span class="cart-products-count">{{session('cart') ? count(session('cart')) : 0}}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
                         <div class="dropdown-content">
                             <div class="cart-content">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-image">
-                                                <a href="product-detail.html">
-                                                    <img src="/assets/frontend/img/product/5.jpg" alt="Product">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div class="product-name">
-                                                    <a href="product-detail.html">Organic Strawberry Fruits</a>
-                                                </div>
-                                                <div>
-                                                    2 x
-                                                    <span class="product-price">£28.98</span>
-                                                </div>
-                                            </td>
-                                            <td class="action">
-                                                <a class="remove" href="#">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="2">Total:</td>
-                                            <td>£92.96</td>
-                                        </tr>
+                                @if (session('cart'))
+                                    <table>
+                                        <tbody>
+                                            @foreach (session('cart') as $cart)
+                                                <tr>
+                                                    <td class="product-image">
+                                                        <a href="{{route('product', $cart['product_id'])}}">
+                                                            <img src="{{$cart['image']}}" alt="Product">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="product-name">
+                                                            <a href="{{route('product', $cart['product_id'])}}">{{$cart['name']}}</a>
+                                                        </div>
+                                                        <div>
+                                                            {{$cart['quantity']}} x
+                                                            <span class="product-price">{{convertPrice($cart['price'])}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="action">
+                                                        <a class="remove" href="{{route('cart.decrease', $cart['product_id'])}}">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <tr class="total">
+                                                <td colspan="2">Tổng tiền:</td>
+                                                <td>{{convertPrice(session('total_price')) ?? 0}}</td>
+                                            </tr>
 
-                                        <tr>
-                                            <td colspan="3" class="d-flex justify-content-center">
-                                                <div class="cart-button">
-                                                    <a href="{{route('cart')}}" title="View Cart">Giỏ hàng</a>
-                                                    <a href="{{route('checkout')}}" title="Checkout">Thanh toán</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td colspan="3" class="d-flex justify-content-center">
+                                                    <div class="cart-button">
+                                                        <a href="{{route('cart')}}" title="View Cart">Giỏ hàng</a>
+                                                        <a href="{{route('checkout')}}" title="Checkout">Thanh toán</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                @else
+                                    <div class="text-center p-3">
+                                        <span>Không có sản phẩm nào!</span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
