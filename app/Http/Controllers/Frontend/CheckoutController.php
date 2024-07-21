@@ -189,13 +189,13 @@ class CheckoutController extends Controller
         $vnp_TxnRef = $request->get('vnp_TxnRef');
 
         // Kiểm tra mã phản hồi
+        $order = Order::findOrFail($vnp_TxnRef);
         if($vnp_ResponseCode != null){
             if($vnp_ResponseCode == 00){
-                $order = Order::findOrFail($vnp_TxnRef);
                 Mail::to($order->email)->send(new OrderConfirmationMail($order));
                 session()->forget(['cart','total_price']);
                 if(auth('web')->check()){
-                    return redirect()->route('account')->with('success_message', 'Đơn hàng đã được thanh toán với ví Momo, đơn hàng sẽ được giao trong vòng vài ngày tới.');
+                    return redirect()->route('account')->with('success_message', 'Đơn hàng đã được thanh toán với ví VNPay, đơn hàng sẽ được giao trong vòng vài ngày tới.');
                 }
                 else{
                     toastr()->success('Đặt hàng thành công.');
@@ -218,9 +218,9 @@ class CheckoutController extends Controller
         $resultCode = $request->get('resultCode');
         $orderId = explode('_', $request->get('orderId'))[0];
 
+        $order = Order::findOrFail($orderId);
         if($resultCode != null){
             if($resultCode == 0){
-                $order = Order::findOrFail($orderId);
                 Mail::to($order->email)->send(new OrderConfirmationMail($order));
                 session()->forget(['cart','total_price']);
                 if(auth('web')->check()){

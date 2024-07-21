@@ -49,19 +49,20 @@ class AuthUserController extends Controller
     }
 
     public function registerPost(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:6',
+        ],[
+            'name.required' => 'Họ tên không được để trống.',
+            'email.required' => 'Địa chỉ email không được để trống.',
+            'email.unique' => 'Email này đã được đăng ký',
+            'password.required' => 'Mật khẩu không được để trống.',
+            'password.confirmed' => 'Mật khẩu nhập lại không khớp.',
+        ]);
+        
         DB::beginTransaction();
         try {
-            $validated = $request->validate([
-                'name' => 'required|string|unique:users,name',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|confirmed|min:6',
-            ],[
-                'name.required' => 'Họ tên không được để trống.',
-                'email.required' => 'Địa chỉ email không được để trống.',
-                'password.required' => 'Mật khẩu không được để trống.',
-                'password.confirmed' => 'Mật khẩu nhập lại không khớp.',
-            ]);
-    
             $user = User::create($validated);
             Mail::to($user->email)->send(new RegisterSuccessMail($user));
             toastr()->success('Đăng ký tài khoản thành công.');

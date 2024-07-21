@@ -1,5 +1,6 @@
 @extends('frontend.layout.master')
 @section('content')
+@section('page-id', 'contact')
 @section('page-class', 'user-register blog')
     <!-- main content -->
     <div class="main-content">
