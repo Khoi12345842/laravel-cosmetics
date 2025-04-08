@@ -49,7 +49,7 @@
                                                                 </div>
                                                                 <div class="product-line-grid-body col-md-6">
                                                                     <div class="product-line-info">
-                                                                        <a class="label" href="{{route('product', $cart['product_id'])}}" 
+                                                                        <a class="label" href="{{route('product', $cart['product_id'])}}"
                                                                             data-id_customization="0">{{$cart['name']}}</a>
                                                                     </div>
                                                                     <div class="product-line-info product-price">
@@ -93,9 +93,9 @@
                                                     @endforeach
                                                 </ul>
                                             @else
-                                                
+
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                     <a href="{{route('checkout')}}" class="continue btn btn-primary pull-xs-right">
@@ -144,7 +144,7 @@
             </div>
         </div>
     </div>
-    
+
 @endsection
 
 @push('script')

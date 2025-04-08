@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thể loại bài viết</h5>
                 <form method="POST" action="{{route('post_type.store')}}">

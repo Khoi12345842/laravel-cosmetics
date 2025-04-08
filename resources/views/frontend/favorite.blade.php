@@ -62,10 +62,19 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('product', $product)}}">Chi tiết</a>
+                                                    <a href="{{route('product', $product)}}" style="
+                                                            color: blue;
+                                                            padding: 8px 16px;
+                                                            text-decoration: none;
+                                                            border-radius: 4px;
+                                                        ">
+                                                            Xem chi tiết
+                                                        </a>
                                                     </td>
                                                     <td class="wishlist_delete">
-                                                        <span onclick="confirmDelete({{$product->id}})">Xóa</span>
+                                                        <span onclick="confirmDelete({{$product->id}})" style="
+                                                            color: red;
+                                                        ">Xóa</span>
                                                     </td>
                                                 </tr>
                                                 @endforeach

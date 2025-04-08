@@ -50,7 +50,7 @@
         <div class="acount head-acount">
             <div class="container">
                 <div id="main">
-                    
+
                     @if (session('success_message'))
                         <div class="alert alert-success" role="alert">{{session('success_message')}}</div>
                     @endif
@@ -83,7 +83,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                
+
                                     <tr>
                                         <th class="first_item">Số điện thoại :</th>
                                         <td>
@@ -93,11 +93,37 @@
                                             </div>
                                         </td>
                                     </tr>
+
+                                                                <tr>
+                                <th class="first_item">Giới tính :</th>
+                                <td>
+                                    <span>{{$user->gender}}</span>
+                                    <div class="form-group mb-0" id="user-gender" placeholder="Giới tính" hidden>
+                                        <select name="gender" class="form-control">
+                                            <option value="Male" {{ $user->gender == 'Male' ? 'selected' : '' }}>Nam (Male)</option>
+                                            <option value="Female" {{ $user->gender == 'Female' ? 'selected' : '' }}>Nữ (Female)</option>
+                                            <option value="Other" {{ $user->gender == 'Other' ? 'selected' : '' }}>Khác (Other)</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="first_item">Ngày sinh :</th>
+                                <td>
+                                <span>{{ $user->dob ? \Carbon\Carbon::parse($user->dob)->format('d/m/Y') : '' }}</span>
+                                <div class="form-group mb-0" id="user-dob" placeholder="Ngày sinh" hidden>
+                                        <input type="date" name="dob" class="form-control" value="{{ \Carbon\Carbon::parse($user->dob)->format('Y-m-d') }}">
+                                    </div>
+                                </td>
+                            </tr>
+
+
                                 </tbody>
                             </table>
                         </div>
                         <button class="btn btn-primary" id="btn-edit" data-link-action="sign-in" type="button">
-                            Sửa thông tin
+                            Cập nhập thông tin
                         </button>
                         <button class="btn btn-primary" id="btn-update" data-link-action="sign-in" type="submit" hidden>
                             Cập nhật
@@ -167,7 +193,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -258,7 +284,7 @@
                                                                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#review{{$key}}{{$item->pivot->order_id}}">
                                                                             Đánh giá
                                                                         </button>
-                                                                      
+
                                                                       <!-- Modal -->
                                                                         <div class="modal fade" id="review{{$key}}{{$item->pivot->order_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
@@ -346,12 +372,20 @@
                 const userName = $('#user-name');
                 userName.prop('hidden', false);
                 userName.prev().hide();
+
+                const userGender = $('#user-gender');
+                userGender.prop('hidden', false);
+                userGender.prev().hide();
+
+                const userDOB = $('#user-dob');
+                userDOB.prop('hidden', false);
+                userDOB.prev().hide();
             });
 
             $('#formCancel').find('button').click(()=>{
                 $('#formCancel').submit();
             })
-            
+
             $('#formReturn').find('button').click(()=>{
                 $('#formReturn').submit();
             })

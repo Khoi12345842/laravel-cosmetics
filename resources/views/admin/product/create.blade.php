@@ -16,16 +16,16 @@
         margin: 20px auto;
     }
     </style>
-    
+
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Sản phẩm</h5>
                 <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên sản phẩm 
-                            <span class="text-danger">*</span> 
+                        <label for="name" class="form-label">Tên sản phẩm
+                            <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" name="name" id="name">
                         @error('name')
@@ -35,7 +35,7 @@
 
                     <div class="mb-3">
                         <label for="product_code" class="form-label">Mã sản phẩm
-                            <span class="text-danger">*</span> 
+                            <span class="text-danger">*</span>
                         </label>
                         <input type="text" class="form-control" name="product_code" id="product_code">
                         @error('product_code')
@@ -188,10 +188,10 @@
         </div>
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
-        
+
     <script>
         CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
-            
+
             toolbar: {
                 items: [
                     'exportPDF','exportWord', '|',
@@ -244,7 +244,7 @@
                 ],
                 supportAllValues: true
             },
-            
+
             fontSize: {
                 options: [ 10, 12, 14, 'default', 18, 20, 22 ],
                 supportAllValues: true

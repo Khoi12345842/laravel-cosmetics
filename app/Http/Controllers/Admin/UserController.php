@@ -8,10 +8,25 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index(){
-        $users = User::orderByDesc('id')->paginate(10);
+    public function index(Request $request)
+    {
+        // Lấy tham số 'email' từ request và xử lý khoảng trắng
+        $email = trim($request->input('email'));
+
+        // Truy vấn danh sách nhân viên theo email (tìm kiếm gần đúng)
+        $users = User::when($email, function ($query, $email) {
+            // Tìm kiếm không phân biệt chữ hoa, chữ thường trong trường email
+            $query->whereRaw('LOWER(email) LIKE ?', ['%' . strtolower($email) . '%']);
+        })
+        ->orderByDesc('id') // Sắp xếp giảm dần theo ID
+        ->paginate(10);
+
+        // Trả dữ liệu ra view
         return view('admin.user.list', compact('users'));
     }
+
+
+
 
     public function handleStatus(User $user){
         $status = $user->status;

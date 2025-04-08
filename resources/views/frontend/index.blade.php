@@ -93,7 +93,7 @@
                                             <div class="grouptab row">
                                                 <div class="categoriestab-left product-tab col-md-12 flex-9">
                                                     <div class="title-tab-content d-flex justify-content-start">
-                                                        <h2 class="title-block">Gợi ý cho bạn</h2>                                
+                                                        <h2 class="title-block">Gợi ý cho bạn</h2>
                                                     </div>
                                                     <div class="tab-content">
                                                         <div id="new" class="tab-pane fade in active show">
@@ -112,7 +112,7 @@
                                         <div class="grouptab row">
                                             <div class="categoriestab-left product-tab col-md-12 flex-9">
                                                 <div class="title-tab-content d-flex justify-content-start">
-                                                    <h2 class="title-block">Sản phẩm giảm giá</h2>                                
+                                                    <h2 class="title-block">Sản phẩm giảm giá</h2>
                                                 </div>
                                                 <div class="tab-content">
                                                     <div id="new" class="tab-pane fade in active show">
@@ -207,12 +207,12 @@
                                         <div class="groupcategoriestab-vertical col-md-12 col-xs-12">
                                             <div class="grouptab row">
                                                 <div class="categoriestab-left product-tab col-md-12 flex-9">
-                                                    <h2 class="title-block">{{$categories->first()->name}}</h2>  
+                                                    <h2 class="title-block">{{$categories->first()->name}}</h2>
                                                     <div class="title-tab-content d-flex justify-content-start">
                                                         <ul class="nav nav-tabs">
                                                             @foreach ($categories->first()->children->take(5) as $key=>$child_cate)
                                                             <li>
-                                                                <a href="#cate-{{$child_cate->id}}" data-toggle="tab" 
+                                                                <a href="#cate-{{$child_cate->id}}" data-toggle="tab"
                                                                         class="{{$key==0 ? 'active' : ''}}">{{$child_cate->name}}</a>
                                                             </li>
                                                             @endforeach
@@ -357,12 +357,12 @@
                                         <div class="groupcategoriestab-vertical col-md-12 col-xs-12">
                                             <div class="grouptab row">
                                                 <div class="categoriestab-left product-tab col-md-12 flex-9">
-                                                    <h2 class="title-block">{{$categories->skip(1)->first()->name}}</h2>  
+                                                    <h2 class="title-block">{{$categories->skip(1)->first()->name}}</h2>
                                                     <div class="title-tab-content d-flex justify-content-start">
                                                         <ul class="nav nav-tabs">
                                                             @foreach ($categories->skip(1)->first()->children->take(5) as $key=>$child_cate)
                                                             <li>
-                                                                <a href="#cate-{{$child_cate->id}}" data-toggle="tab" 
+                                                                <a href="#cate-{{$child_cate->id}}" data-toggle="tab"
                                                                         class="{{$key==0 ? 'active' : ''}}">{{$child_cate->name}}</a>
                                                             </li>
                                                             @endforeach
@@ -519,7 +519,7 @@
                     items:2
                 },
                 1000:{
-                    items:3 
+                    items:3
                 }
             },
             navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']

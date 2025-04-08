@@ -17,7 +17,7 @@
         }
     </style>
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Thể loại</h5>
                 <form method="POST" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
@@ -71,10 +71,10 @@
     </div>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
-        
+
     <script>
         CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
-            
+
             toolbar: {
                 items: [
                     'exportPDF','exportWord', '|',
@@ -127,7 +127,7 @@
                 ],
                 supportAllValues: true
             },
-            
+
             fontSize: {
                 options: [ 10, 12, 14, 'default', 18, 20, 22 ],
                 supportAllValues: true

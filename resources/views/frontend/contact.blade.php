@@ -42,7 +42,7 @@
                                             <div class="item-right d-flex">
                                                 <div class="title">Email:</div>
                                                 <div class="contact-content">
-                                                    <a href="mailto:support@domain.com">support@domain.com</a>
+                                                    <a href="mailto:eshop.stable@gmail.com">eshop.stable@gmail.com</a>
                                                     <br>
                                                     <a href="mailto:contact@domain.com">contact@domain.com</a>
                                                 </div>
@@ -59,7 +59,7 @@
                                             <div class="item-right d-flex">
                                                 <div class="title">Địa chỉ:</div>
                                                 <div class="contact-content">
-                                                    Khu E6, đường Phạm Hùng, Q. Cầu Giấy, 
+                                                   123 Tran Cung, Co Nhue
                                                     <br>TP. Hà Nội, Việt Nam
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@
                                     auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit
                                     amet nibh vultate cursus a sit amet mauris. Proin gravida nibh vel velit auctor aliquet.”
                                 </p>
-                                
+
                                 <p class="icon text-center">
                                     <a href="#">
                                         <img src="/assets/frontend/img/other/contact_mess.png" alt="img">

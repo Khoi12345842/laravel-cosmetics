@@ -426,7 +426,7 @@
                                       style="color: #c3c3c3; text-decoration: none !important; text-underline: none;">
                                       <img
                                         src="{{asset('assets/frontend/img/home/logo-black.png')}}"
-                                        class="logo " width="96" border="0"
+                                        class="logo " width="180" border="0"
                                         style="width: 96px; height: auto !important; display: block; text-align: center; margin: auto;">
                                     </a>
                                     <!-- Logo : END -->
@@ -500,7 +500,7 @@
                                     <h2
                                       style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                       align="center">
-                                      <span data-key="1468270_order_number">Đơn hàng </span>#{{$order->id}}
+                                      <span data-key="1468270_order_number">Đơn hàng </span>Ngày đặt hàng #{{$order->id}}
                                     </h2>
                                     <p class="muted"
                                       style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"
@@ -718,14 +718,14 @@
                                                     <th
                                                       style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 0;"
                                                       align="left" bgcolor="#ffffff" valign="middle">
-  
+
                                                       Mastercard
-  
-  
+
+
                                                       <span class="table-muted"
                                                         style="font-size: 14px; font-weight: bold; color: #bdbdbd; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla';">
                                                         (••••••••••••6500)</span>
-  
+
                                                     </th>
                                                   </tr>
                                                 </tbody>
@@ -774,10 +774,10 @@
                                                     style="mso-line-height-rule: exactly; padding-right: 5%;"
                                                     align="left" bgcolor="#ffffff" valign="top">
                                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0;"
-                                                      align="left">{{$order->name}}<br>
-                                                      {{$order->phone}}<br>
-                                                      {{$order->address}}<br>
-                                                      {{$order->note}}<br>
+                                                      align="left">Họ tên : {{$order->name}}<br>
+                                                       Số điện thoại: {{$order->phone}}<br>
+                                                      Địa chỉ: {{$order->address}}<br>
+                                                      Note:  {{$order->note}}<br>
                                                     </p>
                                                   </th>
                                                 </tr>
@@ -989,7 +989,7 @@
                                                     style="mso-line-height-rule: exactly; padding-left: 5%; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 24px; font-weight: 400; color: #a3a1a1; text-transform: none;"
                                                     align="center" bgcolor="#ffffff" valign="top">
                                                     {{config('app.name')}}<br style="text-align: center;">
-                                                    175 Tay Son, Dong Da<br style="text-align: center;">
+                                                    123 Tran Cung, Co Nhue<br style="text-align: center;">
                                                     Ha Noi, Viet Nam<br style="text-align: center;">
                                                     <br style="text-align: center;">
                                                     Copyright © {{date('Y')}}

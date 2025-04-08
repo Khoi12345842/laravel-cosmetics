@@ -65,12 +65,29 @@
                     <h2 class="text-center mt-5">Thông tin giao hàng</h2>
                     <hr>
                     <div>
+                    <div class="position-relative row form-group align-items-center">
+                            <label for="name" class="col-md-3 text-md-right col-form-label">
+                                Mã đơn hàng
+                            </label>
+                            <div class="col-md-9 col-xl-8">
+                                <span>{{$order->id}}</span>
+                            </div>
+                        </div>
                         <div class="position-relative row form-group align-items-center">
                             <label for="name" class="col-md-3 text-md-right col-form-label">
                                 Tên khách hàng
                             </label>
                             <div class="col-md-9 col-xl-8">
                                 <span>{{$order->name}}</span>
+                            </div>
+                        </div>
+
+                        <div class="position-relative row form-group align-items-center">
+                            <label for="name" class="col-md-3 text-md-right col-form-label">
+                                Ngày đặt hàng
+                            </label>
+                            <div class="col-md-9 col-xl-8">
+                                <span>{{ $order->created_at ? \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') : '' }}</span>
                             </div>
                         </div>
 
@@ -107,6 +124,7 @@
                                     <span class="status return">Trả hàng</span>
                                 @elseif ($order->status === 2)
                                     <span class="status pending">Chờ xác nhận</span>
+                                    <a href="{{route('order.confirm', $order)}}" class="btn btn-outline-success m-1" style="margin-left: 10px">Xác nhận</a>
                                 @elseif ($order->status === 3)
                                     <span class="status inprogress">Đang xử lý</span>
                                 @else
@@ -121,9 +139,9 @@
                             <div class="col-md-9 col-xl-8">
                                 <span>{{strtoupper($order->payment)}}</span>
                             </div>
-                        </div>  
+                        </div>
                     </div>
-                        
+
 
 
                 </div>

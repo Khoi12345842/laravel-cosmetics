@@ -9,9 +9,9 @@
             {{session('success')}}
         </div>
     @endif
-    
+
     <div class="row">
-        <div class="card w-100">
+        <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="card-title fw-semibold mb-4">Sản phẩm</h5>
@@ -62,7 +62,7 @@
                                         <img class="rounded-1" style="width: 40px" src="{{$product->firstImage()->image}}" alt="">
                                         <div class="m-2">
                                             <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
-                                            <span class="fw-normal">{{$product->category->name}}</span> 
+                                            <span class="fw-normal">{{$product->category->name}}</span>
                                         </div>
                                     </td>
                                     <td class="border-bottom-0 text-center">

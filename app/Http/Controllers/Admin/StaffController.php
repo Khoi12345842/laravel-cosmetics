@@ -8,14 +8,23 @@ use App\Models\Admin;
 
 class StaffController extends Controller
 {
-    public function index(Request $request){
-        $name = $request->input('name');
+    public function index(Request $request)
+    {
+        // Lấy tham số 'name' từ request và xử lý khoảng trắng
+        $name = trim($request->input('name'));
 
-        $staffs = Admin::when($name, function($query, $name){
-                $query->where('name', 'LIKE', "%$name%");
-            })->orderByDesc('id')->paginate(10);
+        // Truy vấn danh sách nhân viên
+        $staffs = Admin::when($name, function ($query, $name) {
+                // Tìm kiếm không phân biệt chữ hoa, chữ thường
+                $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($name) . '%']);
+            })
+            ->orderByDesc('id') // Sắp xếp giảm dần theo ID
+            ->paginate(10);
+
+        // Trả dữ liệu ra view
         return view('admin.staff.list', compact('staffs'));
     }
+
 
     public function create(){
         return view('admin.staff.create');

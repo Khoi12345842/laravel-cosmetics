@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/change-password', [AuthController::class, 'password'])->name('admin.password');
         Route::post('/change-password', [AuthController::class, 'changePassword'])->name('admin.change-password');
 
+
         //Brand
         Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
         Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
@@ -86,6 +87,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/order', [OrderController::class, 'index'])->name('order.index');
         Route::get('/order/show/{order}', [OrderController::class, 'show'])->name('order.show');
         Route::get('/order/confirm/{order}', [OrderController::class, 'confirm'])->name('order.confirm');
+        Route::get('/admin/orders', [OrderController::class, 'showOrders'])->name('admin.orders');
+        Route::get('/admin/orders/pending', [OrderController::class, 'pendingOrders'])->name('admin.orders.pending');
+
+
+
 
         //User
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -116,7 +122,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/post/show/{post}', [PostController::class, 'show'])->name('post.show');
         Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     });
-    
+
 });
 
 //Frontend
@@ -178,7 +184,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::post('/review', [AccountController::class, 'review'])->name('review');
 
- 
+
 });
 
 Route::fallback(function () {

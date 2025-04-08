@@ -21,10 +21,10 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('admin/dashboard')->with('success','Xin chào ' . Auth::guard('admin')->user()->name . ', chào mừng quay trở lại.');
         }
- 
+
         return back()->withErrors([
             'email' => 'Email hoặc mật khẩu không chính xác.',
         ])->onlyInput('email');
@@ -32,9 +32,9 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         Auth::guard('admin')->logout();
- 
+
         $request->session()->regenerateToken();
-    
+
         return redirect('/admin/login');
     }
 

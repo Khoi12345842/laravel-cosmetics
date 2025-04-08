@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-class MomoPaymentService 
+class MomoPaymentService
 {
     protected function execPostRequest($url, $data)
     {
@@ -43,7 +43,7 @@ class MomoPaymentService
         $signature = hash_hmac("sha256", $rawHash, $secretKey);
         $data = array('partnerCode' => $partnerCode,
             'partnerName' => "Test",
-            "storeId" => "MH Cosmetics",
+            "storeId" => "Ngọc Châm Skincare",
             'requestId' => $requestId,
             'amount' => $amount,
             'orderId' => $orderId,
@@ -58,6 +58,6 @@ class MomoPaymentService
         $result = $this->execPostRequest($endpoint, json_encode($data));
         $jsonResult = json_decode($result, true);
         return $jsonResult;
-        
+
     }
 }

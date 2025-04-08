@@ -1,9 +1,9 @@
 @extends('admin.layout.master')
 
 @section('content')
-    
+
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Sản phẩm</h5>
                 <div class="mb-3">
@@ -15,7 +15,7 @@
                     <label class="form-label">Nơi sản xuất </label>
                     <input class="form-control" value="{{$product->origin->name}}" disabled>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="form-label">Thương hiệu</label>
                     <input class="form-control" value="{{$product->brand->name}}" disabled>
@@ -78,10 +78,10 @@
         </div>
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
-        
+
     <script>
         CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
-            
+
             toolbar: {
                 items: [
                     'exportPDF','exportWord', '|',
@@ -134,7 +134,7 @@
                 ],
                 supportAllValues: true
             },
-            
+
             fontSize: {
                 options: [ 10, 12, 14, 'default', 18, 20, 22 ],
                 supportAllValues: true

@@ -1,12 +1,23 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Furnitica - Quản trị viên</title>
+    <title>Quản trị viên</title>
     <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logos/favicon.png" />
     <link rel="stylesheet" href="/assets/admin/css/styles.min.css" />
+    <style>
+        .modal-backdrop {
+                display: none !important;
+            }
+
+            .form-select {
+    background-color: white !important; /* Đảm bảo nền màu trắng */
+    color: black !important; /* Đảm bảo màu văn bản là đen để dễ nhìn */
+}
+    </style>
 </head>
 
 <body>
@@ -19,7 +30,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="{{route("admin.dashboard")}}" class="text-nowrap logo-img">
-                        <img src="{{asset('assets/frontend/img/home/logo-black.png')}}" width="150" alt="" />
+                        <img src="{{asset('assets/frontend/img/home/logo-black.png')}}" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -32,12 +43,22 @@
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">Quản lý</span>
                         </li>
+
+                        @if (Auth::guard('admin')->user()->role === 'Quản trị viên')
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.dashboard')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>
                                 <span class="hide-menu">Trang chủ</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('staff.index')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-user-plus"></i>
+                                </span>
+                                <span class="hide-menu">Nhân viên</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -72,14 +93,10 @@
                                 <span class="hide-menu">Sản phẩm</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('staff.index')}}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Nhân viên</span>
-                            </a>
-                        </li>
+                        @endif
+
+
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('order.index')}}" aria-expanded="false">
                                 <span>
@@ -152,11 +169,48 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                                <i class="ti ti-bell-ringing"></i>
-                                <div class="notification bg-primary rounded-circle"></div>
-                            </a>
-                        </li>
+                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="bellIcon">
+                        <i class="ti ti-bell-ringing"></i>
+                        @if ($pendingOrders->count() > 0)
+                            <span class="badge bg-primary rounded-circle">{{ $pendingOrders->count() }}</span>
+                        @endif
+                    </a>
+                </li>
+
+                <!-- Popup Modal -->
+                <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg"> <!-- Thêm class modal-lg -->
+                <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @if ($pendingOrders->count() > 0)
+                                    <ul class="list-group">
+                                        @foreach ($pendingOrders as $order)
+                                            <li class="list-group-item">
+                                                <a href="{{route('order.show', $order)}}">
+                                                <span class="badge bg-warning">Chờ xác nhận </span>  ||
+                                                <strong>Mã đơn hàng: #{{ $order->id }}</strong> || Ngày đặt hàng: {{ $order->created_at->format('d/m/Y H:i') }}
+                                                || Tên khách hàng: {{ $order->name }}
+                                                </a>
+
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p>Không có đơn hàng chờ xử lý.</p>
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -174,7 +228,7 @@
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
                                         </a>
-                                        <a href="./authentication-login.html"
+                                        <a href="{{route('admin.logout')}}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
@@ -199,5 +253,15 @@
     <script src="/assets/admin/js/my_script.js"></script>
     @stack('js')
 </body>
+<script>
+   document.getElementById("bellIcon").addEventListener("click", function () {
+    // Hiển thị modal mà không có nền mờ
+    var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+        backdrop: 'false'
+    });
+    myModal.show();
+});
+
+</script>
 
 </html>

@@ -4,10 +4,11 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MH Cosmetics - Mỹ phẩm chính hãng</title>
+    <title>Ngọc Châm Skincare - Mỹ phẩm chính hãng</title>
+    <link rel="shortcut icon" type="image/png" href="assets/frontend/img/home/logo-black.png" />
 
-    <meta name="keywords" content="MH Cosmetics, Cosmetics, Mỹ phẩm chính hãng">
-    <meta name="description" content="MH Cosmetics - Mỹ phẩm chính hãng">
+    <meta name="keywords" content="Ngọc Châm Skincare, Cosmetics, Mỹ phẩm chính hãng">
+    <meta name="description" content="Ngọc Châm Skincare - Mỹ phẩm chính hãng">
     <meta name="author" content="tivatheme">
 
     <!-- Mobile Meta -->
@@ -112,7 +113,7 @@
             -webkit-animuiion: zoom 1.3s infinite;
             animation: zoom 1.3s infinite;
         }
-        
+
         .phone-vr-img-circle {
             background-color: #2196F3;
             width: 40px;
@@ -202,7 +203,7 @@
                         <img class="logo-mobile img-fluid" src="/assets/frontend/img/home/logo-mobie.png" alt="Prestashop_Furnitica">
                     </a>
                 </div>
-                
+
             </div>
 
             <!-- search -->
@@ -289,7 +290,7 @@
                     <div class="col-sm-2 col-md-2 d-flex align-items-center">
                         <div id="logo">
                             <a href="/">
-                                <img class="img-fluid" src="/assets/frontend/img/home/logo-black.png" alt="logo">
+                                <img class="img-fluid" src="/assets/frontend/img/home/logo-black.png" width="180" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -382,7 +383,7 @@
                                     @else
                                         <span>Tài khoản</span>
                                     @endif
-                                    
+
                                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -427,7 +428,7 @@
                                             </a>
                                         </div>
                                     @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -555,7 +556,7 @@
                         </p>
                         <p>Thương hiệu :
                             <span class="content2">
-                                <a href="#" id="brand"></a> 
+                                <a href="#" id="brand"></a>
                             </span>
                         </p>
                         <p>Kết cấu :
@@ -563,7 +564,7 @@
                                 <a href="#" id="texture"></a>
                             </span>
                         </p>
-            
+
                         <p>Loại da :
                             <span class="content2">
                                 <a href="#" id="skin_type"></a>
@@ -573,7 +574,7 @@
                 </div>
             </div>
              <a href="#0" class="cd-close">Close</a>
-        </div> 
+        </div>
     </div>
 
     <!-- footer -->
@@ -586,10 +587,9 @@
                             <div class="block">
                                 <div class="block-content">
                                     <p class="logo-footer">
-                                        <img src="/assets/frontend/img/home/logo-black.png" alt="img">
+                                        <img src="/assets/frontend/img/home/logo-black.png" width="180" alt="img">
                                     </p>
-                                    <p class="content-logo">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt
-                                        ut labore et dolore magna aliqua. Ut enim ad minim
+                                    <p class="content-logo">Welcome to our beauty website, where we inspire confidence and enhance your natural beauty with expert tips, high-quality products, and personalized care.
                                     </p>
                                 </div>
                             </div>
@@ -634,7 +634,7 @@
                                             <span>Address :</span>
                                         </div>
                                         <div class="content-contact address-contact">
-                                            <p>123 Suspendis matti, Visaosang Building VST District NY Accums, North American</p>
+                                            <p>123 Co Nhue, Tran Cung, Ha Noi, Viet Nam</p>
                                         </div>
                                     </div>
                                     <div class="contact-us">
@@ -643,8 +643,10 @@
                                             <span>Email :</span>
                                         </div>
                                         <div class="content-contact mail-contact">
-                                            <p>support@domain.com</p>
-                                        </div>
+                                        <a href="mailto:eshop.stable@gmail.com" style="color: blue;">
+                                        eshop.stable@gmail.com
+                                    </a>
+                                 </div>
                                     </div>
                                     <div class="contact-us">
                                         <div class="title-content">
@@ -652,10 +654,12 @@
                                             <span>Hotline :</span>
                                         </div>
                                         <div class="content-contact phone-contact">
-                                            <p>+0012-345-67890</p>
+                                        <a href="tel:0123456789" style="color: blue; text-decoration: none;">
+                                                +012-345-6789
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="contact-us">
+                                    <div cl ass="contact-us">
                                         <div class="title-content">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                             <span>Opening Hours :</span>
@@ -769,7 +773,7 @@
                 <div class="phone-vr">
                     <div class="phone-vr-circle-fill"></div>
                     <div class="phone-vr-img-circle">
-                        <a target="_blank" href="https://zalo.me/{{env('SDT_ZALO')}}">              
+                        <a target="_blank" href="https://zalo.me/0398481902">
                             <img src="{{asset('assets/frontend/img/other/zalo.png')}}">
                         </a>
                     </div>

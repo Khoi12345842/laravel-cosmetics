@@ -32,6 +32,9 @@ class AccountController extends Controller
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->dob = $request->dob;
+
         $user->save();
         toastr()->success('Cập nhật tài khoản thành công.');
         return redirect()->back();
@@ -55,7 +58,7 @@ class AccountController extends Controller
             Log::error($e->getMessage());
             return back();
         }
-        
+
     }
 
     public function cancel(Order $order){

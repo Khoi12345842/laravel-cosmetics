@@ -26,23 +26,26 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {   
-        $product_code = $request->input('product_code');
+     public function index(Request $request)
+        {
+            $product_code = $request->input('product_code');
 
-        $products = Product::when($product_code, function($query, $product_code){
-                $query->where('product_code', $product_code);
-            })
-            ->orderByDesc('id')
-            ->paginate(5);
-        return view('admin.product.list', compact('products'));
-    }
+            // Lọc sản phẩm gần đúng với mã sản phẩm (sử dụng LIKE)
+            $products = Product::when($product_code, function($query, $product_code) {
+                    $query->where('product_code', 'LIKE', "%$product_code%");
+                })
+                ->orderByDesc('id')
+                ->paginate(5);
+
+            return view('admin.product.list', compact('products'));
+        }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
+    {
         return view('admin.product.create');
     }
 
@@ -143,7 +146,7 @@ class ProductController extends Controller
         $res = $image->storeAs('products', $imageName, 'public');
         if($res){
             $path = 'products/'. $imageName;
-        } 
+        }
         return $path;
 
     }

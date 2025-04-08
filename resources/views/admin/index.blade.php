@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                             <div class="card-body">
                                 <div class="row alig n-items-start">
                                     <div class="col-8">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-lg-4">
                         <!-- Monthly Earnings -->
-                        <div class="card">
+                        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                             <div class="card-body">
                                 <div class="row alig n-items-start">
                                     <div class="col-8">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-lg-4">
                         <!-- Monthly Earnings -->
-                        <div class="card">
+                        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                             <div class="card-body">
                                 <div class="row alig n-items-start">
                                     <div class="col-8">
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="col-lg-12 d-flex align-items-strech">
-                <div class="card w-100">
+                <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                     <div class="card-body">
                         <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                             <div class="mb-3 mb-sm-0">
@@ -87,7 +87,7 @@
                                         @elseif (request('month') == '' AND date('m') == $i)
                                             <option value="{{$i}}" selected>Tháng {{$i}}</option>
                                         @else
-                                        <option value="{{$i}}">Tháng {{$i}}</option> 
+                                        <option value="{{$i}}">  Tháng {{$i}}</option>
                                         @endif
                                     @endfor
                                 </select>
@@ -97,11 +97,11 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="col-lg-6 d-flex align-items-stretch">
-                <div class="card w-100">
+                <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Top sản phẩm bán chạy</h5>
                         <div class="table-responsive">
@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div class="col-lg-6 d-flex align-items-stretch">
-                <div class="card w-100">
+                <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Đơn hàng gần đây</h5>
                         <div class="table-responsive">
@@ -189,7 +189,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 d-flex align-items-stretch">
-                <div class="card w-100">
+                <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Top sản phẩm được yêu thích</h5>
                         <div class="table-responsive">
@@ -230,7 +230,7 @@
                 </div>
             </div>
             <div class="col-lg-6 d-flex align-items-stretch">
-                <div class="card w-100">
+                <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
                     <div class="card-body p-4">
                         <h5 class="card-title fw-semibold mb-4">Top sản phẩm được chấm điểm cao</h5>
                         <div class="table-responsive">

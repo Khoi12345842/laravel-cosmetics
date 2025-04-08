@@ -5,7 +5,7 @@
 @if (Auth::guard('admin')->user()->role === 'Quản trị viên')
     <div class="container-fluid">
     <div class="row">
-        <div class="card w-100">
+        <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h5 class="card-title fw-semibold">Nhân viên</h5>
@@ -58,7 +58,7 @@
                                     <td class="border-bottom-0 text-center">
                                         <p class="fw-semibold mb-0">{{date_format($staff->created_at, 'd/m/Y')}}</p>
                                     </td>
-                                    
+
                                     <td class="border-bottom-0 text-end">
                                         <a href="{{route('staff.destroy', $staff)}}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này không?')"
                                         class="btn btn-outline-danger m-1">Xóa</a>

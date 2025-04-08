@@ -4,27 +4,27 @@
 
 @if (Auth::guard('admin')->user()->role === 'Quản trị viên')
     <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Nhân viên</h5>
                 <form action="{{route('staff.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Họ tên</label>
+                        <label for="name" class="form-label">Họ tên <span class="text-danger">*</span> </label>
                         <input type="text" class="form-control" name="name" id="name">
                         @error('name')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                         <input type="email" class="form-control" name="email" id="email">
                         @error('email')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="role" class="form-label">Chức vụ</label>
+                        <label for="role" class="form-label">Chức vụ <span class="text-danger">*</span></label>
                         <select name="role" id="role" class="form-select">
                             <option value="" disabled selected>--- Chọn chức vụ ---</option>
                             <option value="Quản trị viên">Quản trị viên</option>
@@ -35,14 +35,14 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Mật khẩu</label>
+                        <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
                         <input type="password" class="form-control" name="password" id="password">
                         @error('password')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+                        <label for="password_confirmation" class="form-label">Nhập lại mật khẩu <span class="text-danger">*</span></label>
                         <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
                         @error('password_confirmation')
                             <p class="text-danger">{{$message}}</p>

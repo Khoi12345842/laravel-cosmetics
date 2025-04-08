@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </nav>
-			
+
             <!-- main -->
             <div id="wrapper-site">
                 <div class="container">
@@ -54,30 +54,35 @@
                                                         @if (Auth::guard('web')->check())
                                                             <div>
                                                                 <div class="form-group row">
+                                                                    <span>Họ tên</span>
                                                                     <input class="form-control" value="{{old('name', Auth::guard('web')->user()->name)}}" name="name" type="text" placeholder="Họ tên">
                                                                     @error('name')
                                                                         <div class="text-danger">{{$message}}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group row">
+                                                                <span>Email</span>
                                                                     <input class="form-control" value="{{old('email', Auth::guard('web')->user()->email)}}" name="email" type="email" placeholder="Email">
                                                                     @error('email')
                                                                         <div class="text-danger">{{$message}}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group row">
+                                                                <span>Số điện thoại</span>
                                                                     <input class="form-control" value="{{old('phone', Auth::guard('web')->user()->phone)}}" name="phone" type="phone" placeholder="Số điện thoại">
                                                                     @error('phone')
                                                                         <div class="text-danger">{{$message}}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group row">
+                                                                <span>Địa chỉ nhận hàng</span>
                                                                     <input class="form-control" value="{{old('address', Auth::guard('web')->user()->address)}}" name="address" type="address" placeholder="Địa chỉ nhận hàng">
                                                                     @error('address')
                                                                         <div class="text-danger">{{$message}}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group row">
+                                                                <span>Ghi chú</span>
                                                                     <textarea name="note" class="form-control" placeholder="Ghi chú" cols="30" rows="4">{{old('note')}}</textarea>
                                                                 </div>
                                                             </div>

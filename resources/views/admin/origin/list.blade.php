@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="card w-100">
+        <div class="card w-100" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="card-title fw-semibold mb-4">Nơi sản xuất</h5>
@@ -44,7 +44,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
