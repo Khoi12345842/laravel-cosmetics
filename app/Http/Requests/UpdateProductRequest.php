@@ -24,7 +24,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'brand_id' => 'required|integer',
             'origin_id' => 'required|integer',
-            'category_id' => 'required|integer',
+            'category_id' => 'required|integer', 
             'skin_type' => 'nullable|string',
             'texture' => 'nullable|string',
             'name' => 'required|string',

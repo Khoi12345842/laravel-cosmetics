@@ -26,3 +26,6 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PROTO |
         Request::HEADER_X_FORWARDED_AWS_ELB;
 }
+
+
+// kiểm tra các proxy đáng tin cậy cho ứng dụng này.

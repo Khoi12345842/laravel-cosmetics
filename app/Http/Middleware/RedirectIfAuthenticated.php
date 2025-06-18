@@ -32,3 +32,4 @@ class RedirectIfAuthenticated
         return $next($request);
     }
 }
+// kiểm tra đang ở trạng thái chưa đăng nhập, admin hay người dùng để điều hướng phù hợp 

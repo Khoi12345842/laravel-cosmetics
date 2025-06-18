@@ -29,6 +29,7 @@ class Post extends Model
             get: fn (string $value) => \Storage::url($value),
         );
     }
+    // Lấy đường dẫn thumbnail
 
     public function shortContent($text, $limit = 100) {
         $text = strip_tags($text);
@@ -38,4 +39,5 @@ class Post extends Model
 
         return $text . '...';
     }
+    // rút gọn nội dung bài viết
 }

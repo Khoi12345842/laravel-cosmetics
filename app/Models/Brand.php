@@ -10,10 +10,12 @@ class Brand extends Model
     use HasFactory;
     
     protected $guarded = [];
+    
 
     public function products()
     {
         return $this->hasMany(Product::class);
     }
+    // một thương hiệu có thể có nhiều sản phẩm
 
 }

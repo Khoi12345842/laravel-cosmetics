@@ -31,6 +31,7 @@ class User extends Authenticatable implements CanResetPassword
             get: fn ($value) => $value != null ? \Storage::url($value) : null,
         );
     }
+    // Lấy đường dẫn avatar người dùng
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,7 +42,7 @@ class User extends Authenticatable implements CanResetPassword
         'password',
         'remember_token',
     ];
-
+// ẩn mật khẩu và token
     /**
      * The attributes that should be cast.
      *
@@ -51,6 +52,7 @@ class User extends Authenticatable implements CanResetPassword
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //chuyển đổi kiểu dữ liệu
 
     public function orders(){
         return $this->hasMany(order::class);
@@ -59,16 +61,19 @@ class User extends Authenticatable implements CanResetPassword
     public function favoriteProducts()
     {
         return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
+        // Nhiều người dùng có thể yêu thích nhiều sản phẩm
     }
 
     public function hasFavoritedProduct($productId)
     {
         return $this->favoriteProducts->contains($productId);
     }
+    // Kiểm tra xem người dùng đã yêu thích sản phẩm hay chưa
 
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
+    // Người dùng có thể có nhiều đánh giá sản phẩm
 
 }

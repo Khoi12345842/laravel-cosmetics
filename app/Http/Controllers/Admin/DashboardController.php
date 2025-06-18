@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
+    
     public function index(Request $request)
     {
         $data = [

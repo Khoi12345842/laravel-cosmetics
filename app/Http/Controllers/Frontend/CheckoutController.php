@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
-use App\Http\Services\MomoPaymentService;
+// use App\Http\Services\MomoPaymentService;
 use App\Mail\OrderConfirmationMail;
 use DB;
 use Exception;
 use Log;
 use Mail;
+
 
 class CheckoutController extends Controller
 {
@@ -20,10 +21,6 @@ class CheckoutController extends Controller
     static $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     static $vnp_Returnurl = "/checkout/vnPayCheck"; 
 
-    protected $momoPaymentService;
-    public function __construct(MomoPaymentService $momoPaymentService){
-        $this->momoPaymentService = $momoPaymentService;
-    }
 
     public function index(){
         return view('frontend.checkout');
@@ -92,14 +89,14 @@ class CheckoutController extends Controller
             }
 
             // Thanh toán MOMO
-            if($data['payment'] == 'momo'){
-                $order = Order::create($data);
-                $this->createOrderDetail($order);
-                $res = $this->momoPaymentService->create_payment($order);
-                if($res['resultCode'] == 0){
-                    \Redirect::to($res['payUrl'])->send();
-                }
-            }
+            // if($data['payment'] == 'momo'){
+            //     $order = Order::create($data);
+            //     $this->createOrderDetail($order);
+            //     $res = $this->momoPaymentService->create_payment($order);
+            //     if($res['resultCode'] == 0){
+            //         \Redirect::to($res['payUrl'])->send();
+            //     }
+            // }
         };
 
     }
@@ -214,43 +211,4 @@ class CheckoutController extends Controller
         }
     }
 
-    public function momoCheck(Request $request){
-        $resultCode = $request->get('resultCode');
-        $orderId = explode('_', $request->get('orderId'))[0];
-
-        $order = Order::findOrFail($orderId);
-        if($resultCode != null){
-            if($resultCode == 0){
-                Mail::to($order->email)->send(new OrderConfirmationMail($order));
-                session()->forget(['cart','total_price']);
-                if(auth('web')->check()){
-                    return redirect()->route('account')->with('success_message', 'Đơn hàng đã được thanh toán với ví Momo, đơn hàng sẽ được giao trong vòng vài ngày tới.');
-                }
-                else{
-                    toastr()->success('Đặt hàng thành công.');
-                    return redirect()->route('home');
-                }
-            }elseif($resultCode == 1006){
-                $order->delete();
-                toastr()->error('Giao dịch đã bị hủy.');
-                return redirect()->route('checkout');
-            }
-            else{
-                $order->delete();
-                toastr()->error('Có lỗi xảy ra khi thanh toán với Momo.');
-                return redirect()->route('checkout');
-            }
-        }
-    }
-
 }
-
-
-
-// Thẻ demo để test VNPay
-
-// Ngân hàng: NCB
-// Số thẻ: 9704198526191432198
-// Tên chủ thẻ:NGUYEN VAN A
-// Ngày phát hành:07/15
-// Mật khẩu OTP:123456

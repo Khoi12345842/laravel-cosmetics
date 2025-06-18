@@ -22,3 +22,9 @@ class BlogController extends Controller
         return view('frontend.blog-details', compact('post','relatedPosts'));
     }
 }
+
+
+
+
+
+

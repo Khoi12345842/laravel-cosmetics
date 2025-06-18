@@ -16,6 +16,8 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    // một hình ảnh sản phẩm thuộc về một sản phẩm
+
 
     protected function image(): Attribute
     {
@@ -23,4 +25,5 @@ class ProductImage extends Model
             get: fn (string $value) => \Storage::url($value),
         );
     }
+    // Lấy đường dẫn hình ảnh sản phẩm
 }

@@ -17,3 +17,5 @@ class TrimStrings extends Middleware
         'password_confirmation',
     ];
 }
+// cắt khoảng trắng đầu cuối và cuối chuỗi trong các request
+// ngoại trừ các trường mật khẩu, xác nhận mật khẩu và mật khẩu hiện tại

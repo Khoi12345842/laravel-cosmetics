@@ -18,3 +18,4 @@ class TrustHosts extends Middleware
         ];
     }
 }
+// kiểm tra tên miền con của ứng dụng, nếu trùng thì được tin tưởng 

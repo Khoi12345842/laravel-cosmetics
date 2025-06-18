@@ -37,10 +37,12 @@ class Product extends Model
         return $this->belongsToMany(Order::class)
                     ->withPivot('id', 'name', 'quantity', 'price');
     }
+    // một sản phẩm có thể có nhiều đơn hàng
 
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites', 'product_id', 'user_id');
+        //nhiều người dùng có thể yêu thích nhiều sản phẩm
     }
 
     public function firstImage()
@@ -52,6 +54,8 @@ class Product extends Model
     {
         return $this->images->skip(1)->first();
     }
+    // Trả về hình ảnh đầu tiên và thứ hai của sản phẩm
+
 
     public function reviews()
     {

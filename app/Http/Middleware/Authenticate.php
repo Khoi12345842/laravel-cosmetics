@@ -18,3 +18,6 @@ class Authenticate extends Middleware
         return $request->expectsJson() ? null : route('login');
     }
 }
+
+
+//kiểm tra xem người dùng đã đăng nhập adimin hay chưa, nếu chưa thì chuyển hướng đến trang đăng nhập admin

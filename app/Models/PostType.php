@@ -15,4 +15,5 @@ class PostType extends Model
     {
         return $this->hasMany(Post::class);
     }
+    // Một loại bài viết có thể có nhiều bài viết
 }

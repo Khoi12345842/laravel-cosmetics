@@ -20,3 +20,4 @@ class ValidateSignature extends Middleware
         // 'utm_term',
     ];
 }
+// validate chữ ký trong URL

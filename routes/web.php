@@ -190,3 +190,8 @@ Route::middleware(['auth:web'])->group(function () {
 Route::fallback(function () {
     return view('frontend.404');
 });
+
+
+Route::get('/downloadImage', function() {
+    include base_path('downloadImage.php'); // Dùng base_path() để đảm bảo đường dẫn chính xác
+})->name('download.image');

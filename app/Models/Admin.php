@@ -23,28 +23,23 @@ class Admin extends Authenticatable
         'role',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    //gán hàng loạt 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+    //ẩn các trường này 
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //chuyển đổi kiểu dữ liệu của các trường này
 
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
+    // mối quan hệ một admin có nhiều bài viết
 }

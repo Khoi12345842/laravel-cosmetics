@@ -19,8 +19,9 @@ class Category extends Model
     public function parent(){
         return $this->belongsTo(Category::class, 'parent_id', 'id');
     }
-
+    //một danh mục có thể có một danh mục cha
     public function children(){
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
+    //một danh mục có thể có nhiều danh mục con
 }

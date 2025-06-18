@@ -4,7 +4,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ngọc Châm Skincare - Mỹ phẩm chính hãng</title>
+    <title>Khôi Trực Skincare - Mỹ phẩm chính hãng</title>
     <link rel="shortcut icon" type="image/png" href="assets/frontend/img/home/logo-black.png" />
 
     <meta name="keywords" content="Ngọc Châm Skincare, Cosmetics, Mỹ phẩm chính hãng">

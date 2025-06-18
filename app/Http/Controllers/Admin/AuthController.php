@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin/dashboard')->with('success','Xin chào ' . Auth::guard('admin')->user()->name . ', chào mừng quay trở lại.');
+            return redirect()->intended('admin/dashboard')->with('success','Xin chào ' . Auth::guard('admin')->user()->name . ', chào mừng quay trở lại vơis quyền admin .');
         }
 
         return back()->withErrors([
@@ -44,6 +44,11 @@ class AuthController extends Controller
 
     public function changePassword(Request $request){
         $user = Auth::guard('admin')->user();
+
+        // Ensure $user is an Eloquent model instance
+        if (!($user instanceof \Illuminate\Database\Eloquent\Model)) {
+            $user = \App\Models\Admin::find($user->id);
+        }
 
         $request->validate([
             'old_password' => 'required',

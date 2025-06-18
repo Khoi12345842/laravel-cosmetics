@@ -14,10 +14,12 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    //một người dùng có thể có nhiều đơn hàng
 
     public function products()
     {
         return $this->belongsToMany(Product::class)
                     ->withPivot('id', 'name', 'quantity','price');
     }
+    //một đơn hàng có thể có nhiều sản phẩm
 }
